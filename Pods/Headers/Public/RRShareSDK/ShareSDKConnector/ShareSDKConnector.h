@@ -1,0 +1,1 @@
+../../../../RRShareSDK/libraries/ShareSDKConnector.framework/Headers/ShareSDKConnector.h

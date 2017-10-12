@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="inTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.03.03" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfe-61-l9T">
+                        <rect key="frame" x="17" y="14" width="62" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.30584993958473206" green="0.30590575933456421" blue="0.30583804845809937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTC-ak-r0n">
+                        <rect key="frame" x="153" y="11" width="13.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.30584993960000001" green="0.30590575930000002" blue="0.30583804850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlA-5e-FD9">
+                        <rect key="frame" x="285" y="11" width="25" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.30584993960000001" green="0.30590575930000002" blue="0.30583804850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="UlA-5e-FD9" firstAttribute="top" secondItem="oTC-ak-r0n" secondAttribute="top" id="Jyq-px-gln"/>
+                    <constraint firstItem="oTC-ak-r0n" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="LYb-tC-UAK"/>
+                    <constraint firstItem="kfe-61-l9T" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SOC-2m-P1W"/>
+                    <constraint firstAttribute="trailing" secondItem="UlA-5e-FD9" secondAttribute="trailing" constant="10" id="YIW-Z9-ip1"/>
+                    <constraint firstItem="oTC-ak-r0n" firstAttribute="top" secondItem="kfe-61-l9T" secondAttribute="top" constant="-3" id="gud-O9-801"/>
+                    <constraint firstItem="kfe-61-l9T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="17" id="w9w-ns-Z8O"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dalab" destination="UlA-5e-FD9" id="3TL-gL-5AM"/>
+                <outlet property="titlab" destination="kfe-61-l9T" id="vwv-xw-aDi"/>
+                <outlet property="zhonglab" destination="oTC-ak-r0n" id="sUi-kh-Qpf"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

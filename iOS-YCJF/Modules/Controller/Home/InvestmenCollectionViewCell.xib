@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="InvestmenCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="145" height="117"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="145" height="117"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="NRT-oK-SVd">
+                        <rect key="frame" x="38" y="13" width="69" height="69"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="69" id="Ibm-Jq-afJ"/>
+                            <constraint firstAttribute="width" constant="69" id="WXG-uB-s93"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOV-vX-a0p">
+                        <rect key="frame" x="72.5" y="92" width="0.0" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59279751777648926" green="0.60060274600982666" blue="0.61484277248382568" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nomber_fir" translatesAutoresizingMaskIntoConstraints="NO" id="Zjq-hA-vLV">
+                        <rect key="frame" x="87" y="58" width="20" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="EYa-K5-qev"/>
+                            <constraint firstAttribute="height" constant="24" id="r8l-Wi-jGm"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Zjq-hA-vLV" firstAttribute="trailing" secondItem="NRT-oK-SVd" secondAttribute="trailing" id="FLJ-U4-Vlm"/>
+                <constraint firstItem="Zjq-hA-vLV" firstAttribute="bottom" secondItem="NRT-oK-SVd" secondAttribute="bottom" id="JTp-6b-YhK"/>
+                <constraint firstItem="NRT-oK-SVd" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="OW3-UI-Xy2"/>
+                <constraint firstItem="iOV-vX-a0p" firstAttribute="top" secondItem="NRT-oK-SVd" secondAttribute="bottom" constant="10" id="YdD-hs-ocr"/>
+                <constraint firstItem="iOV-vX-a0p" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="aAG-0s-dct"/>
+                <constraint firstAttribute="bottom" secondItem="iOV-vX-a0p" secondAttribute="bottom" constant="10" id="duU-im-wYO"/>
+                <constraint firstItem="NRT-oK-SVd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="13" id="e7r-LJ-vlf"/>
+            </constraints>
+            <size key="customSize" width="145" height="117"/>
+            <connections>
+                <outlet property="hmlab" destination="iOV-vX-a0p" id="yL4-iy-J6L"/>
+                <outlet property="imgV" destination="NRT-oK-SVd" id="KZV-GZ-bl6"/>
+                <outlet property="investImgV" destination="Zjq-hA-vLV" id="2Po-8J-pMe"/>
+            </connections>
+            <point key="canvasLocation" x="18.5" y="62.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="nomber_fir" width="20" height="24"/>
+        <image name="pic.png" width="110" height="90"/>
+    </resources>
+</document>

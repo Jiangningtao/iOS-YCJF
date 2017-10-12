@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TenderViewTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWy-qn-00s">
+                        <rect key="frame" x="8" y="12" width="31" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="KNB-A9-qja"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRB-MB-8Xj">
+                        <rect key="frame" x="144.5" y="12" width="31" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="eay-cf-Sgg"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIl-vj-P1k">
+                        <rect key="frame" x="281" y="12" width="31" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="thu-lg-qr7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JIl-vj-P1k" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bRB-MB-8Xj" secondAttribute="trailing" constant="10" id="9Nq-pN-75h"/>
+                    <constraint firstItem="bRB-MB-8Xj" firstAttribute="centerY" secondItem="JIl-vj-P1k" secondAttribute="centerY" id="NDJ-mX-Bku"/>
+                    <constraint firstItem="iWy-qn-00s" firstAttribute="centerY" secondItem="bRB-MB-8Xj" secondAttribute="centerY" id="Pxx-yR-8Nq"/>
+                    <constraint firstItem="iWy-qn-00s" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="VVS-Cw-DPg"/>
+                    <constraint firstItem="JIl-vj-P1k" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="oEb-nf-Gx2"/>
+                    <constraint firstItem="JIl-vj-P1k" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="u3P-ye-Oy5"/>
+                    <constraint firstItem="bRB-MB-8Xj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="uit-I0-iQo"/>
+                    <constraint firstItem="bRB-MB-8Xj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iWy-qn-00s" secondAttribute="trailing" constant="20" id="xkj-kZ-m1M"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="Tender_CountLab" destination="iWy-qn-00s" id="uVi-wX-XhA"/>
+                <outlet property="Tender_DateLab" destination="JIl-vj-P1k" id="sqz-gZ-lRi"/>
+                <outlet property="Tender_UserLab" destination="bRB-MB-8Xj" id="2RO-tf-7pb"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,69 @@
+//
+//  PrefixHeader.pch
+//  MiAiApp
+//
+//  Created by 徐阳 on 2017/5/18.
+//  Copyright © 2017年 徐阳. All rights reserved.
+//
+
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+//全局宏
+#import "UtilsMacros.h"
+#import "URLMacros.h"
+#import "FontAndColorMacros.h"
+#import "ThirdMacros.h"
+#import "CommonMacros.h"
+#import "Constants.h"
+#import "WTConst.h"
+#import "Singleton.h"
+
+//基础类
+#import "AppDelegate.h"
+#import "AppDelegate+AppService.h"
+#import "AppDelegate+PushService.h"
+#import "navigationController.h"
+#import "MBProgressHUD+XY.h"
+#import "NetRequest.h"
+#import "UIView+addition.h"
+#import "UIDevice+deviceSystem.h"
+#import "MyFMDataBase.h"
+#import "MyAnimation.h"
+#import "UIViewController+XHPhoto.h"
+#import "UIViewController+AlertViewAndActionSheet.h"
+#import "MyPicButton.h"
+#import "WWZShuju.h"
+#import "MYFactoryManager.h"
+#import "QuickControl.h"
+#import "CommonBottomView.h"
+#import "UIView+WT.h"
+#import "WebViewController.h"
+// 指纹解锁相关
+#import "NSString+QDTouchID.h"
+#import <LocalAuthentication/LocalAuthentication.h>
+//#import "MineItemModel.h"
+//#import "AccinfoModel.h"
+#import "MineInstance.h"
+#import "TalkingData.h"
+#import "TalkingDataAppCpa.h"
+
+//第三方
+#import <YYKit.h>
+#import <MBProgressHUD.h>
+#import <Masonry.h>
+#import <MJRefresh.h>
+#import <UMengSocial/UMSocial.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <AFNetworking/AFNetworking.h>
+#import <FMDB/FMDatabase.h>
+#import <MJExtension/MJExtension.h>
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+#import <UMMobClick/MobClick.h>
+#import <QQ_XGPush/XGPush.h>
+#import <QQ_XGPush/XGSetting.h>
+
+
+#endif /* PrefixHeader_pch */

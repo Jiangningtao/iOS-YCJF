@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="108" id="KGk-i7-Jjw" customClass="newsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="397" height="108"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="397" height="108"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="银行存管正式上线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqR-gw-rsx">
+                        <rect key="frame" x="20" y="15" width="225" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果你想在画布中设置一个固定的画框，你只需要新建一个或多个新的画的时间" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnN-Nr-bSt">
+                        <rect key="frame" x="20" y="43" width="233" height="56"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="56" id="032-FM-Vz6"/>
+                            <constraint firstAttribute="width" constant="233" id="Ii0-vp-LVI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.72957116365432739" green="0.73391777276992798" blue="0.74447894096374512" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="pG4-ps-puR">
+                        <rect key="frame" x="265" y="13" width="130" height="82"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="130" id="kOi-ux-iDI"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="AnN-Nr-bSt" firstAttribute="top" secondItem="NqR-gw-rsx" secondAttribute="bottom" constant="8" id="5xb-ec-h97"/>
+                    <constraint firstItem="pG4-ps-puR" firstAttribute="leading" secondItem="AnN-Nr-bSt" secondAttribute="trailing" constant="12" id="8dd-i2-Avk"/>
+                    <constraint firstAttribute="trailing" secondItem="pG4-ps-puR" secondAttribute="trailing" constant="2" id="H7C-f6-y3M"/>
+                    <constraint firstAttribute="bottom" secondItem="pG4-ps-puR" secondAttribute="bottom" constant="13" id="HsO-3Y-s4Y"/>
+                    <constraint firstItem="AnN-Nr-bSt" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Tjh-Jn-xGj"/>
+                    <constraint firstItem="NqR-gw-rsx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ZST-XX-HlL"/>
+                    <constraint firstItem="pG4-ps-puR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="exI-Lb-D2C"/>
+                    <constraint firstItem="NqR-gw-rsx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="ivq-Eb-Cio"/>
+                    <constraint firstItem="pG4-ps-puR" firstAttribute="leading" secondItem="NqR-gw-rsx" secondAttribute="trailing" constant="20" id="qtw-hV-bKQ"/>
+                    <constraint firstItem="AnN-Nr-bSt" firstAttribute="leading" secondItem="NqR-gw-rsx" secondAttribute="leading" id="uqV-TF-QuD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="xwImg" destination="pG4-ps-puR" id="nHJ-Fp-uTX"/>
+                <outlet property="xwlab" destination="AnN-Nr-bSt" id="6KG-PD-XHo"/>
+                <outlet property="xwtitle" destination="NqR-gw-rsx" id="KDZ-l0-vCd"/>
+            </connections>
+            <point key="canvasLocation" x="-4.5" y="86"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="pic.png" width="110" height="90"/>
+    </resources>
+</document>

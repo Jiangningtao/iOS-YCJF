@@ -1,0 +1,1 @@
+../../../RRShareSDK/libraries/extends/WeChatSDK/WXApiObject.h

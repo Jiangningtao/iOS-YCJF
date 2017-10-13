@@ -325,40 +325,53 @@
     pramas[@"money"] = self.str1;
     pramas[@"apr_status"] = @"1";
     
-    /*
+    
     NSString *monthStr = self.DetlDataArr[1][0];
     NSLog(@"%@", monthStr);
     NSArray *monthArr = [monthStr componentsSeparatedByString:@"到"];
     NSLog(@"%@", monthArr);
     if (monthArr != nil) {
-        if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"timelimit_status"]isEqualToString:@"1"]) {
-            NSString *timeStr = monthArr[0];
-            pramas[@"timelimit_status"] = @"1";
-            pramas[@"timelimit_month_first"] = [timeStr substringToIndex:timeStr.length-2];
-            NSString *timeStr1 = monthArr[1];
-            pramas[@"timelimit_month_last"] = [timeStr1 substringToIndex:timeStr1.length-2];
+        if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"timelimit_status"]isEqualToString:@"1"] && ![monthStr isEqualToString:@"不限"]) {
+            if (monthArr.count == 2) {
+                NSString *timeStr = monthArr[0];
+                pramas[@"timelimit_status"] = @"1";
+                pramas[@"timelimit_month_first"] = [timeStr substringToIndex:timeStr.length-2];
+                NSString *timeStr1 = monthArr[1];
+                pramas[@"timelimit_month_last"] = [timeStr1 substringToIndex:timeStr1.length-2];
+            }else if(monthArr.count == 1){
+                NSString *timeStr = monthArr[0];
+                pramas[@"timelimit_status"] = @"1";
+                pramas[@"timelimit_month_first"] = [timeStr substringToIndex:timeStr.length-2];
+                pramas[@"timelimit_month_last"] = [timeStr substringToIndex:timeStr.length-2];
+            }
+            
             NSLog(@"%@-%@", pramas[@"timelimit_month_first"], pramas[@"timelimit_month_last"]);
         }else{
-     */
             //            NSString *timeStr = monthArr[0];
             pramas[@"timelimit_month_first"] =@"0";
             //            NSString *timeStr1 = monthArr[1];
             pramas[@"timelimit_month_last"] = @"0";
             pramas[@"timelimit_status"] = @"0";
-        //}
+        }
         
-    //}
+    }
     
     
     NSString *bfbStr = self.DetlDataArr[1][1];
-    
     NSArray *bfbArrqqq = [bfbStr componentsSeparatedByString:@"到"];
+    NSLog(@"%@ %ld", bfbStr, bfbArrqqq.count);
     if(bfbArrqqq !=nil){
-        NSString *bfStr = bfbArrqqq[0];
-        pramas[@"apr_first"] = [bfStr substringToIndex:bfStr.length-1];
-        NSString *bfStr1 = bfbArrqqq[1];
-        pramas[@"apr_last"] = [bfStr1 substringToIndex:bfStr1.length-1];
-        
+        if (bfbArrqqq.count == 2) {
+            NSString *bfStr = bfbArrqqq[0];
+            pramas[@"apr_first"] = [bfStr substringToIndex:bfStr.length-1];
+            NSString *bfStr1 = bfbArrqqq[1];
+            pramas[@"apr_last"] = [bfStr1 substringToIndex:bfStr1.length-1];
+        }else if(bfbArrqqq.count == 1)
+        {
+            NSString *bfStr = bfbArrqqq[0];
+            pramas[@"apr_first"] = [bfStr substringToIndex:bfStr.length-1];
+            pramas[@"apr_last"] = [bfStr substringToIndex:bfStr.length-1];
+        }
     }
     
     NSLog(@"%@?%@", tbszrl, pramas);
@@ -403,12 +416,19 @@
             NSArray *monthArr = [monthStr componentsSeparatedByString:@"到"];
             NSLog(@"%@", monthArr);
             if (monthArr != nil) {
-                if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"timelimit_status"]isEqualToString:@"1"]) {
-                    NSString *timeStr = monthArr[0];
-                    pramas[@"timelimit_status"] = @"1";
-                    pramas[@"timelimit_month_first"] = [timeStr substringToIndex:timeStr.length-2];
-                    NSString *timeStr1 = monthArr[1];
-                    pramas[@"timelimit_month_last"] = [timeStr1 substringToIndex:timeStr1.length-2];
+                if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"timelimit_status"]isEqualToString:@"1"] && ![monthStr isEqualToString:@"不限"]) {
+                    if (monthArr.count == 2) {
+                        NSString *timeStr = monthArr[0];
+                        pramas[@"timelimit_status"] = @"1";
+                        pramas[@"timelimit_month_first"] = [timeStr substringToIndex:timeStr.length-2];
+                        NSString *timeStr1 = monthArr[1];
+                        pramas[@"timelimit_month_last"] = [timeStr1 substringToIndex:timeStr1.length-2];
+                    }else if(monthArr.count == 1){
+                        NSString *timeStr = monthArr[0];
+                        pramas[@"timelimit_status"] = @"1";
+                        pramas[@"timelimit_month_first"] = [timeStr substringToIndex:timeStr.length-2];
+                        pramas[@"timelimit_month_last"] = [timeStr substringToIndex:timeStr.length-2];
+                    }
                     NSLog(@"%@-%@", pramas[@"timelimit_month_first"], pramas[@"timelimit_month_last"]);
                 }else{
                     //            NSString *timeStr = monthArr[0];
@@ -425,11 +445,17 @@
             
             NSArray *bfbArrqqq = [bfbStr componentsSeparatedByString:@"到"];
             if(bfbArrqqq !=nil){
-                NSString *bfStr = bfbArrqqq[0];
-                pramas[@"apr_first"] = [bfStr substringToIndex:bfStr.length-1];
-                NSString *bfStr1 = bfbArrqqq[1];
-                pramas[@"apr_last"] = [bfStr1 substringToIndex:bfStr1.length-1];
-                
+                if (bfbArrqqq.count == 2) {
+                    NSString *bfStr = bfbArrqqq[0];
+                    pramas[@"apr_first"] = [bfStr substringToIndex:bfStr.length-1];
+                    NSString *bfStr1 = bfbArrqqq[1];
+                    pramas[@"apr_last"] = [bfStr1 substringToIndex:bfStr1.length-1];
+                }else if(bfbArrqqq.count == 1)
+                {
+                    NSString *bfStr = bfbArrqqq[0];
+                    pramas[@"apr_first"] = [bfStr substringToIndex:bfStr.length-1];
+                    pramas[@"apr_last"] = [bfStr substringToIndex:bfStr.length-1];
+                }
             }
             
             if (_MaxJETf.text.length>0) {

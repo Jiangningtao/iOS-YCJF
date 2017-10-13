@@ -70,7 +70,6 @@
 
 -(void)loadNewTopics
 {
-    
     [self.tab.mj_footer resetNoMoreData];
     //结束下拉刷新
     [self.tab.mj_footer endRefreshing];

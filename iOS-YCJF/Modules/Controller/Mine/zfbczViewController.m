@@ -404,7 +404,8 @@
             BindAlipayAccViewController * vc = [[BindAlipayAccViewController alloc] init];
             vc.Model = self.Model;
             [self.navigationController pushViewController:vc animated:YES];
-        }else{
+        }else if ([error isEqualToString:@"提交成功！"])
+        {
             fundRecordViewController * vc = [[fundRecordViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }

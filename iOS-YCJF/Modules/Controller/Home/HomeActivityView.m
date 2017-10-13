@@ -41,15 +41,24 @@
         make.height.offset(350*heightScale);
     }];
     
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-    [_bgImageView addGestureRecognizer:singleTap];
-    
     [self addSubview:self.closeButton];
     [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.centerX.offset(0);
         make.top.equalTo(_bgImageView.mas_bottom).offset(50*heightScale);
     }];
+    
+    _bgImageView.center = CGPointMake(self.centerX, self.centerY-screen_height);
+    self.closeButton.hidden = YES;
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        _bgImageView.center = CGPointMake(self.centerX, self.centerY);
+        self.closeButton.hidden = NO;
+    }];
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [_bgImageView addGestureRecognizer:singleTap];
+    
 }
 
 - (void)setPageURLString:(NSString *)pageURLString {
@@ -87,7 +96,12 @@
 #pragma mark - Event
 - (void)closeBtnEvent
 {
-    [self removeFromSuperview];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.closeButton.hidden = YES;
+        _bgImageView.center = CGPointMake(self.centerX, self.centerY-screen_height);
+    }completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
 
 

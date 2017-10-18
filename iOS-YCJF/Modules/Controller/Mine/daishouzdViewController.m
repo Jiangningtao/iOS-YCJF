@@ -21,7 +21,7 @@
 @property (nonatomic ,strong)UIView *lanView;
 /***上一次的请求参数 ***/
 @property (nonatomic ,strong)NSDictionary *params;
-/***<#注释#> ***/
+/***分页 页数 ***/
 @property (nonatomic ,assign)NSUInteger page;
 /***<#注释#> ***/
 @property (nonatomic ,strong)NSMutableArray *Modelarr;

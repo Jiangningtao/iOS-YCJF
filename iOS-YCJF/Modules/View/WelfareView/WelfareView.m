@@ -47,7 +47,7 @@
     [self addSubview:_popBgView];
     
     _activeImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, _popBgView.width-20, 204*heightScale)];
-    _activeImgView.image = [UIImage imageNamed:@"popup_img"];
+    //_activeImgView.image = [UIImage imageNamed:@"popup_img"];
     [_popBgView addSubview:_activeImgView];
     
     _tipLab = [[UILabel alloc] initWithFrame:CGRectMake(_popBgView.width/2-80,_activeImgView.bottom+8*heightScale, 160, 30*heightScale)];
@@ -63,7 +63,7 @@
     [_popBgView addSubview:_contentBgView];
     
     _contentLab = [[UILabel alloc] initWithFrame:CGRectMake(5, 5*heightScale, _contentBgView.width-10, 70*heightScale)];
-    _contentLab.text = @"恭喜您成功领取618元现金红包，红包已发送至您的个人账户，请前往“我的奖券”查看。";
+    //_contentLab.text = @"恭喜您成功领取618元现金红包，红包已发送至您的个人账户，请前往“我的奖券”查看。";
     _contentLab.textColor = color(51, 51, 51, 1);
     _contentLab.numberOfLines = 0;
     _contentLab.font = [UIFont systemFontOfSize:15];
@@ -90,6 +90,17 @@
     [virtualBtn addTarget:self action:@selector(closePopupBtnClicked:) forControlEvents:UIControlEventAllEvents];
     [_bgView addSubview:virtualBtn];
     
+}
+
+- (void)setImgUrl:(NSString *)imgUrl {
+    _imgUrl = imgUrl;
+    [_activeImgView sd_setImageWithURL:[NSURL URLWithString:_imgUrl]];
+}
+
+- (void)setTxtStr:(NSString *)txtStr
+{
+    _txtStr = txtStr;
+    _contentLab.text = _txtStr;
 }
 
 - (void)visitTheDetailOfWelfare:(id)sender {

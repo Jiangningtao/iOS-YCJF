@@ -373,6 +373,7 @@
     pramas[@"version"] = @"v1.0.3";
     pramas[@"os"] = @"ios";
     pramas[@"bid"] = self.bid;
+    pramas[@"useCoupon"] = @"1";
     NSLog(@"%@?%@", gmbxxxxurl, pramas);
     [WWZShuju initlizedData:gmbxxxxurl paramsdata:pramas dicBlick:^(NSDictionary *info) {
         NSLog(@"----购买---%@, msg:%@",info, info[@"msg"]);
@@ -668,11 +669,18 @@
 
 -(void)jjBtnClicked{
     if (_textf.text.length != 0 || [_textf.text integerValue] != 0) {
-        keshiyongViewController *keshi =[[keshiyongViewController alloc]init];
-        keshi.titlestr = @"我的奖劵";
-        keshi.inputMoney = self.textf.text;
-        NSLog(@"%@%@", keshi.titlestr, keshi.inputMoney);
-        [self.navigationController pushViewController:keshi animated:YES];
+        if ([self.model.isxs integerValue] == 1) {
+            // 新手标
+            [MBProgressHUD showTipMessageInView:@"新手标不可以使用优惠券" timer:0.5];
+        }else
+        {
+            keshiyongViewController *keshi =[[keshiyongViewController alloc]init];
+            keshi.titlestr = @"我的奖劵";
+            keshi.bid = self.bid;
+            keshi.inputMoney = self.textf.text;
+            NSLog(@"%@%@", keshi.titlestr, keshi.inputMoney);
+            [self.navigationController pushViewController:keshi animated:YES];
+        }
     }else
     {
         [MBProgressHUD showTipMessageInView:@"请先输入投资金额" timer:1.0];

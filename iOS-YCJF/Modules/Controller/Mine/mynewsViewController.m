@@ -17,7 +17,7 @@
 /***当加载下一页数据时需要这个参数 ***/
 @property (nonatomic ,copy)NSString *maxtime;
 /***当前页码 ***/
-//@property (nonatomic ,assign)NSInteger page;
+@property (nonatomic ,assign)NSInteger page;
 @property (nonatomic, strong) NSMutableArray * dataArray;
 
 @end
@@ -48,8 +48,8 @@
     
     _tab.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
     _tab.mj_header.automaticallyChangeAlpha = YES;//自动改变透明度
-//    [_tab.mj_header beginRefreshing];
-//    self.tab.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
+    [_tab.mj_header beginRefreshing];
+    self.tab.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
     // Do any additional setup after loading the view.
 }
 
@@ -64,7 +64,7 @@
     [self.tab.mj_footer resetNoMoreData];
     //结束下拉刷新
     [self.tab.mj_footer endRefreshing];
-//    self.page++;
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"uid"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"];
@@ -72,6 +72,8 @@
     params[@"at"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"at"];
     params[@"version"] = @"v1.0.3";
     params[@"os"] = @"ios";
+    params[@"pageSize"] = @"10";
+    params[@"pageIndex"] = @"1";
     self.params = params;
     
     NSLog(@"%@?%@", mymessage, params);
@@ -98,11 +100,54 @@
         [self.tab reloadData];
         [self.tab.mj_header endRefreshing];//结束刷新
         //清空页码
-//        self.page = 0;
+        self.page = 1;
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
 //        if (self.params != params)return ;
+        [self.tab.mj_header endRefreshing];//结束刷新
+    }];
+    
+}
+
+-(void)loadMoreTopics{
+    //消除尾部"没有更多数据"的状态
+    [self.tab.mj_footer resetNoMoreData];
+    //结束上拉刷新
+    [self.tab.mj_header endRefreshing];
+    self.page++;
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"uid"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"];
+    params[@"sid"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"sid"];
+    params[@"at"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"at"];
+    params[@"version"] = @"v1.0.3";
+    params[@"os"] = @"ios";
+    NSInteger page = self.page;
+    params[@"pageSize"] = @"10";
+    params[@"pageIndex" ]=@(page);
+
+    self.params = params;
+    NSLog(@"%@?%@", mymessage, params);
+    [manager POST:mymessage parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@", responseObject);
+        if ([responseObject[@"data"] count] > 0) {
+            for (NSDictionary * dict in responseObject[@"data"]) {
+                [self.dataArray addObject:dict];
+            }
+        }else{
+            self.tab.mj_footer.state = MJRefreshStateNoMoreData;
+            //设置页码
+            self.page = page;
+        }
+        
+        [self.tab reloadData];
+        [self.tab.mj_header endRefreshing];//结束刷新
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+        //        if (self.params != params)return ;
         [self.tab.mj_header endRefreshing];//结束刷新
     }];
     

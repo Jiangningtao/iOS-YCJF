@@ -101,7 +101,18 @@
         UIBarButtonItem * item2 = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.leftBarButtonItems = @[item1, item2];
     }
-    [self rightBarBtnImgN:@"icon_message" act:@selector(rightBarBtnEvent)];
+    //[self rightBarBtnImgN:@"icon_message" act:@selector(rightBarBtnEvent)];
+    UILabel * rlab = [UILabel labelWithFrame:CGRectMake(10, 0, 10, 10) text:@"9" font:8 textColor:KWhiteColor];
+    rlab.textAlignment = NSTextAlignmentCenter;
+    rlab.radius = 5;
+    rlab.backgroundColor = KRedColor;
+    UIButton * rBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 18, 20)];
+    [rBtn setBackgroundImage:IMAGE_NAMED(@"icon_message") forState:UIControlStateNormal];
+    [rBtn setBackgroundImage:IMAGE_NAMED(@"icon_message") forState:UIControlStateSelected];
+  //  [rBtn addSubview:rlab];
+    [rBtn addTarget:self action:@selector(rightBarBtnEvent) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * ritem = [[UIBarButtonItem alloc] initWithCustomView:rBtn];
+    self.navigationItem.rightBarButtonItem = ritem;
     [self.view addSubview:self.tab];
     [self layout];
     
@@ -161,6 +172,24 @@
             [UserDefaults setObject:info[@"item"][@"real_status"] forKey:KReal_status];
             [UserDefaults setObject:info[@"item"][@"is_defaultpaypass"] forKey:KIs_defaultpaypass];
             [[NSUserDefaults standardUserDefaults]synchronize];
+        }
+        
+        UILabel * rlab = [UILabel labelWithFrame:CGRectMake(12, 0, 10, 10) text:@"" font:8 textColor:KWhiteColor];
+        rlab.textAlignment = NSTextAlignmentCenter;
+        rlab.radius = 5;
+        rlab.backgroundColor = KRedColor;
+        UIButton * rBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 18, 20)];
+        [rBtn setBackgroundImage:IMAGE_NAMED(@"icon_message") forState:UIControlStateNormal];
+        [rBtn setBackgroundImage:IMAGE_NAMED(@"icon_message") forState:UIControlStateSelected];
+        [rBtn addSubview:rlab];
+        [rBtn addTarget:self action:@selector(rightBarBtnEvent) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem * ritem = [[UIBarButtonItem alloc] initWithCustomView:rBtn];
+        self.navigationItem.rightBarButtonItem = ritem;
+        if ([[MineInstance shareInstance].mineModel.unread_message integerValue] != 0) {
+            rlab.hidden = NO;
+        }else
+        {
+            rlab.hidden = YES;
         }
         
         if ([info[@"msg"] hasSuffix:@"请重新登录后访问！"]) {

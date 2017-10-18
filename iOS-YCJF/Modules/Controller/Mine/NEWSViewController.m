@@ -75,6 +75,7 @@
             NSLog(@"标记为已读成功");
             
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadMymessage" object:nil userInfo:nil];
+            KPostNotification(KNotificationRefreshMineDatas, nil);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

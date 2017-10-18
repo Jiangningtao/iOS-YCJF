@@ -28,6 +28,7 @@
 #define KAccount @"telNumber"
 #define KLoginPwd @"loginPassword"
 #define KNewRegister @"newRegister"
+#define KXshbmoney @"xshbmoney"   // 新手红包金额
 // 是否为默认交易密码  是为1， 不是为0
 #define KIs_defaultpaypass @"is_defaultpaypass"
 #define KReal_status @"real_status"

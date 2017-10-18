@@ -136,7 +136,6 @@
     [MBProgressHUD showActivityMessageInWindow:@"数据加载中"];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
- //   params[@"uid"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"];
     params[@"sid"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"sid"];
     params[@"at"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"at"];
     params[@"version"] = @"v1.0.3";

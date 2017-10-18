@@ -109,6 +109,7 @@
     self.params = params;
     
     if (self.titlestr) {
+        params[@"bid"] = self.bid;
         [WWZShuju initlizedData:getTouziurl paramsdata:params dicBlick:^(NSDictionary *info) {
             if (self.params != params)return ;
             NSLog(@"---奖劵未使用-----%@",info);

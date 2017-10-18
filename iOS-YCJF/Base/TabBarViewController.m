@@ -11,14 +11,10 @@
 #import "InvestViewController.h"
 #import "MineViewController.h"
 #import "LoginViewController.h"
-#import "WelfareView.h"
-#import "myjiangzhuangViewController.h"
 //#import "TouchViewController.h"
 
-@interface TabBarViewController ()<visitDetailDelegate>
-{
-    WelfareView * _welfareView;
-}
+@interface TabBarViewController ()
+
 
 @end
 
@@ -142,16 +138,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _welfareView = [[WelfareView alloc] initWithFrame:screen_bounds];
-    _welfareView.visitDelegate = self;
-    if ( [[UserDefaults objectForKey:KNewRegister] isEqualToString:@"1"] && [[UserDefaults objectForKey:@"uid"] length] > 0) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.view.window addSubview:_welfareView];
-            [UserDefaults setObject:@"2" forKey:KNewRegister];
-            [UserDefaults synchronize];
-        });
-    }
-    
     // 通知 选择 投资 tabbar
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(investListTabClick) name:KNotificationTabSelectInvest object:nil];
 }
@@ -162,14 +148,7 @@
     [self btnClick:btn];
 }
 
-- (void)visitDetailOfWelfareEvent
-{
-    myjiangzhuangViewController *jiangQuan = [[myjiangzhuangViewController alloc] init];
-    //隐藏tabbar
-    jiangQuan.upVC = @"jiangQuan";
-    UINavigationController * nav= [[UINavigationController alloc] initWithRootViewController:jiangQuan];
-    [self presentViewController:nav animated:YES completion:nil];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

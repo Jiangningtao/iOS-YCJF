@@ -23,4 +23,20 @@
 /** 链接 ***/
 @property (nonatomic ,copy)NSString<Optional> *url;
 
+
+// 分享事件
+/** 内容 ***/
+@property (nonatomic ,copy)NSString<Optional> *shareContent;
+/** 图片 ***/
+@property (nonatomic ,copy)NSString<Optional> *shareImg;
+/** 标题 ***/
+@property (nonatomic ,copy)NSString<Optional> *shareTitle;
+/** URL ***/
+@property (nonatomic ,copy)NSString<Optional> *shareAddressUrl;
+/** 显示 ***/
+@property (nonatomic ,copy)NSString<Optional> *isShow;
+
+
+
+
 @end

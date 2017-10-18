@@ -136,7 +136,6 @@
 
 -(void)loadNewTopics{
     NSMutableDictionary *pass = [NSMutableDictionary dictionary];
-    
     pass[@"version"] = @"v1.0.3";
     pass[@"os"] = @"ios";
     pass[@"uid"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"];

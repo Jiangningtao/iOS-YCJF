@@ -31,14 +31,17 @@
 #import "YinChengNewsDetailViewController.h"
 #import "yaoqinghyViewController.h"
 #import "LoginViewController.h"
+#import "WelfareView.h"
+#import "myjiangzhuangViewController.h"
 
-#define HeaderHeight 340
+#define HeaderHeight 330
 
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 
-@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, SDCycleScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, SDCycleScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, visitDetailDelegate>
 {
+    WelfareView * _welfareView;
     UIView * bgView;
 }
 @property (nonatomic) CGRect origialFrame;
@@ -102,17 +105,9 @@
     });
    dispatch_async(queue, ^{
            NSLog(@"使用异步函数执行主队列中的任务2--%@",[NSThread currentThread]);
-       if ( [[UserDefaults objectForKey:KNewRegister] isEqualToString:@"1"] && [[UserDefaults objectForKey:@"uid"] length] > 0) {
-           // 新手注册登录后进入，不必显示活动弹窗，下次在弹出
-           NSLog(@"新手注册登录后进入，不必显示活动弹窗，下次在弹出");
-       }else
-       {
-           NSLog(@"push = %@", [UserDefaults objectForKey:KIs_push]);
-           if ([[UserDefaults objectForKey:KIs_push] integerValue] == 0) {
-               // 获取活动弹窗
-               [self getActivityPopView];
-           }
-       }
+       // 获取活动弹窗
+       [self getActivityPopView];
+       
     });
    dispatch_async(queue, ^{
         NSLog(@"使用异步函数执行主队列中的任务3--%@",[NSThread currentThread]);
@@ -175,18 +170,46 @@
         
         if ([info[@"r"]   isEqual: @1]) {
             NSLog(@"%@", info);
-            if ([info[@"ifshow"] integerValue]  ==1) {
-                HomeActivityView * activityView = [[HomeActivityView alloc] initWithFrame:screen_bounds];
-                activityView.pageURLString = info[@"path"];
-                activityView.blockSelect = ^{
-                    WebViewController * webVC = [[WebViewController alloc] init];
-                    webVC.url = info[@"url"];
-                    [self.navigationController pushViewController:webVC animated:YES];
-                };
-                [self.view.window addSubview:activityView];
+            [UserDefaults setObject:info[@"xshbmoney"] forKey:KXshbmoney];
+            [UserDefaults synchronize];
+            if ( [[UserDefaults objectForKey:KNewRegister] isEqualToString:@"1"] && [[UserDefaults objectForKey:@"uid"] length] > 0 && [info[@"xshbifshow"] integerValue] == 1) {
+                // 新手注册登录后进入，不必显示活动弹窗，下次在弹出
+                NSLog(@"新手注册登录后进入，不必显示活动弹窗，下次在弹出");
+                
+                _welfareView = [[WelfareView alloc] initWithFrame:screen_bounds];
+                _welfareView.visitDelegate = self;
+                _welfareView.imgUrl = info[@"xshbpath"];
+                _welfareView.txtStr = info[@"xshbtxt"];
+                [self.view.window addSubview:_welfareView];
+                [UserDefaults setObject:@"2" forKey:KNewRegister];
+                [UserDefaults synchronize];
+            }else
+            {
+                NSLog(@"push = %@", [UserDefaults objectForKey:KIs_push]);
+                if ([[UserDefaults objectForKey:KIs_push] integerValue] == 0) {
+                    if ([info[@"ifshow"] integerValue]  ==1) {
+                        HomeActivityView * activityView = [[HomeActivityView alloc] initWithFrame:screen_bounds];
+                        activityView.pageURLString = info[@"path"];
+                        activityView.blockSelect = ^{
+                            WebViewController * webVC = [[WebViewController alloc] init];
+                            webVC.url = info[@"url"];
+                            [self.navigationController pushViewController:webVC animated:YES];
+                        };
+                        [self.view.window addSubview:activityView];
+                    }
+                }
             }
         }
     }];
+}
+
+- (void)visitDetailOfWelfareEvent
+{
+    myjiangzhuangViewController *jiangQuan = [[myjiangzhuangViewController alloc] init];
+    //隐藏tabbar
+    jiangQuan.upVC = @"jiangQuan";
+    UINavigationController * nav= [[UINavigationController alloc] initWithRootViewController:jiangQuan];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 
@@ -225,6 +248,8 @@
     params[@"cls_each"] = @"1";
     params[@"xinshou"] = @"2";
     params[@"no_xinshou"] = @"1";
+    params[@"banner_share"] = @"1";
+    params[@"uid"] = [UserDefaults objectForKey:@"uid"];
     
 //    [MBProgressHUD showActivityMessageInWindow:@"数据加载中"];
     self.params = params;
@@ -653,11 +678,13 @@
         WebViewController * webVC = [[WebViewController alloc] init];
         webVC.url = mode.url;
         webVC.WebTiltle = @"新手福利";
+        webVC.bannerModel = mode;
         [self.navigationController pushViewController:webVC animated:YES];
     }else if(![mode.url isEqualToString:@"#"])
     {
         WebViewController * webVC = [[WebViewController alloc] init];
         webVC.url = mode.url;
+        webVC.bannerModel = mode;
         [self.navigationController pushViewController:webVC animated:YES];
     }
 }
@@ -665,9 +692,6 @@
 #pragma mark - Event Hander
 -(void)novbtnclicked{
     NSLog(@"公告");
-//    chenghuiViewController *ssc = [[chenghuiViewController alloc]init];
-//    ssc.titlestr = @"新闻中心";
-//    [self.navigationController pushViewController:ssc animated:YES];
     WebViewController * webVC = [[WebViewController alloc] init];
     webVC.url = ggzxh5;
     [self.navigationController pushViewController:webVC animated:YES];
@@ -689,9 +713,7 @@
  */
 -(SDCycleScrollView*)setupADScrollView{
     
-    // 添加上方轮播图
-    
-    // 本地加载 --- 创建不带标题的图片轮播器
+    // 添加上方轮播图 --- 创建不带标题的图片轮播器
     SDCycleScrollView* _headerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, screen_width, 200) delegate:self placeholderImage:[UIImage imageNamed:@"banner_default"]];
     _headerView.pageControlDotSize = CGSizeMake(8*widthScale, 8*widthScale);
     _headerView.currentPageDotColor = [UIColor whiteColor];
@@ -810,7 +832,7 @@
 #pragma mark - 四个按钮的摆布
 -(void)layout{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-    flowLayout.itemSize = CGSizeMake(screen_width/4,100);
+    flowLayout.itemSize = CGSizeMake(screen_width/4,91);
     // 设置列的最小间距
     flowLayout.minimumInteritemSpacing = 0;
     // 设置最小行间距
@@ -819,7 +841,7 @@
     flowLayout.sectionInset = UIEdgeInsetsMake(0,0,0,0);
     // 滚动方向
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    _FourBtnCollect = [[UICollectionView alloc]initWithFrame:CGRectMake(0, self.nvbtn.bottom, screen_width,100) collectionViewLayout:flowLayout];
+    _FourBtnCollect = [[UICollectionView alloc]initWithFrame:CGRectMake(0, self.nvbtn.bottom, screen_width,91) collectionViewLayout:flowLayout];
     _FourBtnCollect.backgroundColor = [UIColor whiteColor];
     _FourBtnCollect.dataSource = self;
     _FourBtnCollect.delegate = self;

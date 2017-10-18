@@ -317,10 +317,10 @@
         NSLog(@"%@", urlStr);
         [TalkingData trackEvent:@"邀请好友" label:urlStr];
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:@"您的好友赠送您618元现金红包，点击领取！"
+        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"您的好友赠送您%@元现金红包，点击领取！", [UserDefaults objectForKey:KXshbmoney]]
                                          images:imageArray
                                             url:[NSURL URLWithString:urlStr]
-                                          title:@"618元现金红包"
+                                          title:[NSString stringWithFormat:@"%@元现金红包", [UserDefaults objectForKey:KXshbmoney]]
                                            type:SSDKContentTypeAuto];
         //有的平台要客户端分享需要加此方法，例如微博
         [shareParams SSDKEnableUseClientShare];

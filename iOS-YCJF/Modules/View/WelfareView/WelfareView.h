@@ -17,6 +17,9 @@
 
 @interface WelfareView : UIView
 
+@property (nonatomic, copy) NSString * imgUrl;
+@property (nonatomic, copy) NSString * txtStr;
+
 @property (nonatomic, strong) id<visitDetailDelegate>visitDelegate;
 
 @end

@@ -80,6 +80,7 @@
         if ([[responseObject[@"r"] stringValue] isEqualToString: @"1"]) {
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadMymessage" object:nil userInfo:nil];
         }
+        KPostNotification(KNotificationRefreshMineDatas, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"%@",error);

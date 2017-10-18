@@ -7,8 +7,12 @@
 //
 
 #import "BaseViewController.h"
+#import "bannerModel.h"
 
 @interface WebViewController : BaseViewController
+
+@property (nonatomic, strong) bannerModel * bannerModel;
+
 /**
  *  origin url
  */

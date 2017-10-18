@@ -70,5 +70,5 @@
 
 @property (nonatomic ,copy)NSString<Optional> *mobile_status;
 @property (nonatomic, copy) NSString<Optional> * ifxs;  // 是否新手  1 是， 0 不是
-
+@property (nonatomic ,copy)NSString<Optional> *unread_message;  // 未读消息数量
 @end

@@ -85,6 +85,7 @@
     params[@"pageSize"] = @"10";
     params[@"pageIndex"] = @"1";
     params[@"no_xinshou"] = @"1";
+    params[@"uid"] = [UserDefaults objectForKey:@"uid"];
     self.params = params;
     
     NSLog(@"%@?%@", tzurl, params);
@@ -129,6 +130,7 @@
     params[@"cls"] = @"1";
     params[@"xinshou"] = @"2";
     params[@"no_xinshou"] = @"1";
+    params[@"uid"] = [UserDefaults objectForKey:@"uid"];
     NSInteger page = self.page + 1;
     params[@"pageIndex" ]=@(page);
     

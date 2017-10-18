@@ -18,6 +18,10 @@
 @interface WebViewController ()<WKNavigationDelegate,WKUIDelegate, WKScriptMessageHandler>
 {
     WKUserContentController * userContentController;
+    NSString * _shareAddressUrl;
+    NSString * _shareTitle;
+    NSString * _shareImg;
+    NSString * _shareContent;
 }
 @property(nonatomic, strong) WKWebView *wkwebView;
 @property (strong, nonatomic) UIProgressView *progressView;//这个是加载页面的进度条
@@ -55,10 +59,15 @@
     [leftbutton addTarget:self action:@selector(leftbtnclicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftbarbtn=[[UIBarButtonItem alloc]initWithCustomView:leftbutton];
     self.navigationItem.leftBarButtonItem=leftbarbtn;
-    
+    /*
     if ([self.url hasSuffix:[NSString stringWithFormat:@"h5/active/nataion.html?uid=%@", [UserDefaults objectForKey:@"uid"]]]) {
         self.title = @"活动";
         [self rightBarBtn:@"刷新" act:@selector(reloadWebView)];
+    }else */if([self.bannerModel.isShow integerValue] == 1)
+    {
+        // 显示分享按钮
+        [self rightBarBtn:@"分享" act:@selector(shareEvent)];
+        //[self rightBarBtnImgN:@"share_black" act:@selector(shareEvent)];
     }
 }
 
@@ -367,6 +376,50 @@ completionHandler:(void (^)(NSString * __nullable result))completionHandler {
     }else{
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void)shareEvent
+{
+    //1、创建分享参数
+    NSArray* imageArray = @[[UIImage imageNamed:@"share_ycjf"]];
+    _shareContent = self.bannerModel.shareContent;
+    _shareTitle = self.bannerModel.shareTitle;
+    _shareAddressUrl = self.bannerModel.shareAddressUrl;
+    //    （注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
+    if (imageArray) {
+        
+        _shareContent = [_shareContent stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        _shareContent = [_shareContent stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupShareParamsByText:_shareContent
+                                         images:imageArray
+                                            url:[NSURL URLWithString:_shareAddressUrl]
+                                          title:_shareTitle
+                                           type:SSDKContentTypeAuto];
+        //有的平台要客户端分享需要加此方法，例如微博
+        [shareParams SSDKEnableUseClientShare];
+        //2、分享（可以弹出我们的分享菜单和编辑界面）
+        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
+                                 items:nil
+                           shareParams:shareParams
+                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                       
+                       switch (state) {
+                           case SSDKResponseStateSuccess:
+                           {
+                               [self showHUD:@"分享成功" de:1.0];
+                               break;
+                           }
+                           case SSDKResponseStateFail:
+                           {
+                               [self showHUD:@"分享失败" de:1.0];
+                               break;
+                           }
+                           default:
+                               break;
+                       }
+                   }
+         ];}
 }
 
 -(void)reloadWebView{

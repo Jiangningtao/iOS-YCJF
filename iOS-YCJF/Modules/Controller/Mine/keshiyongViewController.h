@@ -11,5 +11,6 @@
 @interface keshiyongViewController : UIViewController
 /***<#注释#> ***/
 @property (nonatomic ,strong)NSString *titlestr;
+@property (nonatomic, copy) NSString * bid;
 @property (nonatomic, copy) NSString * inputMoney;
 @end

@@ -29,7 +29,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.title = [self.Model.is_defaultpaypass integerValue] ==1?@"绑定交易密码" : @"修改交易密码";
+    self.title = [[UserDefaults objectForKey:KIs_defaultpaypass] integerValue] ==1?@"绑定交易密码" : @"修改交易密码";
     [self AFN];
     [MobClick beginLogPageView:self.title];
     [TalkingData trackPageBegin:self.title];
@@ -46,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.Model = [MineInstance shareInstance].mineModel;
-    localpassone = [[NSUserDefaults standardUserDefaults]objectForKey:KIs_defaultpaypass];
+    localpassone = [UserDefaults objectForKey:KIs_defaultpaypass];
     [self NavBack];
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -108,6 +108,8 @@
         NSLog(@"--修改交易密码--%@",info[@"msg"]);
         if ([info[@"r"] integerValue] == 1) {
             KPostNotification(KNotificationRefreshMineDatas, nil);
+            [UserDefaults setObject:@"0" forKey:KIs_defaultpaypass];
+            [UserDefaults synchronize];
             [self showError:info[@"msg"]];
         }else
         {

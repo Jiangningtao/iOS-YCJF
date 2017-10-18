@@ -22,7 +22,7 @@
 //@property (nonatomic ,strong)NSString *borrow_apr;
 /***<#注释#> ***/
 @property (nonatomic ,strong)NSString *status;
-@property (nonatomic, copy) NSString<Optional> * isxs;
+@property (nonatomic, copy) NSString<Optional> * isxs; // 是否新手标 1 是 0 不是
 
 
 @property (nonatomic ,strong)NSString *MeBalance;

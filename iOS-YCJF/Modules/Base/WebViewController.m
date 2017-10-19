@@ -134,9 +134,12 @@
     _wkwebView.UIDelegate = self;
     _wkwebView.navigationDelegate = self;
     [_wkwebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];//注册observer 拿到加载进度
+    /*
     if ([_url hasSuffix:@"h5/active/nataion.html"]) {
         _url = [_url stringByAppendingString:[NSString stringWithFormat:@"?uid=%@", [UserDefaults objectForKey:@"uid"]]];
     }
+     */
+    _url = [_url stringByAppendingString:[NSString stringWithFormat:@"?uid=%@", [UserDefaults objectForKey:@"uid"]]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_url]];
     [_wkwebView loadRequest:request];
     

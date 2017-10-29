@@ -57,12 +57,7 @@
         WebViewController *demoVC = [[WebViewController alloc] init];
         demoVC.upVC = @"AdpageVC";
         NSString * urlStr = [UserDefaults objectForKey:imgUrl];
-        if (![urlStr isEqualToString:@"#"]) {
-            demoVC.url = urlStr;
-        }else
-        {
-            demoVC.url = xsflh5;
-        }
+        demoVC.url = urlStr;
         demoVC.WebTiltle = @"活动";
         [weakSelf.navigationController pushViewController:demoVC animated:YES];
     };

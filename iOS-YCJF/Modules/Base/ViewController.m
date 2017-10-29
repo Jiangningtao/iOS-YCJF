@@ -20,7 +20,7 @@
 }
 
 - (void)viewDidLoad {
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = KWhiteColor;
     [super viewDidLoad];
     [self loadImageView];
     
@@ -48,6 +48,7 @@
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.pagingEnabled = YES;
+    scrollView.bounces = NO;
     for (int i=0; i<(int)picArr.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width*i, 0, self.view.frame.size.width, self.view.frame.size.height)];
         imageView.image = [UIImage imageNamed:[picArr objectAtIndex:i]];

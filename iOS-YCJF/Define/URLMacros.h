@@ -22,12 +22,12 @@
  这样做切换方便,不用来回每个网络请求修改请求域名,降低出错事件
  */
 
-#if 0  // 测试时使用
+#if 1  // 测试时使用
 #define preUrl   @"http://120.27.211.129/index_wx.php/"
 #define guangUrl @"http://120.27.211.129/"
 #endif
 
-#if 1   // 实际上线时使用
+#if 0   // 实际上线时使用
 #define preUrl   @"https://www.yinchenglicai.com/index_wx.php/"
 #define guangUrl @"https://www.yinchenglicai.com/"
 #endif
@@ -111,6 +111,12 @@
 #define ycmessage [preUrl stringByAppendingString:@"App/getNewsList"]// 银程消息
 #define markmessage [preUrl stringByAppendingString:@"App/MessageCenter_tag"]// 标记已读
 #define ycmessageDetail [preUrl stringByAppendingString:@"App/getNewsInfo"]// 银程 动态详情
+
+/**
+ *  活动
+ * 双十一（排行榜活动）index.php/ActivityApi/Doubule11Index
+ */
+#define ssyactivityurl [guangUrl stringByAppendingString:@"index.php/ActivityApi/Doubule11Index"]
 
 /*
  应用内H5页面接口

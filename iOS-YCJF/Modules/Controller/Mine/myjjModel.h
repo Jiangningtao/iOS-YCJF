@@ -45,6 +45,7 @@
 @property (nonatomic ,strong)NSString *use_verify;
 @property (nonatomic ,strong)NSString *v_min;
 @property (nonatomic ,strong)NSString *is_due; // 是否即将过期
+@property (nonatomic ,copy)NSString <Optional>*use_rule_msg_ext; // 使用范围
 /***<#注释#> ***/
 @property (nonatomic ,strong)NSString *type_name;
 @end

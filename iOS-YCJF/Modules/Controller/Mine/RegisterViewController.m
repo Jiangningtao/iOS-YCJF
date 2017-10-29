@@ -544,7 +544,7 @@
 
 -(void)xybBtnClicked{
     if(self.passwordTF.text.length < 6){
-        [self showError:@"密码必须6位以上12位以下"];
+        [self showError:@"密码必须6位以上16位以下"];
     }else{
         NSMutableDictionary *pramass =[NSMutableDictionary dictionary];
         pramass[@"at"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"at"];

@@ -22,6 +22,9 @@
 @property (nonatomic,strong)UIImageView *titleView;
 @property (nonatomic,strong)UILabel *titleLabel;
 @property (nonatomic,strong)MBProgressHUD *hud;
+// 数据
+@property (nonatomic, strong) NSDictionary * paramsBase;
+
 //显示加载提示
 - (void)showHUD:(NSString *)title isDim:(BOOL)isDim;
 //显示加载完成提示

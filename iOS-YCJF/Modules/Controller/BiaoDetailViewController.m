@@ -72,6 +72,8 @@
 
 @property (nonatomic, strong) MineItemModel * Model;
 @property (nonatomic, strong) AccinfoModel * accModel;
+/***当前页码 ***/
+@property (nonatomic ,assign)NSInteger page;
 
 @end
 
@@ -148,6 +150,7 @@
     params[@"attentionlist"] = @"1";
     params[@"tenderlist"] = @"1";
     params[@"bid"] = self.idstr;
+    self.page = 1;
     
 //    self.params = params;
     NSLog(@"%@?%@", xqurl, params);
@@ -220,10 +223,13 @@
         
         NSLog(@"----投资记录------%@",responseObject[@"tender_list"]);
         NSArray *arr = responseObject[@"tender_list"];
-        
+        NSLog(@"%ld", arr.count);
         if ([arr count] > 0) {
             self.TableDataArr = [[NSMutableArray alloc] initWithArray:arr];
             [self.RecoderTable reloadData];
+            if (arr.count == 10) {
+                self.RecoderTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
+            }
         }else{
             UIImageView *imv = [[UIImageView alloc]init];
             imv.image = [UIImage imageNamed:@"pic_zwsj"];
@@ -290,6 +296,39 @@
         [MBProgressHUD hideHUD];
     }];
     
+}
+
+- (void)loadMoreTopics
+{
+    self.page++;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"sid"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"sid"];
+    params[@"at"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"at"];
+    params[@"version"] = @"v1.0.3";
+    params[@"os"] = @"ios";
+    params[@"isjihuo"] = @"1";
+    params[@"pageSize"] = @"10";
+    params[@"pageIndex" ]=@(self.page);
+    params[@"share"] = @"q";
+    params[@"diyalist"] = @"1";
+    params[@"attentionlist"] = @"1";
+    params[@"tenderlist"] = @"1";
+    params[@"bid"] = self.idstr;
+    
+    [WWZShuju initlizedData:xqurl paramsdata:params dicBlick:^(NSDictionary *info) {
+        
+        NSLog(@"%@", info);
+        NSArray *arr = info[@"tender_list"];
+        NSLog(@"%ld", arr.count);
+        if (arr.count == 0) {
+            [self.RecoderTable.mj_footer endRefreshingWithNoMoreData];
+        }else
+        {
+            [self.RecoderTable.mj_footer endRefreshing];
+            [self.TableDataArr addObjectsFromArray:arr];
+            [self.RecoderTable reloadData];
+        }
+    }];
 }
 
 
@@ -426,12 +465,11 @@
     LoginViewController *sv = [[LoginViewController alloc]init];
     sv.isTurnToTabVC = @"YES";
     [self showViewController:sv sender:nil];
-//    [self presentViewController:sv animated:YES completion:nil];
 }
 
 -(void)selebtnClicked{
 
-    if ([[UserDefaults objectForKey:KAccount] isEqualToString:@"15267065901"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"13516779834"]) {
+    if ([[UserDefaults objectForKey:KAccount] isEqualToString:@"15267065901"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"13516779834"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18857810390"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18365208214"]) {
         // 购买
         investingViewController *ssc = [[investingViewController alloc]init];
         ssc.shareAddress = _shareAddressUrl;
@@ -618,7 +656,7 @@
     }else if (tableView == self.RecoderTable)
     {
         TenderViewTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"TenderViewTableViewCell"];
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Tender_CountLab.text = self.TableDataArr[indexPath.section][@"account"];
         cell.Tender_UserLab.text = self.TableDataArr[indexPath.section][@"mobile_h"];
         cell.Tender_DateLab.text = self.TableDataArr[indexPath.section][@"time_h"];

@@ -292,6 +292,21 @@
     [self.view endEditing:YES];
 }
 
+#pragma mark - Getter
+-(NSDictionary *)paramsBase
+{
+    if (!_paramsBase) {
+        _paramsBase = @{
+                        @"app_id":@"3",
+                        @"secret":@"aodsadhowiqhdwiqs",
+                        @"at":[UserDefaults objectForKey:@"at"],
+                        @"os":@"ios",
+                        @"version":KVersion
+                        };
+    }
+    return _paramsBase;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

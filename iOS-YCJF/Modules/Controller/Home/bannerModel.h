@@ -11,7 +11,6 @@
 @interface bannerModel : JSONModel
 
 // 轮播图
-
 /***flag ***/
 @property (nonatomic ,copy)NSString<Optional> *flag;
 /***图片id ***/

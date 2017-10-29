@@ -51,7 +51,8 @@
 #define KNotificationRefreshMineDatas @"RefreshMineDatas"
 // tabBar选择投资
 #define KNotificationTabSelectInvest @"InvestTabBarClick"
-
+// 刷新双十一界面
+#define KNotificationTabSelectInvest @"InvestTabBarClick"
 
 #if 0
 //登录状态改变通知

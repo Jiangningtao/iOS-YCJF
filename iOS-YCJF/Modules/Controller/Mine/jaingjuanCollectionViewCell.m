@@ -18,6 +18,7 @@
         _jiaxiLab.text = model.money_ty_ch;
     }
     _touzitimeLab.text = [NSString stringWithFormat:@"投资时间：%@",model.term];
+    _touziconditionLab.text = [NSString stringWithFormat:@"投资范围：%@", model.use_rule_msg_ext];
     if (model.use_v.length >=1) {
        _touzijineLab.text =[NSString stringWithFormat:@"实际投资：≧%@",model.use_v];
     }else if(model.use_v.length<1){

@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="390" height="101"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xianjin" translatesAutoresizingMaskIntoConstraints="NO" id="9Qo-vA-8tS">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dikou" translatesAutoresizingMaskIntoConstraints="NO" id="9Qo-vA-8tS">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="101"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95692843198776245" blue="0.95673853158950806" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </imageView>
@@ -34,8 +34,8 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投资时间：≧0天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FD8-IP-ixC">
-                        <rect key="frame" x="118.99999999999999" y="43" width="83.666666666666643" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投资时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FD8-IP-ixC">
+                        <rect key="frame" x="119.00000000000001" y="43" width="56.333333333333357" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -53,8 +53,8 @@
                             <constraint firstAttribute="height" constant="44" id="neN-gM-dAT"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际投资：≧10,000元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O23-SJ-ozI">
-                        <rect key="frame" x="119" y="67" width="112" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际投资：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O23-SJ-ozI">
+                        <rect key="frame" x="119.00000000000001" y="63" width="56.333333333333357" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -67,6 +67,12 @@
                             <constraint firstAttribute="width" constant="2" id="fhI-Ei-yDU"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投资范围：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mz-cm-gwP">
+                        <rect key="frame" x="119.00000000000001" y="83" width="56.333333333333357" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
@@ -75,15 +81,18 @@
                 <constraint firstItem="swL-jq-ONs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="6Dy-vd-bVT"/>
                 <constraint firstItem="8KQ-Mb-BnD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7wz-x9-10o"/>
                 <constraint firstItem="O23-SJ-ozI" firstAttribute="leading" secondItem="Kra-Tc-NUx" secondAttribute="trailing" constant="20" id="7yn-Zg-oPb"/>
+                <constraint firstItem="8mz-cm-gwP" firstAttribute="leading" secondItem="Kra-Tc-NUx" secondAttribute="trailing" constant="20" id="Acc-Sq-X4r"/>
                 <constraint firstItem="9Qo-vA-8tS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Agt-gO-HIV"/>
                 <constraint firstAttribute="bottom" secondItem="9Qo-vA-8tS" secondAttribute="bottom" id="DCP-Dp-hbs"/>
                 <constraint firstItem="swL-jq-ONs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="JiU-GO-sr1"/>
                 <constraint firstAttribute="bottom" secondItem="Kra-Tc-NUx" secondAttribute="bottom" constant="5" id="M3x-G0-hxA"/>
+                <constraint firstAttribute="bottom" secondItem="8mz-cm-gwP" secondAttribute="bottom" constant="4" id="Mxw-77-JUN"/>
+                <constraint firstItem="8mz-cm-gwP" firstAttribute="top" secondItem="O23-SJ-ozI" secondAttribute="bottom" constant="6" id="TBk-C7-Tx5"/>
                 <constraint firstItem="9Qo-vA-8tS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="TX9-SC-zZa"/>
                 <constraint firstAttribute="trailing" secondItem="9Qo-vA-8tS" secondAttribute="trailing" id="UfU-QF-uX8"/>
-                <constraint firstAttribute="bottom" secondItem="O23-SJ-ozI" secondAttribute="bottom" constant="20" id="VHl-z6-MiV"/>
                 <constraint firstItem="hNK-TW-5QJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="11" id="Xsj-s1-5cq"/>
                 <constraint firstItem="Kra-Tc-NUx" firstAttribute="leading" secondItem="YQR-2D-rlI" secondAttribute="trailing" constant="20" id="Xyd-K5-ZfB"/>
+                <constraint firstItem="O23-SJ-ozI" firstAttribute="top" secondItem="FD8-IP-ixC" secondAttribute="bottom" constant="6" id="ZAe-NC-tOx"/>
                 <constraint firstAttribute="trailing" secondItem="8KQ-Mb-BnD" secondAttribute="trailing" id="exI-du-HXg"/>
                 <constraint firstAttribute="bottom" secondItem="YQR-2D-rlI" secondAttribute="bottom" constant="20" id="g4A-sE-4VW"/>
                 <constraint firstItem="Kra-Tc-NUx" firstAttribute="leading" secondItem="swL-jq-ONs" secondAttribute="trailing" constant="20" id="gAq-oD-phi"/>
@@ -97,6 +106,7 @@
                 <outlet property="biaojiimgV" destination="8KQ-Mb-BnD" id="gVE-BJ-e21"/>
                 <outlet property="imgView" destination="9Qo-vA-8tS" id="iDH-bl-0iF"/>
                 <outlet property="jiaxiLab" destination="hNK-TW-5QJ" id="7yL-Te-5e0"/>
+                <outlet property="touziconditionLab" destination="8mz-cm-gwP" id="vPV-wb-cqN"/>
                 <outlet property="touzijineLab" destination="O23-SJ-ozI" id="byp-l8-aVv"/>
                 <outlet property="touzitimeLab" destination="FD8-IP-ixC" id="vEo-xq-ED3"/>
                 <outlet property="xuxianView" destination="Kra-Tc-NUx" id="gl0-Jx-j91"/>
@@ -106,7 +116,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="xianjin" width="350" height="105"/>
+        <image name="dikou" width="350" height="105"/>
         <image name="xuxian" width="339" height="1"/>
     </resources>
 </document>

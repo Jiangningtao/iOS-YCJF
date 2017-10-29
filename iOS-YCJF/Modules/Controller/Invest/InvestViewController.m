@@ -16,8 +16,6 @@
 @property (nonatomic ,strong)UITableView *tab;
 /***上一次的请求参数 ***/
 @property (nonatomic ,strong)NSDictionary *params;
-/***当加载下一页数据时需要这个参数 ***/
-@property (nonatomic ,copy)NSString *maxtime;
 /***当前页码 ***/
 @property (nonatomic ,assign)NSInteger page;
 
@@ -93,9 +91,6 @@
         
         NSLog(@"%@", responseObject[@"xslist"]);
         if (self.params != params)return ;
-        //        self.maxtime = responseObject[@"pageSize"];
-        
-        
         //新手标
         self.model = [biaoModel mj_objectArrayWithKeyValuesArray:responseObject[@"xslist"]];
         self.modelq = [biaoModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];

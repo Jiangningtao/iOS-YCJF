@@ -19,8 +19,8 @@
         [self addSubview:self.textfiled];
         [self.textfiled mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.offset(0);
-            make.left.offset(45*widthScale);
-            make.right.offset(-5);
+            make.left.offset(38*widthScale);
+            make.right.offset(-22);
             make.height.offset(38);
         }];
         
@@ -48,22 +48,15 @@
     if (!_textfiled) {
         _textfiled = [[UITextField alloc]init];
         _textfiled.backgroundColor = [UIColor clearColor];
-        _textfiled.font = [UIFont fontWithName:@"PingFangSC-Regular" size:30];
-        _textfiled.adjustsFontSizeToFitWidth = YES;
+        _textfiled.font = [UIFont fontWithName:@"PingFangSC-Regular" size:24];
+        //_textfiled.adjustsFontSizeToFitWidth = YES;
         //输入的文字颜色为白色
         _textfiled.textColor = [UIColor orangeColor];
-      //  _textfiled.background =[UIImage imageNamed:@"xuxiankuang"];
         //输入框光标的颜色为白色
         _textfiled.tintColor = [UIColor clearColor];
         _textfiled.borderStyle =UITextBorderStyleNone;
         _textfiled.delegate = self;
-      //  _textfiled.autocapitalizationType = UITextAutocapitalizationTypeNone;
         _textfiled.keyboardType = UIKeyboardTypeNumberPad;
-      //  _textfiled.keyboardAppearance=UIKeyboardAppearanceAlert;
-       // _textfiled.layer.borderColor = [[UIColor whiteColor] CGColor];
-      //  _textfiled.layer.borderWidth = 1;
-        _textfiled.leftViewMode = UITextFieldViewModeNever;
-        _textfiled.clearButtonMode = UITextFieldViewModeNever;
         [_textfiled addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
     }

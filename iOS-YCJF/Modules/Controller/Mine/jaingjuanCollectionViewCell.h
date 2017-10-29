@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *xuxianView;
 @property (weak, nonatomic) IBOutlet UILabel *touzitimeLab;
 @property (weak, nonatomic) IBOutlet UILabel *touzijineLab;
+@property (weak, nonatomic) IBOutlet UILabel *touziconditionLab;
 @property (weak, nonatomic) IBOutlet UIImageView *biaojiimgV;//右上图标
 /***<#注释#> ***/
 

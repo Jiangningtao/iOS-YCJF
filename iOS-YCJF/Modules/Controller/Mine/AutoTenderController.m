@@ -111,7 +111,12 @@
         NSString *s =@"%";
         
         if ([info[@"item"][@"apr_first"] isEqualToString:info[@"item"][@"apr_last"] ]) {
-            self.shouyilv =[NSString stringWithFormat:@"%@%@",info[@"item"][@"apr_first"],s];
+            if ([info[@"item"][@"apr_first"] isEqualToString:@"0"]) {
+                self.shouyilv = @"不限";
+            }else
+            {
+                self.shouyilv =[NSString stringWithFormat:@"%@%@",info[@"item"][@"apr_first"],s];
+            }
         }else{
             
             self.shouyilv =[NSString stringWithFormat:@"%@%@到%@%@",info[@"item"][@"apr_first"],s,info[@"item"][@"apr_last"],s];
@@ -318,8 +323,7 @@
     pramas[@"version"] = @"v1.0.3";
     pramas[@"os"] = @"ios";
     pramas[@"isjihuo"] = @"0";
-    pramas[@"tender_type[0]"]= @"1";
-    pramas[@"tender_type[1]"]= @"0";
+    pramas[@"tender_type"]= @"2";
     NSString *a = @"0";
     pramas[@"min_money"] =a;
     pramas[@"money"] = self.str1;
@@ -408,8 +412,7 @@
             pramas[@"version"] = @"v1.0.3";
             pramas[@"os"] = @"ios";
             pramas[@"isjihuo"] = @"1";
-            pramas[@"tender_type[0]"]= @"1";
-            pramas[@"tender_type[1]"]= @"0";
+            pramas[@"tender_type"]= @"2";
             
             NSString *monthStr = self.DetlDataArr[1][0];
             NSLog(@"%@", monthStr);
@@ -453,8 +456,15 @@
                 }else if(bfbArrqqq.count == 1)
                 {
                     NSString *bfStr = bfbArrqqq[0];
-                    pramas[@"apr_first"] = [bfStr substringToIndex:bfStr.length-1];
-                    pramas[@"apr_last"] = [bfStr substringToIndex:bfStr.length-1];
+                    NSLog(@"%@", bfStr);
+                    if ([bfStr isEqualToString:@"不限"]) {
+                        pramas[@"apr_first"] = @"0";
+                        pramas[@"apr_last"] = @"0";
+                    }else
+                    {
+                        pramas[@"apr_first"] = [bfStr substringToIndex:bfStr.length-1];
+                        pramas[@"apr_last"] = [bfStr substringToIndex:bfStr.length-1];
+                    }
                 }
             }
             

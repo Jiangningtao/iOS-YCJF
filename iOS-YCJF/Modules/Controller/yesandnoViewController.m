@@ -301,7 +301,7 @@
     if (imageArray) {
         
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"我在银程金服理财，刚刚获得了%@元收益，安全可靠。顺便再送你%@元现金红包！", self.getMoney, [UserDefaults objectForKey:KXshbmoney]]
+        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"我在银程金服理财，刚刚获得了%@元收益，安全可靠。顺便再送你%@元抵扣券！", self.getMoney, [UserDefaults objectForKey:KXshbmoney]]
                                          images:imageArray
                                             url:[NSURL URLWithString:self.shareAddress]
                                           title:[NSString stringWithFormat:@"我刚刚获得了%@元收益，也分享给你！", self.getMoney]

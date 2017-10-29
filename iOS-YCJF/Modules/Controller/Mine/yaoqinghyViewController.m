@@ -84,8 +84,6 @@
         NSLog(@"%@",info[@"msg"]);
     }];
     
-    
-    
 }
 
 
@@ -167,10 +165,7 @@
     }];
     
     img = [[UIImageView alloc]init];
-//    img.image = [UIImage imageNamed:@"pic"];
     [bgImgV addSubview:img];
-//    [img.layer setBorderColor:[UIColor blackColor].CGColor];
-//    [img.layer setBorderWidth:1];
     [img mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.offset(0);
         make.centerY.offset(-60*heightScale);
@@ -178,8 +173,6 @@
     }];
     //邀请好友lab
     label = [[UILabel alloc] init];
-    
-//    label.text = @"专属推荐码";
     label.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
     label.textColor = [UIColor redColor];
     [contentView addSubview:label];
@@ -202,7 +195,6 @@
         make.right.offset(-38);
     }];
     
-    
     [contentView addSubview:self.yhbtn];
     [self.yhbtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(38);
@@ -211,6 +203,131 @@
         make.height.offset(45);
     }];
     
+    /*
+    UIView *xview = [[UIView alloc]init];
+    xview.backgroundColor = blue_color;
+    [contentView addSubview:xview];
+    [xview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.yhbtn.mas_bottom).offset(61);
+        make.left.right.offset(0);
+        make.height.offset(0.8*widthScale);
+    }];
+    
+    UILabel *labelcj = [[UILabel alloc] init];
+    labelcj.text = @"邀请规则";
+    labelcj.textAlignment = NSTextAlignmentCenter;
+    labelcj.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    labelcj.textColor = blue_color;
+    labelcj.backgroundColor = [UIColor whiteColor];
+    [contentView addSubview:labelcj];
+    [labelcj mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.offset(0);
+        make.width.offset(80);
+        make.top.equalTo(self.yhbtn.mas_bottom).offset(53);
+    }];
+    
+    UIView * yqCircleV = [UIView new];
+    yqCircleV.backgroundColor = blue_color;
+    [contentView addSubview:yqCircleV];
+    [yqCircleV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(labelcj.mas_bottom).offset(10);
+        make.left.offset(10);
+        make.width.height.offset(6);
+    }];
+    yqCircleV.radius = 3;
+    UILabel * yqgzTitle1 = [UILabel new];
+    yqgzTitle1.text = @"邀请人可得";
+    yqgzTitle1.textColor = blue_color;
+    yqgzTitle1.font = systemFont(12);
+    [contentView addSubview:yqgzTitle1];
+    [yqgzTitle1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(yqCircleV.mas_right).offset(2);
+        make.centerY.equalTo(yqCircleV.mas_centerY);
+    }];
+    
+    textV = [[UITextView alloc] init];
+    textV.text = @"每成功邀请一位好友注册后首笔投资金额达到2000元，即可获得50元红包（红包使用门槛：投资金额≥100元，投资标期无限制）\n\n每成功邀请一位好友注册后首笔投资金额达到20000元，即可获得200元红包（红包使用门槛：投资金额≥500元，投资标期无限制）\n\n每成功邀请一位好友注册后首笔投资金额达到50000元，即可获得500元红包（红包使用门槛：投资金额≥1000元，投资标期无限制）\n\n";
+    textV.editable = NO;
+    textV.bounces = NO;
+    textV.scrollEnabled = NO;
+    textV.textColor = [UIColor colorWithRed:73/255.0 green:73/255.0 blue:73/255.0 alpha:1/1.0];
+    [contentView addSubview:textV];
+    [textV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(labelcj.mas_bottom).offset(20);
+        make.left.offset(10);
+        make.right.offset(-10);
+        make.height.offset(170);
+    }];
+    
+    UIView * yqCircleV1 = [UIView new];
+    yqCircleV1.backgroundColor = blue_color;
+    [contentView addSubview:yqCircleV1];
+    [yqCircleV1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(textV.mas_bottom).offset(10);
+        make.left.offset(10);
+        make.width.height.offset(6);
+    }];
+    yqCircleV1.radius = 3;
+    UILabel * yqgzTitle2 = [UILabel new];
+    yqgzTitle2.text = @"被邀请人可得";
+    yqgzTitle2.textColor = blue_color;
+    yqgzTitle2.font = systemFont(12);
+    [contentView addSubview:yqgzTitle2];
+    [yqgzTitle2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(yqCircleV1.mas_right).offset(2);
+        make.centerY.equalTo(yqCircleV1.mas_centerY);
+    }];
+
+    UITextView * btextV = [[UITextView alloc] init];
+    btextV.text = @"被邀请人使用邀请人的链接注册或者自己下载注册时输入邀请人的推荐码，即可获得一张3%的加息券（加息券使用限制：新手标不可使用）\n\n";//@"每成功邀请一位好友注册后累计投资满1000元，即可获得50元抵扣券，邀请越多奖励越多，上不封顶。\n\n只有通过您的好友推荐链接或专属推荐码注册并投资，您才可以获得红包哦！\n\n活动期间相同手机号、身份证号视为同一会员。如发现违规行为（恶意注册、使用作弊程序等），银程金服将取消该会员奖励\n\n本次活动最终解释权归银程金服所有，如对活动有任何疑问可拨打银程金服服务热线：400-005-6677";
+    btextV.editable = NO;
+    btextV.bounces = NO;
+    btextV.scrollEnabled = NO;
+    btextV.textColor = [UIColor colorWithRed:73/255.0 green:73/255.0 blue:73/255.0 alpha:1/1.0];
+    [contentView addSubview:btextV];
+    [btextV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(yqgzTitle2.mas_bottom).offset(5);
+        make.left.offset(10);
+        make.right.offset(-10);
+        make.height.offset(60);
+    }];
+    
+    UIView *xview1 = [[UIView alloc]init];
+    xview1.backgroundColor = blue_color;
+    [contentView addSubview:xview1];
+    [xview1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(btextV.mas_bottom).offset(25);
+        make.left.right.offset(0);
+        make.height.offset(0.8*widthScale);
+    }];
+    
+    UILabel *labelcj1 = [[UILabel alloc] init];
+    labelcj1.text = @"注意事项";
+    labelcj1.textAlignment = NSTextAlignmentCenter;
+    labelcj1.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    labelcj1.textColor = blue_color;
+    labelcj1.backgroundColor = [UIColor whiteColor];
+    [contentView addSubview:labelcj1];
+    [labelcj1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.offset(0);
+        make.width.offset(80);
+        make.centerY.equalTo(xview1.mas_centerY).offset(0);
+    }];
+    
+    UITextView * ztextV = [[UITextView alloc] init];
+    ztextV.text = @"1.只有通过您的好友推荐链接或专属推荐码注册并投资，您才可以获得红包哦！\n\n2.活动期间相同手机号、身份证号视为同一会员。如发现违规行为（恶意注册、使用作弊程序等），银程金服将取消该会员奖励\n\n3.本次活动最终解释权归银程金服所有，如对活动有任何疑问可拨打银程金服服务热线：400-005-6677";
+    ztextV.editable = NO;
+    ztextV.bounces = NO;
+    ztextV.scrollEnabled = NO;
+    ztextV.textColor = [UIColor colorWithRed:73/255.0 green:73/255.0 blue:73/255.0 alpha:1/1.0];
+    [contentView addSubview:ztextV];
+    [ztextV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(labelcj1.mas_bottom).offset(10);
+        make.left.offset(10);
+        make.right.offset(-10);
+        make.height.offset(160);
+    }];
+     */
     UIView *xview = [[UIView alloc]init];
     xview.backgroundColor = blue_color;
     [contentView addSubview:xview];
@@ -232,7 +349,7 @@
     }];
     
     textV = [[UITextView alloc] init];
-    textV.text = @"1.每成功邀请一位好友注册后累计投资满1000元，即可获得50元现金红包，邀请越多奖励越多，上不封顶。\n\n2.只有通过您的好友推荐链接或专属推荐码注册并投资，您才可以获得红包哦！\n\n3、活动期间相同手机号、身份证号视为同一会员。如发现违规行为（恶意注册、使用作弊程序等），银程金服将取消该会员奖励\n\n4、本次活动最终解释权归银程金服所有，如对活动有任何疑问可拨打银程金服服务热线：400-005-6677";
+    textV.text = @"1.每成功邀请一位好友注册后累计投资满1000元，即可获得50元理财红包，邀请越多奖励越多，上不封顶。\n\n2.只有通过您的好友推荐链接或专属推荐码注册并投资，您才可以获得红包哦！\n\n3、活动期间相同手机号、身份证号视为同一会员。如发现违规行为（恶意注册、使用作弊程序等），银程金服将取消该会员奖励\n\n4、本次活动最终解释权归银程金服所有，如对活动有任何疑问可拨打银程金服服务热线：400-005-6677";
     textV.editable = NO;
     textV.textColor = [UIColor colorWithRed:73/255.0 green:73/255.0 blue:73/255.0 alpha:1/1.0];
     [contentView addSubview:textV];
@@ -242,11 +359,11 @@
         make.right.offset(-10);
         make.height.offset(380);
     }];
-    
 }
 
 -(void)viewDidLayoutSubviews
 {
+    //contentView.contentSize = CGSizeMake(self.view.frame.size.width, self.yhbtn.centerY+270+300);
     contentView.contentSize = CGSizeMake(self.view.frame.size.width, self.yhbtn.centerY+18+280);
 }
 
@@ -260,12 +377,6 @@
     UIBarButtonItem *leftbarbtn=[[UIBarButtonItem alloc]initWithCustomView:leftbutton];
     self.navigationItem.leftBarButtonItem=leftbarbtn;
     
-    
-    UIButton *rightbutton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 22, 20)];
-    [rightbutton addTarget:self action:@selector(rightbtnclicked) forControlEvents:UIControlEventTouchUpInside];
-    [rightbutton setBackgroundImage:[UIImage imageNamed:@"icon_tel"] forState:UIControlStateNormal];
-    [rightbutton setBackgroundImage:[UIImage imageNamed:@"Page 1"] forState:UIControlStateHighlighted];
-//    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:rightbutton];
 }
 
 -(void)yaoqing{
@@ -317,10 +428,10 @@
         NSLog(@"%@", urlStr);
         [TalkingData trackEvent:@"邀请好友" label:urlStr];
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"您的好友赠送您%@元现金红包，点击领取！", [UserDefaults objectForKey:KXshbmoney]]
+        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"您的好友赠送您%@元抵扣券，点击领取！", [UserDefaults objectForKey:KXshbmoney]]
                                          images:imageArray
                                             url:[NSURL URLWithString:urlStr]
-                                          title:[NSString stringWithFormat:@"%@元现金红包", [UserDefaults objectForKey:KXshbmoney]]
+                                          title:[NSString stringWithFormat:@"%@元抵扣券", [UserDefaults objectForKey:KXshbmoney]]
                                            type:SSDKContentTypeAuto];
         //有的平台要客户端分享需要加此方法，例如微博
         [shareParams SSDKEnableUseClientShare];
@@ -333,11 +444,17 @@
                        switch (state) {
                            case SSDKResponseStateSuccess:
                            {
-                               //                               [self showError:@"分享成功"];                           break;
+                               [self showHUD:@"分享成功" de:1.0];
+                               break;
                            }
                            case SSDKResponseStateFail:
                            {
-                               //                               [self showError:@"分享失败"];
+                               [self showHUD:@"分享失败" de:1.0];
+                               break;
+                           }
+                           case SSDKResponseStateCancel:
+                           {
+                               [self showHUD:@"分享取消" de:1.0];
                                break;
                            }
                            default:

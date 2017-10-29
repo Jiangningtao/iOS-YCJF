@@ -197,12 +197,6 @@
         if (self.params != params)return ;
         NSLog(@"---待收-----%@",info);
         
-        UILabel *one = [self.lanView viewWithTag:100];
-        one.text = info[@"tj"][@"v_twait_benjin"];
-        NSLog(@"%@   ----- %@",  info[@"tj"], info[@"tj"][@"v_tcur_lixi"]);
-        UILabel *two = [self.lanView viewWithTag:101];
-        two.text = info[@"tj"][@"v_twait_lixi"];
-        
         NSArray *dataArr = info[@"data"];
         NSMutableArray *tempArr = [NSMutableArray arrayWithCapacity:0];
         for (int i =0; i<dataArr.count; i++) {

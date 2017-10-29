@@ -33,6 +33,7 @@
 #import "LoginViewController.h"
 #import "WelfareView.h"
 #import "myjiangzhuangViewController.h"
+#import "DoubleElevenViewController.h"
 
 #define HeaderHeight 330
 
@@ -381,6 +382,8 @@
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.tableHeaderView = bgView;
     [self.view addSubview:self.tableView];
     
@@ -616,18 +619,6 @@
 
 
 #pragma mark 滑动隐藏导航栏
-//-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-//    if(velocity.y>0)
-//    {
-//        //向下拖动，显示导航栏
-//        self.navigationController.navigationBar.hidden = NO;
-//    }
-//    else
-//    {
-//        //向上拖动，隐藏导航栏
-//        self.navigationController.navigationBar.hidden = YES;
-//    }
-//}
 #if 1
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     //往上滑动offset增加，往下滑动，yoffset减小
@@ -682,10 +673,16 @@
         [self.navigationController pushViewController:webVC animated:YES];
     }else if(![mode.url isEqualToString:@"#"])
     {
+        //DoubleElevenViewController * vc = [[DoubleElevenViewController alloc] init];
+        //[self.navigationController pushViewController:vc animated:YES];
         WebViewController * webVC = [[WebViewController alloc] init];
         webVC.url = mode.url;
         webVC.bannerModel = mode;
         [self.navigationController pushViewController:webVC animated:YES];
+    }else if ([mode.url isEqualToString:@"#"])
+    {
+        DoubleElevenViewController * vc = [[DoubleElevenViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -890,22 +887,6 @@
 
 
 #pragma mark - Getter
-//-(UITableView *)tableView
-//{
-//    if (!_tableView) {
-//        [self layout];
-//        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height-49) style:UITableViewStyleGrouped];
-//        [_tableView registerNib:[UINib nibWithNibName:@"selecellTableViewCell" bundle:nil] forCellReuseIdentifier:@"selecellTableViewCell"];
-//        _tableView.tableHeaderView = [self configTabHeadView];
-//        _tableView.tableFooterView = [[CommonBottomView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 40)];
-//        _tableView.mj_header.automaticallyChangeAlpha = YES;//自动改变透明度
-//        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
-//        _tableView.delegate = self;
-//        _tableView.dataSource = self;
-//    }
-//    return _tableView;
-//}
-
 -(NSMutableArray *)bannerArray
 {
     if (!_bannerArray) {

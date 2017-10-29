@@ -63,7 +63,7 @@
     [_popBgView addSubview:_contentBgView];
     
     _contentLab = [[UILabel alloc] initWithFrame:CGRectMake(5, 5*heightScale, _contentBgView.width-10, 70*heightScale)];
-    //_contentLab.text = @"恭喜您成功领取618元现金红包，红包已发送至您的个人账户，请前往“我的奖券”查看。";
+    //_contentLab.text = @"恭喜您成功领取618元抵扣券，红包已发送至您的个人账户，请前往“我的奖券”查看。";
     _contentLab.textColor = color(51, 51, 51, 1);
     _contentLab.numberOfLines = 0;
     _contentLab.font = [UIFont systemFontOfSize:15];

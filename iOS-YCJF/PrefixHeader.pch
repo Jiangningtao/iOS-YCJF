@@ -40,6 +40,7 @@
 #import "CommonBottomView.h"
 #import "UIView+WT.h"
 #import "WebViewController.h"
+#import "LoginViewController.h"
 // 指纹解锁相关
 #import "NSString+QDTouchID.h"
 #import <LocalAuthentication/LocalAuthentication.h>

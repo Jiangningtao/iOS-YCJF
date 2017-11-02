@@ -85,6 +85,8 @@
 #define KGray2Color [UIColor lightGrayColor]
 #define KBlueColor [UIColor blueColor]
 #define KRedColor [UIColor redColor]
+#define KOrangeColor [UIColor orangeColor]
+
 #define kRandomColor    KRGBColor(arc4random_uniform(256)/255.0,arc4random_uniform(256)/255.0,arc4random_uniform(256)/255.0)        //随机色生成
 
 //字体

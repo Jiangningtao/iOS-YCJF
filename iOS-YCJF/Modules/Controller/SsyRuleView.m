@@ -30,6 +30,7 @@
         }];
         _bgView.alpha = 0;
         [self addSubview:_bgView];
+        [self cleanCacheAndCookie];
         [self configUI];
     }
     return self;
@@ -78,15 +79,19 @@
     }];
     
     _webView = [[UIWebView alloc] init];
+    _webView.scrollView.bounces = NO;
+    _webView.scrollView.showsHorizontalScrollIndicator = NO;
+    _webView.scrollView.showsVerticalScrollIndicator = NO;
     [_subBgView addSubview:_webView];
     [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_lineV.mas_bottom).offset(0);
         make.left.right.bottom.offset(0);
     }];
     
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         _bgView.alpha = 1;
     }];
+    
 }
 
 -(void)setUrl:(NSString *)url
@@ -98,12 +103,52 @@
 - (void)removeViewsAnimation
 {
     //CGPoint originalPoint = _giftImgV.center;
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         //_giftImgV.center = CGPointMake(originalPoint.x, originalPoint.y+_giftImgV.height);
         _bgView.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+}
+
+- (void)animationSpread:(UIView*)view {
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0, 0, 1)];
+    scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)];
+    scaleAnimation.duration = 1.5;
+    scaleAnimation.cumulative = NO;
+    scaleAnimation.repeatCount = 1;
+    [scaleAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    view.layer.transform = CATransform3DMakeScale(1, 1, 1);//当动画完成后，保持现状
+    [view.layer addAnimation: scaleAnimation forKey:@"myScale"];
+}
+
+- (void)animationBack:(UIView*)view {
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)];
+    scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0, 0, 1)];
+    scaleAnimation.duration = 1.5;
+    scaleAnimation.cumulative = NO;
+    scaleAnimation.repeatCount = 1;
+    [scaleAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    view.layer.transform = CATransform3DMakeScale(0, 0, 1);
+    [view.layer addAnimation: scaleAnimation forKey:@"myScale"];
+}
+
+/**清除缓存和cookie*/
+- (void)cleanCacheAndCookie{
+    //清除cookies
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]){
+        [storage deleteCookie:cookie];
+    }
+    //清除UIWebView的缓存
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    NSURLCache * cache = [NSURLCache sharedURLCache];
+    [cache removeAllCachedResponses];
+    [cache setDiskCapacity:0];
+    [cache setMemoryCapacity:0];
 }
 
 @end

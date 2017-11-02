@@ -22,7 +22,7 @@
 #import "newsTableViewCell.h"
 
 #import "HomeActivityView.h"
-//#import "HomeTwoBtnView.h"
+#import "SuspendView.h"
 #import "CCPScrollView.h"
 #import "UpdateTipView.h"
 #import "BiaoDetailViewController.h"
@@ -33,7 +33,9 @@
 #import "LoginViewController.h"
 #import "WelfareView.h"
 #import "myjiangzhuangViewController.h"
+
 #import "DoubleElevenViewController.h"
+#import "InviteFriendsViewController.h"
 
 #define HeaderHeight 330
 
@@ -119,7 +121,10 @@
     [self configUI];
     
     [PushHandler shareInstance].baseController = self;
+    
+    [self showSuspendView];
 }
+
 
 - (void)getAppVersion
 {
@@ -549,7 +554,10 @@
             }else
             {
                 // 邀请好友
-                yaoqinghyViewController *xx = [[yaoqinghyViewController alloc]init];
+                //yaoqinghyViewController *xx = [[yaoqinghyViewController alloc]init];
+                //[self.navigationController pushViewController:xx animated:YES];
+                // 邀请好友活动
+                InviteFriendsViewController *xx = [[InviteFriendsViewController alloc]init];
                 [self.navigationController pushViewController:xx animated:YES];
             }
         }
@@ -673,8 +681,6 @@
         [self.navigationController pushViewController:webVC animated:YES];
     }else if(![mode.url isEqualToString:@"#"])
     {
-        //DoubleElevenViewController * vc = [[DoubleElevenViewController alloc] init];
-        //[self.navigationController pushViewController:vc animated:YES];
         WebViewController * webVC = [[WebViewController alloc] init];
         webVC.url = mode.url;
         webVC.bannerModel = mode;

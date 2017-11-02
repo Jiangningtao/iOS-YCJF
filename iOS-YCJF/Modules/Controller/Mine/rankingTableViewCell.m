@@ -139,7 +139,7 @@
 
 -(NSMutableString *)creatsecurtystrwithstr:(NSString *)str{
     NSMutableString *newstr = [[NSMutableString alloc]init];
-    for (int i =0; i<str.length; i++) {
+    for (int i =0; i<4; i++) {
         [newstr appendString:@"*"];
     }
     return newstr;

@@ -49,6 +49,7 @@
 #import "MineInstance.h"
 #import "TalkingData.h"
 #import "TalkingDataAppCpa.h"
+#import "ShareManager.h"
 
 //第三方
 #import <YYKit.h>

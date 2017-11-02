@@ -64,6 +64,7 @@
     [footer setTitle:@"历史标的仅展现至当前页数" forState:MJRefreshStateNoMoreData];
     self.tab.mj_footer = footer;
     
+    [self showSuspendView];
 }
 
 -(void)loadNewTopics

@@ -117,6 +117,8 @@
     [self layout];
     
     [self loadNewTopics];
+    
+    [self showSuspendView];
 }
 
 #pragma mark - NetWork

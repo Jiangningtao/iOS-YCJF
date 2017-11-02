@@ -115,8 +115,12 @@
 /**
  *  活动
  * 双十一（排行榜活动）index.php/ActivityApi/Doubule11Index
+ * 双十一（邀请好友活动）index.php/ActivityApi/Doubule11Invite
+ * 双十一（新手好礼）index.php/ActivityApi/Doubule11Newcomer
  */
 #define ssyactivityurl [guangUrl stringByAppendingString:@"index.php/ActivityApi/Doubule11Index"]
+#define ssyInviteActivityUrl [guangUrl stringByAppendingString:@"index.php/ActivityApi/Doubule11Invite"]
+#define ssyNewUserActivityUrl [guangUrl stringByAppendingString:@"index.php/ActivityApi/Doubule11Newcomer"]
 
 /*
  应用内H5页面接口

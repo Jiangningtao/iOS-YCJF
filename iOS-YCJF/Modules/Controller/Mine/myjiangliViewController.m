@@ -88,6 +88,7 @@
     params[@"pageSize"] = @"10";
     params[@"pageIndex"] = @"1";
     params[@"btj"] = @"1";
+    self.activity?params[@"activity"] = @"1":nil;
     self.params = params;
     [WWZShuju initlizedData:wdjlurl paramsdata:params dicBlick:^(NSDictionary *info) {
         NSLog(@"%@",info);

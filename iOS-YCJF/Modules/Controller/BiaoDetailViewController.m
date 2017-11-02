@@ -8,7 +8,7 @@
 
 #import "BiaoDetailViewController.h"
 
-#import "xqModel.h"
+//#import "xqModel.h"
 #import "ItemModel.h"
 
 #import "LoginViewController.h"

@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
+typedef void(^SuspendPopViewBlock)();
+
 @interface BaseViewController : UIViewController
+
+@property (nonatomic, copy) SuspendPopViewBlock suspendPopBlock;
 
 @property (nonatomic,strong)UIView *navView;
 @property (nonatomic,strong)UIView *sepView;
@@ -60,5 +64,11 @@
 - (void)shareQQAndWechat:(NSString *)urlStr;
 - (void)shareController:(NSString *)shareText withImage:(NSString *)shareImage;
 - (void)shareSheetView:(NSString *)shareText withImage:(NSString *)shareImage;
+
+// 活动
+/**
+ *  双十一活动悬浮窗
+ */
+- (void)showSuspendView;
 
 @end

@@ -46,20 +46,8 @@
 
 @implementation DoubleElevenViewController
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self loadNewTopics];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /**
-     *  测试未上榜数据
-     NSString * uid = [UserDefaults objectForKey:@"uid"]?[UserDefaults objectForKey:@"uid"]:@"23";
-     [UserDefaults setObject:uid forKey:@"uid"];
-     [UserDefaults synchronize];
-     */
     
     self.title = @"双11争冠夺壕礼";
     [self configUI];
@@ -193,7 +181,9 @@
             make.centerX.equalTo(_investmentTitleLab.mas_centerX).offset(0);
         }];
         
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 253, _bgScrollView.width-20, _bgScrollView.height-303) style:UITableViewStyleGrouped];
+        [_bgScrollView addSubview:[self configTableHeadView]];
+        
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 253+40, _bgScrollView.width-20, _bgScrollView.height-343) style:UITableViewStyleGrouped];
     }else
     {
         
@@ -219,11 +209,9 @@
     
     _tableView.dataSource = self;
     _tableView.delegate = self;
-    _tableView.tableHeaderView = [self configTableHeadView];
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.bounces = NO;
-    _tableView.radius = 4;
     _tableView.separatorColor = color(240, 240, 240, 1);
     _tableView.backgroundColor = KWhiteColor;
     [_tableView registerNib:[UINib nibWithNibName:@"DoubleElevenTableViewCell" bundle:nil] forCellReuseIdentifier:@"DoubleElevenTableViewCell"];
@@ -261,7 +249,8 @@
 
 - (UIView *)configTableHeadView
 {
-    UIView * tableHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 44)];
+    UIView * tableHeadView = [[UIView alloc] initWithFrame:CGRectMake(10, 253, screen_width-20, 44)];
+    tableHeadView.radius=4;
     tableHeadView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     UILabel * _pmLab = [UILabel new];
     _pmLab.text = @"排名";
@@ -323,7 +312,7 @@
 - (void)ActivityRuleBtnEvent
 {
     SsyRuleView * ruleView = [[SsyRuleView alloc] initWithFrame:screen_bounds];
-    ruleView.url = @"https://www.baidu.com";
+    ruleView.url = ssyModel.rule;
     [self.view.window addSubview:ruleView];
 }
 
@@ -377,9 +366,9 @@
         }else
         {
             _userLab.text = info[@"mobile"];
-            [_headImgV sd_setImageWithURL:[NSURL URLWithString:ssyModel.headpture]];
+            [_headImgV sd_setImageWithURL:[NSURL URLWithString:ssyModel.headpture] placeholderImage:IMAGE_NAMED(@"default_tx")];
         }
-        if ([info[@"ranking"] isEqualToString:@"未上榜"]) {
+        if ([ssyModel.ranking isEqualToString:@"未上榜"]) {
             _rankingImgV.image = IMAGE_NAMED(@"top_no");
             _rankingDescriptionLab.text = ssyModel.gap;
             _prospEarningsLab.text = ssyModel.yqsy;

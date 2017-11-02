@@ -198,6 +198,7 @@
     pramas[@"secret"] = @"aodsadhowiqhdwiqs";
     pramas[@"version"] = @"v1.0.3";
     pramas[@"btj"] = @"1";
+    self.activity?pramas[@"activity"] = @"1":nil;
     pramas[@"pageIndex"] = @"1";
     pramas[@"pageSize"] = @"10";
     pramas[@"type"] = @"2";

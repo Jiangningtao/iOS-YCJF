@@ -10,4 +10,6 @@
 
 @interface yaoqingjiluViewController : UIViewController
 
+@property (nonatomic, assign) BOOL activity;
+
 @end

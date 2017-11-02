@@ -13,7 +13,13 @@
 #import <UMSocialSinaSSOHandler.h>
 #import "TabBarViewController.h"
 
+#import "SuspendView.h"
+#import "ssyNewUserModel.h"
+
 @interface BaseViewController ()<UMSocialUIDelegate>
+{
+    ssyNewUserModel * newUserModel;
+}
 //加载视图
 @property (nonatomic,strong)UILabel *tipLabel;
 
@@ -290,6 +296,48 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+}
+
+// 活动
+/**
+ *  双十一活动悬浮窗
+ */
+- (void)showSuspendView
+{
+    UIImageView * imgV = [UIImageView new];
+    imgV.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:imgV];
+    [imgV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view.mas_right).offset(0);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-85);
+        make.width.height.offset(67);
+    }];
+    [imgV tapGesture:^(UIGestureRecognizer *ges) {
+        [self showSuspendPopView];
+    }];
+    [WWZShuju initlizedData:ssyNewUserActivityUrl paramsdata:@{@"uid":[UserDefaults objectForKey:@"uid"]?[UserDefaults objectForKey:@"uid"]:@""} dicBlick:^(NSDictionary *info) {
+        NSLog(@"%@", info);
+        newUserModel = [[ssyNewUserModel alloc] initWithDictionary:info error:nil];
+        if ([newUserModel.ifshow integerValue] == 1) {
+            imgV.hidden=NO;
+        }else
+        {
+            imgV.hidden=YES;
+        }
+        [imgV sd_setImageWithURL:[NSURL URLWithString:newUserModel.ico] placeholderImage:IMAGE_NAMED(@"3wicon")];
+    }];
+    
+}
+
+- (void)showSuspendPopView
+{
+    SuspendView * suspendView = [[SuspendView alloc] initWithFrame:screen_bounds userModel:newUserModel];
+    suspendView.loginBlock = ^{
+        LoginViewController *sv = [[LoginViewController alloc]init];
+        sv.isTurnToTabVC = @"YES";
+        [self showViewController:sv sender:nil];
+    };
+    [self.view.window addSubview:suspendView];
 }
 
 #pragma mark - Getter

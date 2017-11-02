@@ -89,6 +89,8 @@
 		FD0276461F3D7E2700F851E6 /* JXTZTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD0276441F3D7E2700F851E6 /* JXTZTableViewCell.xib */; };
 		FD02764D1F3D843A00F851E6 /* BiaoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD02764C1F3D843A00F851E6 /* BiaoDetailViewController.m */; };
 		FD17846C1F69203D008D6D74 /* HomeTwoBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD17846B1F69203D008D6D74 /* HomeTwoBtnView.m */; };
+		FD17BF081FAB0FE500E157AF /* SuspendView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD17BF071FAB0FE500E157AF /* SuspendView.m */; };
+		FD17BF0B1FAB456900E157AF /* ssyNewUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD17BF0A1FAB456900E157AF /* ssyNewUserModel.m */; };
 		FD1CD90C1F41927700FB5B66 /* TopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1CD90A1F41927700FB5B66 /* TopTableViewCell.m */; };
 		FD1CD90D1F41927700FB5B66 /* TopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD1CD90B1F41927700FB5B66 /* TopTableViewCell.xib */; };
 		FD1CD9101F419E4A00FB5B66 /* QRG_MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1CD90F1F419E4A00FB5B66 /* QRG_MJRefreshAutoFooter.m */; };
@@ -198,6 +200,7 @@
 		FD64641F1F4FD34200FC06D2 /* TouchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD64641E1F4FD34200FC06D2 /* TouchViewController.m */; };
 		FD6464221F4FD3D300FC06D2 /* GestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6464211F4FD3D300FC06D2 /* GestureViewController.m */; };
 		FD6464251F5010AC00FC06D2 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6464241F5010AC00FC06D2 /* UICountingLabel.m */; };
+		FD7547131FAAAD850028F414 /* ssyInviteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7547121FAAAD850028F414 /* ssyInviteModel.m */; };
 		FDAF18631F4A6EE700F5E0BB /* myBillsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAF18621F4A6EE700F5E0BB /* myBillsViewController.m */; };
 		FDAF186F1F4A71E000F5E0BB /* HDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAF18681F4A71E000F5E0BB /* HDViewController.m */; };
 		FDAF18701F4A71E000F5E0BB /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAF186A1F4A71E000F5E0BB /* SRViewController.m */; };
@@ -242,6 +245,8 @@
 		FDBAAE6A1F78A1D300294D27 /* yaoqinghyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBAAE691F78A1D300294D27 /* yaoqinghyViewController.m */; };
 		FDBAAE6D1F78DEC400294D27 /* HomeActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBAAE6C1F78DEC400294D27 /* HomeActivityView.m */; };
 		FDBAAE701F7944DE00294D27 /* PushHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBAAE6F1F7944DE00294D27 /* PushHandler.m */; };
+		FDBD77441FA84C2300B63AFE /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBD77431FA84C2300B63AFE /* InviteFriendsViewController.m */; };
+		FDBD77491FA85C8000B63AFE /* InviteProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBD77481FA85C8000B63AFE /* InviteProgressView.m */; };
 		FDC36DC71FA1B38100B2C2EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC36DC51FA1B38100B2C2EC /* Main.storyboard */; };
 		FDC36DCA1FA1D19100B2C2EC /* SsyGiftView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC36DC91FA1D19100B2C2EC /* SsyGiftView.m */; };
 		FDC4B24B1F5FE0C5009E9BFA /* CCPScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC4B24A1F5FE0C5009E9BFA /* CCPScrollView.m */; };
@@ -442,6 +447,10 @@
 		FD02764C1F3D843A00F851E6 /* BiaoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiaoDetailViewController.m; sourceTree = "<group>"; };
 		FD17846A1F69203D008D6D74 /* HomeTwoBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTwoBtnView.h; sourceTree = "<group>"; };
 		FD17846B1F69203D008D6D74 /* HomeTwoBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTwoBtnView.m; sourceTree = "<group>"; };
+		FD17BF061FAB0FE500E157AF /* SuspendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuspendView.h; sourceTree = "<group>"; };
+		FD17BF071FAB0FE500E157AF /* SuspendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuspendView.m; sourceTree = "<group>"; };
+		FD17BF091FAB456900E157AF /* ssyNewUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssyNewUserModel.h; sourceTree = "<group>"; };
+		FD17BF0A1FAB456900E157AF /* ssyNewUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssyNewUserModel.m; sourceTree = "<group>"; };
 		FD1CD9091F41927700FB5B66 /* TopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopTableViewCell.h; sourceTree = "<group>"; };
 		FD1CD90A1F41927700FB5B66 /* TopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopTableViewCell.m; sourceTree = "<group>"; };
 		FD1CD90B1F41927700FB5B66 /* TopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopTableViewCell.xib; sourceTree = "<group>"; };
@@ -642,6 +651,8 @@
 		FD6464211F4FD3D300FC06D2 /* GestureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureViewController.m; sourceTree = "<group>"; };
 		FD6464231F5010AC00FC06D2 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		FD6464241F5010AC00FC06D2 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		FD7547111FAAAD850028F414 /* ssyInviteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssyInviteModel.h; sourceTree = "<group>"; };
+		FD7547121FAAAD850028F414 /* ssyInviteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssyInviteModel.m; sourceTree = "<group>"; };
 		FDAF18611F4A6EE700F5E0BB /* myBillsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myBillsViewController.h; sourceTree = "<group>"; };
 		FDAF18621F4A6EE700F5E0BB /* myBillsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myBillsViewController.m; sourceTree = "<group>"; };
 		FDAF18671F4A71DF00F5E0BB /* HDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDViewController.h; sourceTree = "<group>"; };
@@ -725,6 +736,10 @@
 		FDBAAE6C1F78DEC400294D27 /* HomeActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeActivityView.m; sourceTree = "<group>"; };
 		FDBAAE6E1F7944DE00294D27 /* PushHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushHandler.h; sourceTree = "<group>"; };
 		FDBAAE6F1F7944DE00294D27 /* PushHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushHandler.m; sourceTree = "<group>"; };
+		FDBD77421FA84C2300B63AFE /* InviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsViewController.h; sourceTree = "<group>"; };
+		FDBD77431FA84C2300B63AFE /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsViewController.m; sourceTree = "<group>"; };
+		FDBD77471FA85C8000B63AFE /* InviteProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteProgressView.h; sourceTree = "<group>"; };
+		FDBD77481FA85C8000B63AFE /* InviteProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteProgressView.m; sourceTree = "<group>"; };
 		FDC36DC61FA1B38100B2C2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FDC36DC81FA1D19100B2C2EC /* SsyGiftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SsyGiftView.h; sourceTree = "<group>"; };
 		FDC36DC91FA1D19100B2C2EC /* SsyGiftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SsyGiftView.m; sourceTree = "<group>"; };
@@ -1029,7 +1044,7 @@
 		FD02754C1F398C4600F851E6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FDE7C85F1FA023D300DF4829 /* Activity */,
+				FDE7C85F1FA023D300DF4829 /* Double11Activity */,
 				FD02764A1F3D841000F851E6 /* Common */,
 				FD0275FC1F3AA69200F851E6 /* Home */,
 				FD0275FD1F3AA69200F851E6 /* Invest */,
@@ -1329,6 +1344,17 @@
 				FD02764C1F3D843A00F851E6 /* BiaoDetailViewController.m */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		FD17BF051FAB0F7D00E157AF /* SuspendView */ = {
+			isa = PBXGroup;
+			children = (
+				FD17BF061FAB0FE500E157AF /* SuspendView.h */,
+				FD17BF071FAB0FE500E157AF /* SuspendView.m */,
+				FD17BF091FAB456900E157AF /* ssyNewUserModel.h */,
+				FD17BF0A1FAB456900E157AF /* ssyNewUserModel.m */,
+			);
+			name = SuspendView;
 			sourceTree = "<group>";
 		};
 		FD1CD9071F417F2500FB5B66 /* View */ = {
@@ -2010,6 +2036,46 @@
 			path = AppAnalytis;
 			sourceTree = "<group>";
 		};
+		FDBD77401FA8484B00B63AFE /* Ranking */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8A4931FA07DBF005FB87D /* Model */,
+				FDE7C8631FA02FBF00DF4829 /* View */,
+				FDE7C8601FA0240300DF4829 /* DoubleElevenViewController.h */,
+				FDE7C8611FA0240300DF4829 /* DoubleElevenViewController.m */,
+			);
+			name = Ranking;
+			sourceTree = "<group>";
+		};
+		FDBD77411FA84B9B00B63AFE /* Invite */ = {
+			isa = PBXGroup;
+			children = (
+				FDBD77461FA85C4E00B63AFE /* Model */,
+				FDBD77451FA85C4800B63AFE /* View */,
+				FDBD77421FA84C2300B63AFE /* InviteFriendsViewController.h */,
+				FDBD77431FA84C2300B63AFE /* InviteFriendsViewController.m */,
+			);
+			name = Invite;
+			sourceTree = "<group>";
+		};
+		FDBD77451FA85C4800B63AFE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FDBD77471FA85C8000B63AFE /* InviteProgressView.h */,
+				FDBD77481FA85C8000B63AFE /* InviteProgressView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FDBD77461FA85C4E00B63AFE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FD7547111FAAAD850028F414 /* ssyInviteModel.h */,
+				FD7547121FAAAD850028F414 /* ssyInviteModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		FDC4B2481F5FE0BA009E9BFA /* NVScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2088,15 +2154,14 @@
 			name = views;
 			sourceTree = "<group>";
 		};
-		FDE7C85F1FA023D300DF4829 /* Activity */ = {
+		FDE7C85F1FA023D300DF4829 /* Double11Activity */ = {
 			isa = PBXGroup;
 			children = (
-				FDB8A4931FA07DBF005FB87D /* Model */,
-				FDE7C8631FA02FBF00DF4829 /* View */,
-				FDE7C8601FA0240300DF4829 /* DoubleElevenViewController.h */,
-				FDE7C8611FA0240300DF4829 /* DoubleElevenViewController.m */,
+				FD17BF051FAB0F7D00E157AF /* SuspendView */,
+				FDBD77411FA84B9B00B63AFE /* Invite */,
+				FDBD77401FA8484B00B63AFE /* Ranking */,
 			);
-			name = Activity;
+			name = Double11Activity;
 			sourceTree = "<group>";
 		};
 		FDE7C8631FA02FBF00DF4829 /* View */ = {
@@ -2353,6 +2418,7 @@
 			files = (
 				FD48E5CA1F46B4DA007C7DDF /* ModiPwdViewController.m in Sources */,
 				FDAF189C1F4AA72300F5E0BB /* mingxi2Model.m in Sources */,
+				FD17BF0B1FAB456900E157AF /* ssyNewUserModel.m in Sources */,
 				FDB770251F46E1E2003A1DAF /* payView.m in Sources */,
 				FD1CD9511F442E4100FB5B66 /* LoginViewController.m in Sources */,
 				FD48E5AC1F467F93007C7DDF /* LLPayUtil.m in Sources */,
@@ -2374,6 +2440,7 @@
 				FD32D27B1F4E728E00CD94FA /* JumpWebViewController.m in Sources */,
 				FDC863FF1F45953800F692E9 /* SafeSettingViewController.m in Sources */,
 				FD0276161F3B03DD00F851E6 /* investlistModel.m in Sources */,
+				FD17BF081FAB0FE500E157AF /* SuspendView.m in Sources */,
 				FDAF18751F4A721300F5E0BB /* zdmodel.m in Sources */,
 				FD0274F61F39817600F851E6 /* main.m in Sources */,
 				FD48E6871F46DE73007C7DDF /* gychenghuiTableViewCell.m in Sources */,
@@ -2381,6 +2448,7 @@
 				FDB7701E1F46E10F003A1DAF /* inTableViewCell.m in Sources */,
 				FD0275021F39817600F851E6 /* iOS_YCJF.xcdatamodeld in Sources */,
 				FD1CD91C1F42BA0600FB5B66 /* QRG_MJRefreshStateHeader.m in Sources */,
+				FDBD77491FA85C8000B63AFE /* InviteProgressView.m in Sources */,
 				FD3B34DB1FA319E20057E77B /* SsyRuleView.m in Sources */,
 				FDC863EB1F45781900F692E9 /* zqtextfield.m in Sources */,
 				FD02760D1F3AFBF100F851E6 /* newsModel.m in Sources */,
@@ -2506,6 +2574,7 @@
 				FD0275F21F3AA22200F851E6 /* UILabel+WT.m in Sources */,
 				FD48E5D01F46B638007C7DDF /* ModiLoginPwdViewController.m in Sources */,
 				FD48E61C1F46DA45007C7DDF /* YinChengNewsDetailViewController.m in Sources */,
+				FD7547131FAAAD850028F414 /* ssyInviteModel.m in Sources */,
 				FD02756F1F398F4A00F851E6 /* BaseTableView.m in Sources */,
 				FDBAAE701F7944DE00294D27 /* PushHandler.m in Sources */,
 				FD0276071F3AE48900F851E6 /* WWZShuju.m in Sources */,
@@ -2531,6 +2600,7 @@
 				FD48E68D1F46DE87007C7DDF /* fankuiViewController.m in Sources */,
 				FDAF189D1F4AA72300F5E0BB /* mingxiModel.m in Sources */,
 				FD48E67E1F46DE22007C7DDF /* myjjModel.m in Sources */,
+				FDBD77441FA84C2300B63AFE /* InviteFriendsViewController.m in Sources */,
 				FD0275921F39901200F851E6 /* NetRequest.m in Sources */,
 				FD48E61A1F46DA45007C7DDF /* mynewsViewController.m in Sources */,
 				FD48E65C1F46DD6D007C7DDF /* SunQRCode.m in Sources */,

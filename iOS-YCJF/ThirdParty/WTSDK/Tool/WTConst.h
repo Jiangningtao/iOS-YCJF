@@ -88,5 +88,6 @@
 #define WTIOS6 ([[UIDevice currentDevice].systemVersion doubleValue] <= 6.1)
 
 #define iPhone4_Screen (WTDeviceHeight == 480 ? 1 : 0)
+#define iPhone5_Screen (WTDeviceWidth == 320 ? 1 : 0)
 #define iPhone6_Screen (WTDeviceWidth == 375 ? 1 : 0)
 #define iPhone6Plus_Screen (WTDeviceWidth == 414 ? 1 : 0)

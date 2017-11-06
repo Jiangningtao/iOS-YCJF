@@ -19,42 +19,17 @@
 @property (nonatomic ,strong)UITableView *tab;
 /***<#注释#> ***/
 @property (nonatomic ,strong)UIView *v;
-/***<#注释#> ***/
-//@property (nonatomic ,strong)UIView *xuview;
+/***当前页码 ***/
+@property (nonatomic ,assign)NSInteger page;
 /***<#注释#> ***/
 @property (nonatomic ,strong)UIScrollView *contentView;
 /***<#注释#> ***/
 @property (nonatomic ,strong)NSArray *arr;
 /***<#注释#> ***/
-@property (nonatomic ,strong)NSMutableArray *titarr;
-/***<#注释#> ***/
-@property (nonatomic ,strong)NSMutableArray *daarr;
-@property (nonatomic, strong) NSMutableArray * moneyarr;
 @property (nonatomic,strong)NSMutableArray *dataSource;
 @end
 
 @implementation yaoqingjiluViewController
--(NSMutableArray *)titarr{
-    if (!_titarr) {
-        _titarr = [NSMutableArray array];
-    }
-    return _titarr;
-}
--(NSMutableArray *)daarr{
-    if (!_daarr) {
-        _daarr = [NSMutableArray array];
-    }
-    return _daarr;
-}
-
--(NSMutableArray *)moneyarr
-{
-    if (!_moneyarr) {
-        _moneyarr = [NSMutableArray array];
-    }
-    return _moneyarr;
-}
-
 
 -(void)Nav{
     self.navigationItem.title =@"我的邀请记录";
@@ -74,6 +49,8 @@
         _tab.backgroundColor = [UIColor whiteColor];
         _tab.delegate = self;
         _tab.dataSource = self;
+        _tab.mj_header =[MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(AFN)];
+        _tab.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(AFNMore)];
     }
     return _tab;
 }
@@ -170,7 +147,7 @@
      [self.tab mas_makeConstraints:^(MASConstraintMaker *make) {
          make.left.right.offset(0);
          make.top.equalTo(self.v.mas_bottom).offset(0);
-         make.height.offset(self.view.height -self.v.height-self.sview.height -66);
+         make.bottom.offset(0);
      }];
     
 }
@@ -183,7 +160,6 @@
     [self AFN];
     [self setUI];
     
-    // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -202,44 +178,57 @@
     pramas[@"pageIndex"] = @"1";
     pramas[@"pageSize"] = @"10";
     pramas[@"type"] = @"2";
+    self.page = 1;
     NSLog(@"%@?%@", yqjlurl, pramas);
     [WWZShuju initlizedData:yqjlurl paramsdata:pramas dicBlick:^(NSDictionary *info) {
         NSLog(@"%@",info);
-//        只要解析data里面的吗en
+        [self.tab.mj_header endRefreshing];
         szlabel.text =[NSString stringWithFormat:@"%@",info[@"total"]] ;
-//     打印出来看看
-        [self.titarr removeAllObjects];
-        [self.daarr removeAllObjects];
-        [self.moneyarr removeAllObjects];
         self.dataSource = [[NSMutableArray alloc] initWithArray:[yaoqingjiluData transformFromDic:info[@"data"]]];
-        for (NSDictionary *dic in (NSArray *)info[@"data"]) {
-           [self.titarr addObject:dic[@"un"]];
-            [self.daarr addObject:dic[@"time_zc"]];
-            [self.moneyarr addObject:dic[@"money"]];
-        }
         
         [self.tab reloadData];
-        NSLog(@"%@%@%@",self.titarr,self.daarr, self.moneyarr);
     }];
 }
+
+-(void)AFNMore{
+    self.page++;
+    NSMutableDictionary *pramas = [NSMutableDictionary dictionary];
+    pramas[@"uid"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"];
+    pramas[@"sid"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"sid"];
+    pramas[@"at"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"at"];
+    pramas[@"app_id"] = @"3";
+    pramas[@"secret"] = @"aodsadhowiqhdwiqs";
+    pramas[@"version"] = @"v1.0.3";
+    pramas[@"btj"] = @"1";
+    self.activity?pramas[@"activity"] = @"1":nil;
+    NSInteger page = self.page;
+    pramas[@"pageSize"] = @"10";
+    pramas[@"pageIndex" ]=@(page);
+    pramas[@"type"] = @"2";
+    NSLog(@"%@?%@", yqjlurl, pramas);
+    [WWZShuju initlizedData:yqjlurl paramsdata:pramas dicBlick:^(NSDictionary *info) {
+        NSLog(@"%@",info);
+        [self.tab.mj_footer endRefreshing];
+        [self.dataSource addObjectsFromArray:[yaoqingjiluData transformFromDic:info[@"data"]]];
+        if ([info[@"data"] count] == 0) {
+            self.tab.mj_footer.state = MJRefreshStateNoMoreData;
+        }
+        [self.tab reloadData];
+    }];
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.titarr.count;
+    return self.dataSource.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     inTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"inTableViewCell" owner:nil options:nil]lastObject];
-    if (self.titarr.count >0) {
-        cell.titlab.text = self.titarr[indexPath.row];
-        cell.zhonglab.text = self.daarr[indexPath.row];
-        cell.dalab.text = [NSString stringWithFormat:@"%@元", self.moneyarr[indexPath.row]];
-        NSLog(@"%@", self.dataSource);
-        if (self.dataSource.count != 0) {
-            yaoqingjiluData *data = [self.dataSource objectAtIndex:indexPath.row];
-            NSLog(@"%@", data);
-            cell.titlab.text = data.un;
-            cell.zhonglab.text = data.time_zc;
-            cell.dalab.text = [NSString stringWithFormat:@"%@元", self.moneyarr[indexPath.row]];//data.money;
-        }
+    if (self.dataSource.count != 0) {
+        yaoqingjiluData *data = [self.dataSource objectAtIndex:indexPath.row];
+        NSLog(@"%@", data);
+        cell.titlab.text = data.un;
+        cell.zhonglab.text = data.time_zc;
+        cell.dalab.text = [NSString stringWithFormat:@"%@元", data.money];//data.money;
     }
 
     return cell;

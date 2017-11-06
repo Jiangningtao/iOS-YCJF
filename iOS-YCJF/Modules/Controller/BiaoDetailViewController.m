@@ -469,7 +469,7 @@
 
 -(void)selebtnClicked{
 
-    if ([[UserDefaults objectForKey:KAccount] isEqualToString:@"15267065901"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"13516779834"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18857810390"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18365208214"]) {
+    if ([[UserDefaults objectForKey:KAccount] isEqualToString:@"15267065901"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"13516779834"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18857810390"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18365208214"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18903856251"]) {
         // 购买
         investingViewController *ssc = [[investingViewController alloc]init];
         ssc.shareAddress = _shareAddressUrl;

@@ -554,7 +554,6 @@
     }else{
         
     }
-    // collectionView.clipsToBounds = NO;
 }
 
 - (NSInteger )collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -661,12 +660,6 @@
         webVC.url = mode.url;
         webVC.bannerModel = mode;
         [self.navigationController pushViewController:webVC animated:YES];
-    }else if(![mode.url isEqualToString:@"#"])
-    {
-        WebViewController * webVC = [[WebViewController alloc] init];
-        webVC.url = mode.url;
-        webVC.bannerModel = mode;
-        [self.navigationController pushViewController:webVC animated:YES];
     }else if ([mode.url hasSuffix:@"h5/active/ranking.html?go=app"])
     {
         DoubleElevenViewController * vc = [[DoubleElevenViewController alloc] init];
@@ -676,6 +669,12 @@
         // 邀请好友活动
         InviteFriendsViewController *xx = [[InviteFriendsViewController alloc]init];
         [self.navigationController pushViewController:xx animated:YES];
+    }else if(![mode.url isEqualToString:@"#"])
+    {
+        WebViewController * webVC = [[WebViewController alloc] init];
+        webVC.url = mode.url;
+        webVC.bannerModel = mode;
+        [self.navigationController pushViewController:webVC animated:YES];
     }
 }
 

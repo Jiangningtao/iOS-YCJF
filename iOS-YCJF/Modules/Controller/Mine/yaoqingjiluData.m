@@ -28,6 +28,7 @@
             yaoqin.uid = [self justNull:temp[@"uid"]];
             yaoqin.un = [self justNull:temp[@"un"]];
             yaoqin.uname = [self justNull:temp[@"uname"]];
+            yaoqin.money = [self justNull:temp[@"money"]];
             [resultArr addObject:yaoqin];
         }
     }

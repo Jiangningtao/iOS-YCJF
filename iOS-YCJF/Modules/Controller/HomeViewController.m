@@ -199,9 +199,21 @@
                         HomeActivityView * activityView = [[HomeActivityView alloc] initWithFrame:screen_bounds];
                         activityView.pageURLString = info[@"path"];
                         activityView.blockSelect = ^{
-                            WebViewController * webVC = [[WebViewController alloc] init];
-                            webVC.url = info[@"url"];
-                            [self.navigationController pushViewController:webVC animated:YES];
+                            if ([info[@"url"] hasSuffix:@"h5/active/ranking.html?go=app"])
+                            {
+                                DoubleElevenViewController * vc = [[DoubleElevenViewController alloc] init];
+                                [self.navigationController pushViewController:vc animated:YES];
+                            }else if ([info[@"url"] hasSuffix:@"h5/active/invite.html?go=app"])
+                            {
+                                // 邀请好友活动
+                                InviteFriendsViewController *xx = [[InviteFriendsViewController alloc]init];
+                                [self.navigationController pushViewController:xx animated:YES];
+                            }else
+                            {
+                                WebViewController * webVC = [[WebViewController alloc] init];
+                                webVC.url = info[@"url"];
+                                [self.navigationController pushViewController:webVC animated:YES];
+                            }
                         };
                         [self.view.window addSubview:activityView];
                     }

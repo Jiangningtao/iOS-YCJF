@@ -22,12 +22,12 @@
  这样做切换方便,不用来回每个网络请求修改请求域名,降低出错事件
  */
 
-#if 1  // 测试时使用
+#if 0  // 测试时使用
 #define preUrl   @"http://120.27.211.129/index_wx.php/"
 #define guangUrl @"http://120.27.211.129/"
 #endif
 
-#if 0   // 实际上线时使用
+#if 1   // 实际上线时使用
 #define preUrl   @"https://www.yinchenglicai.com/index_wx.php/"
 #define guangUrl @"https://www.yinchenglicai.com/"
 #endif

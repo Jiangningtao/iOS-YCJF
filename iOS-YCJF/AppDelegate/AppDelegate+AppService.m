@@ -118,7 +118,11 @@
                                               @"flash_policy": @"rand"
                                               };
                 
-                NSLog(@"%@?%@", adimages, parameters);
+                NSString * paramsStr = [[NSString alloc] init];
+                for (int i = 0; i < parameters.allKeys.count; i++) {
+                    paramsStr = [paramsStr stringByAppendingString:[NSString stringWithFormat:@"%@=%@&", parameters.allKeys[i], parameters.allValues[i]]];
+                }
+                NSLog(@"%@?%@", adimages, paramsStr);
                 [WWZShuju initlizedData:adimages paramsdata:parameters dicBlick:^(NSDictionary *info) {
                     
                     NSLog(@"%@", info);

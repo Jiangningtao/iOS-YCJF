@@ -322,6 +322,7 @@
 
 - (void)loadSuspendData
 {
+    NSLog(@"%@?uid=%@", ssyNewUserActivityUrl, [UserDefaults objectForKey:@"uid"]);
     [WWZShuju initlizedData:ssyNewUserActivityUrl paramsdata:@{@"uid":[UserDefaults objectForKey:@"uid"]?[UserDefaults objectForKey:@"uid"]:@""} dicBlick:^(NSDictionary *info) {
         NSLog(@"%@", info);
         UIImageView * imgV = [self.view viewWithTag:543];

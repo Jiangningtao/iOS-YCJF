@@ -2790,7 +2790,7 @@
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/LLPayUtils",
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/AppAnalytis",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2815,7 +2815,7 @@
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/LLPayUtils",
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/AppAnalytis",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

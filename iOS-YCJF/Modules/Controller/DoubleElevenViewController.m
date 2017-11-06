@@ -65,7 +65,7 @@
     [self.view addSubview:_bgScrollView];
     
     _bgImgV = [[UIImageView alloc] initWithFrame:_bgScrollView.bounds];
-    _bgImgV.image = IMAGE_NAMED(@"backg_img");
+    _bgImgV.image = IMAGE_NAMED(@"backR_img");
     [_bgScrollView addSubview:_bgImgV];
     
     _headImgV = [UIImageView new];
@@ -109,6 +109,7 @@
         [self.view.window addSubview:activityView];
     }];
     
+    [_bgScrollView addSubview:[self configTableHeadView]];
     if ([UserDefaults objectForKey:@"uid"]) {
         _rankingImgV = [UIImageView new];
         _rankingImgV.image = IMAGE_NAMED(@"top_no");
@@ -181,7 +182,6 @@
             make.centerX.equalTo(_investmentTitleLab.mas_centerX).offset(0);
         }];
         
-        [_bgScrollView addSubview:[self configTableHeadView]];
         
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 253+40, _bgScrollView.width-20, _bgScrollView.height-343) style:UITableViewStyleGrouped];
     }else
@@ -202,7 +202,7 @@
             make.height.offset(30);
         }];
         
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 120, _bgScrollView.width-20, _bgScrollView.height-170) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 120+40, _bgScrollView.width-20, _bgScrollView.height-170-44) style:UITableViewStyleGrouped];
     }
     
     [self.view addSubview:self.investNowBtn];
@@ -249,7 +249,7 @@
 
 - (UIView *)configTableHeadView
 {
-    UIView * tableHeadView = [[UIView alloc] initWithFrame:CGRectMake(10, 253, screen_width-20, 44)];
+    UIView * tableHeadView = [[UIView alloc] initWithFrame:CGRectMake(10, [UserDefaults objectForKey:@"uid"]?253:120, screen_width-20, 44)];
     tableHeadView.radius=4;
     tableHeadView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     UILabel * _pmLab = [UILabel new];
@@ -361,7 +361,7 @@
         }
         
         if (![UserDefaults objectForKey:@"uid"]) {
-            _userLab.text = @"立即登录";
+            _userLab.text = @"暂未登录";
             _headImgV.image = IMAGE_NAMED(@"default_tx");
         }else
         {

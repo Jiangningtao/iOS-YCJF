@@ -10,11 +10,13 @@
 @class ssyNewUserModel;
 
 typedef void(^toLoginBlock)();
+typedef void(^toInvestBlock)();
 
 @interface SuspendView : UIView
 
 -(instancetype)initWithFrame:(CGRect)frame userModel:(ssyNewUserModel *)userModel;
 
 @property (nonatomic, copy)toLoginBlock loginBlock;
+@property (nonatomic, copy)toInvestBlock investBlock;
 
 @end

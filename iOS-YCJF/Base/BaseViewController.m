@@ -15,6 +15,7 @@
 
 #import "SuspendView.h"
 #import "ssyNewUserModel.h"
+#import "BiaoDetailViewController.h"
 
 @interface BaseViewController ()<UMSocialUIDelegate>
 {
@@ -306,6 +307,7 @@
 {
     UIImageView * imgV = [UIImageView new];
     imgV.contentMode = UIViewContentModeScaleAspectFit;
+    imgV.tag = 543;
     [self.view addSubview:imgV];
     [imgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view.mas_right).offset(0);
@@ -315,8 +317,14 @@
     [imgV tapGesture:^(UIGestureRecognizer *ges) {
         [self showSuspendPopView];
     }];
+    
+}
+
+- (void)loadSuspendData
+{
     [WWZShuju initlizedData:ssyNewUserActivityUrl paramsdata:@{@"uid":[UserDefaults objectForKey:@"uid"]?[UserDefaults objectForKey:@"uid"]:@""} dicBlick:^(NSDictionary *info) {
         NSLog(@"%@", info);
+        UIImageView * imgV = [self.view viewWithTag:543];
         newUserModel = [[ssyNewUserModel alloc] initWithDictionary:info error:nil];
         if ([newUserModel.ifshow integerValue] == 1) {
             imgV.hidden=NO;
@@ -326,7 +334,6 @@
         }
         [imgV sd_setImageWithURL:[NSURL URLWithString:newUserModel.ico] placeholderImage:IMAGE_NAMED(@"3wicon")];
     }];
-    
 }
 
 - (void)showSuspendPopView
@@ -336,6 +343,11 @@
         LoginViewController *sv = [[LoginViewController alloc]init];
         sv.isTurnToTabVC = @"YES";
         [self showViewController:sv sender:nil];
+    };
+    suspendView.investBlock = ^{
+        BiaoDetailViewController *ssc = [[BiaoDetailViewController alloc]init];
+        ssc.idstr = newUserModel.bid;
+        [self showViewController:ssc sender:nil];
     };
     [self.view.window addSubview:suspendView];
 }

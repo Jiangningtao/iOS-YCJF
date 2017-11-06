@@ -70,5 +70,7 @@ typedef void(^SuspendPopViewBlock)();
  *  双十一活动悬浮窗
  */
 - (void)showSuspendView;
+// 刷新新手奖励数据
+- (void)loadSuspendData;
 
 @end

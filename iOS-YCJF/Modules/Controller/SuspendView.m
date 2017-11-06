@@ -138,15 +138,19 @@
 
     _titleLab.text = _userModel.title;
     [_imgV sd_setImageWithURL:[NSURL URLWithString:_userModel.banner] placeholderImage:IMAGE_NAMED(@"3wpopimg")];
-    _tipLab.text = _userModel.btn;
+    _tipLab.text = ![UserDefaults objectForKey:@"uid"]?@"前往登录":_userModel.btn;
     _textV.text = _userModel.content;
     
     [_tipLab tapGesture:^(UIGestureRecognizer *ges) {
-        if ([_tipLab.text hasPrefix:@"前往登录"]) {
+        if ([_tipLab.text hasPrefix:@"前往登录"] || ![UserDefaults objectForKey:@"uid"]) {
             [self removeViewsAnimation];
             [self toLoginEvent];
+        }else if ([_tipLab.text hasPrefix:@"前往投资"] || [_tipLab.text hasSuffix:@"前往投资"] || [_tipLab.text isEqualToString:@"前往投资"]) {
+            [self removeViewsAnimation];
+            [self toInvestEvent];
         }
     }];
+    
 }
 
 - (void)removeViewsAnimation
@@ -162,6 +166,13 @@
 {
     if (self.loginBlock) {
         self.loginBlock();
+    }
+}
+
+- (void)toInvestEvent
+{
+    if (self.investBlock) {
+        self.investBlock();
     }
 }
 

@@ -11,6 +11,7 @@
 #import "myjiangliViewController.h"
 #import <CoreImage/CoreImage.h>
 #import "SunQRCode.h"
+#import "ShareManager.h"
 @interface yaoqinghyViewController (){
     UIScrollView *contentView;
     UIImageView * topImgV;
@@ -22,7 +23,12 @@
     UIImageView *img;
     UILabel *label ;
     UITextView * textV;
+    
     NSString * _ma;
+    NSString * _shareAddressUrl;
+    NSString * _shareTitle;
+    NSString * _shareImg;
+    NSString * _shareContent;
 }
 /***优惠链接按钮 ***/
 @property (nonatomic ,strong)UIButton  *yhbtn;
@@ -47,6 +53,21 @@
     [super viewDidLoad];
     [self Nav];
     [self setUI];
+    
+    if (![UserDefaults objectForKey:KAccount]) {
+        [self AlertWithTitle:@"提示" message:@"您还没有登录，请先去登录" andOthers:@[@"取消", @"确定"] animated:YES action:^(NSInteger index) {
+            if (index == 0) {
+                // 点击取消按钮 不进行操作
+                NSLog(@"取消");
+            }else if(index == 1)
+            {
+                // 点击确定按钮，去登录
+                LoginViewController *sv = [[LoginViewController alloc]init];
+                sv.isTurnToTabVC = @"YES";
+                [self showViewController:sv sender:nil];
+            }
+        }];
+    }
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -79,7 +100,11 @@
         img.image = [SunQRCode GenerateQRCode:info[@"item"][@"tj_url"]];
         NSLog(@"img --- %@",img.image);
         label.text = [NSString stringWithFormat:@"专属推荐码: %@",info[@"item"][@"tj_uid"]];
+        
         _ma =info[@"item"][@"tj_uid"];
+        _shareTitle = info[@"share_title"];
+        _shareContent = info[@"share_content"];
+        _shareAddressUrl = info[@"share_url"];
         NSLog(@"推荐码 --- %@",label.text);
         NSLog(@"%@",info[@"msg"]);
     }];
@@ -420,49 +445,7 @@
     
 }
 -(void)yhBtnClicked{
-    //1、创建分享参数
-    NSArray* imageArray = @[[UIImage imageNamed:@"share_hongbao"]];
-    //    （注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
-    if (imageArray) {
-        NSString * urlStr = [NSString stringWithFormat:@"%@ind/h5/act.html?tjr=%@", guangUrl,_ma];
-        NSLog(@"%@", urlStr);
-        [TalkingData trackEvent:@"邀请好友" label:urlStr];
-        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"您的好友赠送您%@元抵扣券，点击领取！", [UserDefaults objectForKey:KXshbmoney]]
-                                         images:imageArray
-                                            url:[NSURL URLWithString:urlStr]
-                                          title:[NSString stringWithFormat:@"%@元抵扣券", [UserDefaults objectForKey:KXshbmoney]]
-                                           type:SSDKContentTypeAuto];
-        //有的平台要客户端分享需要加此方法，例如微博
-        [shareParams SSDKEnableUseClientShare];
-        //2、分享（可以弹出我们的分享菜单和编辑界面）
-        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
-                                 items:nil
-                           shareParams:shareParams
-                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-                       
-                       switch (state) {
-                           case SSDKResponseStateSuccess:
-                           {
-                               [self showHUD:@"分享成功" de:1.0];
-                               break;
-                           }
-                           case SSDKResponseStateFail:
-                           {
-                               [self showHUD:@"分享失败" de:1.0];
-                               break;
-                           }
-                           case SSDKResponseStateCancel:
-                           {
-                               [self showHUD:@"分享取消" de:1.0];
-                               break;
-                           }
-                           default:
-                               break;
-                       }
-                   }
-         ];}
-    
+    [ShareManager shareWithTitle:_shareTitle Content:_shareContent ImageName:@"share_hongbao" Url:_shareAddressUrl];
 }
 
 

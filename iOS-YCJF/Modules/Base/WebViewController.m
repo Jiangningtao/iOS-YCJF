@@ -15,6 +15,10 @@
 #import "GestureViewController.h"
 #import "yaoqinghyViewController.h"
 
+#import "InviteFriendsViewController.h"
+#import "DoubleElevenViewController.h"
+#import "ssyInviteModel.h"
+
 @interface WebViewController ()<WKNavigationDelegate,WKUIDelegate, WKScriptMessageHandler>
 {
     WKUserContentController * userContentController;
@@ -22,6 +26,7 @@
     NSString * _shareTitle;
     NSString * _shareImg;
     NSString * _shareContent;
+    ssyInviteModel * inviteModel;
 }
 @property(nonatomic, strong) WKWebView *wkwebView;
 @property (strong, nonatomic) UIProgressView *progressView;//这个是加载页面的进度条
@@ -59,16 +64,50 @@
     [leftbutton addTarget:self action:@selector(leftbtnclicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftbarbtn=[[UIBarButtonItem alloc]initWithCustomView:leftbutton];
     self.navigationItem.leftBarButtonItem=leftbarbtn;
-    /*
-    if ([self.url hasSuffix:[NSString stringWithFormat:@"h5/active/nataion.html?uid=%@", [UserDefaults objectForKey:@"uid"]]]) {
-        self.title = @"活动";
-        [self rightBarBtn:@"刷新" act:@selector(reloadWebView)];
-    }else */if([self.bannerModel.isShow integerValue] == 1)
+    
+    if([self.bannerModel.isShow integerValue] == 1)
     {
         // 显示分享按钮
         [self rightBarBtn:@"分享" act:@selector(shareEvent)];
-        //[self rightBarBtnImgN:@"share_black" act:@selector(shareEvent)];
+    }else if ([self.url containStr:@"h5/active/invite.html"])
+    {
+        // 邀请好友来注册
+        [self shareDataNetWork];
+        [self rightBarBtnImgN:@"icon_share" act:@selector(shareBtnEvent)];
     }
+}
+
+- (void)shareBtnEvent
+{
+    if(![UserDefaults objectForKey:@"uid"])
+    {
+        [self AlertWithTitle:@"提示" message:@"您尚未登录，请前往登录" andOthers:@[@"稍后", @"登录"] animated:YES action:^(NSInteger index) {
+            if (index == 0) {
+                // 点击取消按钮 不进行操作
+                NSLog(@"取消");
+            }else if(index == 1)
+            {
+                // 点击确定按钮，去登录
+                LoginViewController *sv = [[LoginViewController alloc]init];
+                sv.isTurnToTabVC = @"YES";
+                [self showViewController:sv sender:nil];
+            }
+        }];
+    }else
+    {
+        [ShareManager shareWithTitle:inviteModel.share_title_ext Content:inviteModel.share_content_ext ImageName:@"share_ycjf" Url:inviteModel.share_url_ext];
+    }
+}
+#pragma mark - Network
+- (void)shareDataNetWork
+{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] init];
+    params[@"uid"] = [UserDefaults objectForKey:@"uid"]?[UserDefaults objectForKey:@"uid"]:@"";
+    NSLog(@"%@?uid=%@", ssyInviteActivityUrl, params[@"uid"]);
+    [WWZShuju initlizedData:ssyInviteActivityUrl paramsdata:params dicBlick:^(NSDictionary *info) {
+        NSLog(@"%@", info);
+        inviteModel = [[ssyInviteModel alloc] initWithDictionary:info error:nil];
+    }];
 }
 
 -(void)leftbtnclicked{
@@ -134,11 +173,7 @@
     _wkwebView.UIDelegate = self;
     _wkwebView.navigationDelegate = self;
     [_wkwebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];//注册observer 拿到加载进度
-    /*
-    if ([_url hasSuffix:@"h5/active/nataion.html"]) {
-        _url = [_url stringByAppendingString:[NSString stringWithFormat:@"?uid=%@", [UserDefaults objectForKey:@"uid"]]];
-    }
-     */
+
     _url = [_url stringByAppendingString:[NSString stringWithFormat:@"?uid=%@", [UserDefaults objectForKey:@"uid"]]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_url]];
     [_wkwebView loadRequest:request];
@@ -180,19 +215,18 @@
 #pragma mark - ——————— WKNavigationDelegate ————————
 // 页面开始加载时调用
 -(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
+    self.title = webView.title;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 // 当内容开始返回时调用
 -(void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
-    
+    self.title = webView.title;
 }
 // 页面加载完成之后调用
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    if (self.WebTiltle.length == 0) {
-        self.title = webView.title;
-    }
+    self.title = webView.title;
+    NSLog(@"%@", self.title);
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
- //   [self updateNavigationItems];
 }
 // 页面加载失败时调用
 -(void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
@@ -221,11 +255,40 @@
         yaoqinghyViewController *vc = [[yaoqinghyViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
+    }else if ([urlStr hasSuffix:@"h5/login.html"]) {
+        
+        LoginViewController * loginVC = [[LoginViewController alloc] init];
+        loginVC.isTurnToTabVC = @"YES";
+        [self.navigationController pushViewController:loginVC animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
+    }else if ([urlStr hasSuffix:@"h5/product.html"]) {
+        
+        [self investNowBtnEvnet];
+        decisionHandler(WKNavigationActionPolicyCancel);
+    }else if ([urlStr containStr:@"h5/active/ranking.html?go=app"])
+    {
+        DoubleElevenViewController * vc = [[DoubleElevenViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
+    }else if ([urlStr containStr:@"h5/active/invite.html?go=app"])
+    {
+        // 邀请好友活动
+        InviteFriendsViewController *xx = [[InviteFriendsViewController alloc]init];
+        [self.navigationController pushViewController:xx animated:YES];
+        decisionHandler(WKNavigationActionPolicyCancel);
     }
     
     decisionHandler(WKNavigationActionPolicyAllow);
     
     NSLog(@"00===%s", __FUNCTION__);
+}
+
+- (void)investNowBtnEvnet
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        KPostNotification(KNotificationTabSelectInvest, nil);
+    });
 }
 
 #pragma mark - WKScriptMessageHandler
@@ -383,46 +446,12 @@ completionHandler:(void (^)(NSString * __nullable result))completionHandler {
 
 - (void)shareEvent
 {
-    //1、创建分享参数
-    NSArray* imageArray = @[[UIImage imageNamed:@"share_ycjf"]];
     _shareContent = self.bannerModel.shareContent;
     _shareTitle = self.bannerModel.shareTitle;
     _shareAddressUrl = self.bannerModel.shareAddressUrl;
-    //    （注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
-    if (imageArray) {
-        
-        _shareContent = [_shareContent stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-        _shareContent = [_shareContent stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:_shareContent
-                                         images:imageArray
-                                            url:[NSURL URLWithString:_shareAddressUrl]
-                                          title:_shareTitle
-                                           type:SSDKContentTypeAuto];
-        //有的平台要客户端分享需要加此方法，例如微博
-        [shareParams SSDKEnableUseClientShare];
-        //2、分享（可以弹出我们的分享菜单和编辑界面）
-        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
-                                 items:nil
-                           shareParams:shareParams
-                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-                       
-                       switch (state) {
-                           case SSDKResponseStateSuccess:
-                           {
-                               [self showHUD:@"分享成功" de:1.0];
-                               break;
-                           }
-                           case SSDKResponseStateFail:
-                           {
-                               [self showHUD:@"分享失败" de:1.0];
-                               break;
-                           }
-                           default:
-                               break;
-                       }
-                   }
-         ];}
+    _shareContent = [_shareContent stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    _shareContent = [_shareContent stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    [ShareManager shareWithTitle:_shareTitle Content:_shareContent ImageName:@"share_ycjf" Url:_shareAddressUrl];
 }
 
 -(void)reloadWebView{

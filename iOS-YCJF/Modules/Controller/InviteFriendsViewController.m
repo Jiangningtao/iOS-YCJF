@@ -217,7 +217,8 @@
         }];
     }else
     {
-        [ShareManager shareWithTitle:[NSString stringWithFormat:@"%@元抵扣券", [UserDefaults objectForKey:KXshbmoney]] Content:[NSString stringWithFormat:@"您的好友赠送您%@元抵扣券，点击领取！", [UserDefaults objectForKey:KXshbmoney]] ImageName:@"share_ycjf" Url:[NSString stringWithFormat:@"%@ind/h5/act.html?tjr=%@", guangUrl,inviteModel.tjrnumber]];
+        [ShareManager shareWithTitle:inviteModel.share_title_ext Content:inviteModel.share_content_ext ImageName:@"share_ycjf" Url:inviteModel.share_url_ext];
+        //[ShareManager shareWithTitle:[NSString stringWithFormat:@"%@元抵扣券", [UserDefaults objectForKey:KXshbmoney]] Content:[NSString stringWithFormat:@"您的好友赠送您%@元抵扣券，点击领取！", [UserDefaults objectForKey:KXshbmoney]] ImageName:@"share_ycjf" Url:[NSString stringWithFormat:@"%@ind/h5/act.html?tjr=%@", guangUrl,inviteModel.tjrnumber]];
     }
 }
 
@@ -250,10 +251,6 @@
     progressView.inviteCount = inviteModel.tjrcount?inviteModel.tjrcount:@"--";
     progressView.subDescriptionStr = inviteModel.txt?inviteModel.txt:@"再努力一下，拿大奖吧!";
     progressView.sliderValue = inviteModel.adopt?inviteModel.adopt:@"--";
-#if 0  // 测试 1 非测试 0
-    NSString * svalue = [NSString stringWithFormat:@"%u", arc4random()%30];
-    progressView.sliderValue = svalue;
-#endif
     progressView.inviteBlock = ^{
         [self shareFriendBtnEvent];
     };

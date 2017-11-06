@@ -17,6 +17,7 @@
 @property (nonatomic ,copy)NSString<Optional> *banner; // 文案banner
 @property (nonatomic ,copy)NSString<Optional> *content; // 文案内容
 @property (nonatomic, copy) NSString<Optional> * btn; // 按钮内容
+@property (nonatomic, copy) NSString<Optional> * bid; // 投资跳转标的id
 
 /**
  @property (nonatomic ,copy)NSString<Optional> *share_content; // 分享内容

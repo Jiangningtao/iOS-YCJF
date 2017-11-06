@@ -83,6 +83,8 @@
     self.title = @"首页";
     [MobClick beginLogPageView:self.title];
     [TalkingData trackPageBegin:self.title];
+    
+    [self loadSuspendData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -538,28 +540,9 @@
             webVC.url = aqbzh5;
             [self.navigationController pushViewController:webVC animated:YES];
         }else{
-            if (![UserDefaults objectForKey:KAccount]) {
-                [self AlertWithTitle:@"提示" message:@"您还没有登录，请先去登录" andOthers:@[@"取消", @"确定"] animated:YES action:^(NSInteger index) {
-                    if (index == 0) {
-                        // 点击取消按钮 不进行操作
-                        NSLog(@"取消");
-                    }else if(index == 1)
-                    {
-                        // 点击确定按钮，去登录
-                        LoginViewController *sv = [[LoginViewController alloc]init];
-                        sv.isTurnToTabVC = @"YES";
-                        [self showViewController:sv sender:nil];
-                    }
-                }];
-            }else
-            {
-                // 邀请好友
-                //yaoqinghyViewController *xx = [[yaoqinghyViewController alloc]init];
-                //[self.navigationController pushViewController:xx animated:YES];
-                // 邀请好友活动
-                InviteFriendsViewController *xx = [[InviteFriendsViewController alloc]init];
-                [self.navigationController pushViewController:xx animated:YES];
-            }
+            // 邀请好友
+            yaoqinghyViewController *xx = [[yaoqinghyViewController alloc]init];
+            [self.navigationController pushViewController:xx animated:YES];
         }
         
     }else if ([collectionView isEqual:self.coupleCollect]){
@@ -676,7 +659,6 @@
     if ([mode.url hasSuffix:@"h5/app/act.html"]) {
         WebViewController * webVC = [[WebViewController alloc] init];
         webVC.url = mode.url;
-        webVC.WebTiltle = @"新手福利";
         webVC.bannerModel = mode;
         [self.navigationController pushViewController:webVC animated:YES];
     }else if(![mode.url isEqualToString:@"#"])
@@ -685,10 +667,15 @@
         webVC.url = mode.url;
         webVC.bannerModel = mode;
         [self.navigationController pushViewController:webVC animated:YES];
-    }else if ([mode.url isEqualToString:@"#"])
+    }else if ([mode.url hasSuffix:@"h5/active/ranking.html?go=app"])
     {
         DoubleElevenViewController * vc = [[DoubleElevenViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if ([mode.url hasSuffix:@"h5/active/invite.html?go=app"])
+    {
+        // 邀请好友活动
+        InviteFriendsViewController *xx = [[InviteFriendsViewController alloc]init];
+        [self.navigationController pushViewController:xx animated:YES];
     }
 }
 

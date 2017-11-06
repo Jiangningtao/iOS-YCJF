@@ -557,19 +557,20 @@
         }else{
             pramass[@"tjr"] = self.view2.textfiled.text;
         }
-        NSLog(@"%@?%@", zcmdurl, pramass);
+        NSString * paramsStr = [[NSString alloc] init];
+        for (int i = 0; i < pramass.allKeys.count; i++) {
+            paramsStr = [paramsStr stringByAppendingString:[NSString stringWithFormat:@"%@=%@&", pramass.allKeys[i], pramass.allValues[i]]];
+        }
+        NSLog(@"%@?%@", zcmdurl, paramsStr);
          [MBProgressHUD showActivityMessageInWindow:@"正在注册用户信息"];
         [WWZShuju initlizedData:zcmdurl paramsdata:pramass dicBlick:^(NSDictionary *info) {
-            if ([info[@"r"]isEqualToString:@"1"]) {
-                NSLog(@"%@", info);
-//                [TalkingDataAppCpa onRegister:tf.text];
-                NSDictionary *dict = @{@"event" : @"register", @"msg" : [NSString stringWithFormat:@"注册成功，帐号：%@", tf.text]};
-//                [MobClick event:@"xybBtnClicked" attributes:dict];
+            NSLog(@"%@", info);
+            if ([info[@"r"] integerValue]==1) {
                 [self getSaltNetWork];
             }else{
                 NSLog(@"%@", info[@"msg"]);
+                [self showTipView:NULL_TO_NIL(info[@"msg"])];
                 [MBProgressHUD hideHUD];
-                [self showError:[@"注册失败：" stringByAppendingString:info[@"msg"]]];
             }
             
             NSLog(@"3%@",info);

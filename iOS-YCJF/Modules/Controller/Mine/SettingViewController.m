@@ -269,6 +269,8 @@
         [eUser removeObjectForKey:KReal_status];
         [eUser synchronize];
         
+        [self loadSuspendData];
+        
         TabBarViewController *vc = [[TabBarViewController alloc]init];
         [self.view.window setRootViewController:vc];
         

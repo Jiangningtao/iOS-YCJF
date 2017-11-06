@@ -19,9 +19,14 @@
 @property (nonatomic ,copy)NSString<Optional> *rule; // 活动规则
 @property (nonatomic, copy) NSString<Optional> * txt; // 进度描述
 
+// 活动分享
 @property (nonatomic ,copy)NSString<Optional> *share_content; // 分享内容
 @property (nonatomic ,copy)NSString<Optional> *share_title; // 分享标题
 @property (nonatomic ,copy)NSString<Optional> *share_url; // 分享网址
 
+// 邀请好友注册分享
+@property (nonatomic ,copy)NSString<Optional> *share_content_ext; // 分享内容
+@property (nonatomic ,copy)NSString<Optional> *share_title_ext; // 分享标题
+@property (nonatomic ,copy)NSString<Optional> *share_url_ext; // 分享网址
 
 @end

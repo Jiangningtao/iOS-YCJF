@@ -72,6 +72,8 @@
                            barMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:[UIImage new]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    [self loadSuspendData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -83,6 +85,7 @@
     [self.navigationController.navigationBar setShadowImage:nil];
     self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName:[UIColor blackColor]};
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    
 }
 
 - (void)viewDidLoad {

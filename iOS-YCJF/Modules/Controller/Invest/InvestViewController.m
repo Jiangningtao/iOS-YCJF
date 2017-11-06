@@ -162,6 +162,8 @@
     
     [MobClick beginLogPageView:self.title];
     [TalkingData trackPageBegin:self.title];
+    
+    [self loadSuspendData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

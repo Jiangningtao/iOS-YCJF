@@ -72,6 +72,8 @@
                                           NSLog(@"[XGPush Demo] register push error");
                                       }];
     NSLog(@"[XGPush Demo] device token is %@, account is %@", deviceTokenStr, [UserDefaults objectForKey:KAccount]);
+    [UserDefaults setObject:deviceToken forKey:KDeviceToken];
+    [UserDefaults synchronize];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

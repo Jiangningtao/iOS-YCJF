@@ -332,10 +332,6 @@
     return YES;
 }
 
-//-(void)FieldDidChange:(UITextField *)textField{
-//    
-//    
-//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -543,13 +539,19 @@
 }
 
 -(void)xybBtnClicked{
-    if(self.passwordTF.text.length < 6){
-        [self showError:@"密码必须6位以上16位以下"];
+    if (tf.text.length == 0 || tf.text.length != 11) {
+        [self showError:@"帐号信息有误，请检查后重新输入"];
+    }else if (self.textTF.text.length == 0 || self.textTF.text.length <= 3)
+    {
+        [self showError:@"验证码长度不正确"];
+    }else if(self.passwordTF.text.length < 6){
+        [self showError:@"密码有误，请输入6-12位数字、字母组合"];
     }else{
-        NSMutableDictionary *pramass =[NSMutableDictionary dictionary];
-        pramass[@"at"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"at"];
+        NSMutableDictionary *pramass =[NSMutableDictionary dictionaryWithDictionary:self.paramsBase];
         pramass[@"mobile"] = tf.text;
         pramass[@"channel"] = @"iosapp";
+        pramass[@"source"] = [UserDefaults objectForKey:KChannelSource];
+        pramass[@"idfa"] = [UserDefaults objectForKey:KAdid];
         pramass[@"password"] =[self.passwordTF.text MD5];
         pramass[@"verycode"] = self.textTF.text;
         if (self.view2.textfiled.text.length == 0) {
@@ -635,9 +637,20 @@
             }
             
         }else{
+            // 绑定信鸽帐号
+            [XGPush registerDevice:[UserDefaults objectForKey:KDeviceToken] successCallback:^{
+                // 绑定信鸽帐号
+                [XGPush setAccount:tf.text successCallback:^{
+                    // 成功
+                    NSLog(@"绑定信鸽帐号成功");
+                } errorCallback:^{
+                    // 失败
+                    NSLog(@"绑定信鸽帐号失败");
+                }];
+            } errorCallback:^{
+                NSLog(@"注册页面--注册信鸽推送失败！");
+            }];
             
-            //            [TalkingDataAppCpa onLogin:self.accountTF.text];    // talkingdata数据分析
-            //            [MobClick profileSignInWithPUID:self.accountTF.text];   // 友盟跟踪
             
             [UserDefaults setObject:tf.text forKey:KAccount];
             [UserDefaults setObject:info[@"item"][@"uid"] forKey:@"uid"];

@@ -22,12 +22,12 @@
  这样做切换方便,不用来回每个网络请求修改请求域名,降低出错事件
  */
 
-#if 0  // 测试时使用
+#if 1  // 测试时使用
 #define preUrl   @"http://120.27.211.129/index_wx.php/"
 #define guangUrl @"http://120.27.211.129/"
 #endif
 
-#if 1   // 实际上线时使用
+#if 0   // 实际上线时使用
 #define preUrl   @"https://www.yinchenglicai.com/index_wx.php/"
 #define guangUrl @"https://www.yinchenglicai.com/"
 #endif
@@ -121,6 +121,13 @@
 #define ssyactivityurl [guangUrl stringByAppendingString:@"index.php/ActivityApi/Doubule11Index"]
 #define ssyInviteActivityUrl [guangUrl stringByAppendingString:@"index.php/ActivityApi/Doubule11Invite"]
 #define ssyNewUserActivityUrl [guangUrl stringByAppendingString:@"index.php/ActivityApi/Doubule11Newcomer"]
+
+/**
+ *  第三方监测
+ *  今日头条 https://www.yinchenglicai.com/index_wx.php/TouTiao/activate
+ */
+#define jrttUrl [preUrl stringByAppendingString:@"TouTiao/activate"] //网易头条流量监测
+
 
 /*
  应用内H5页面接口

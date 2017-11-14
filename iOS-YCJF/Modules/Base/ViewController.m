@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <AdSupport/AdSupport.h>
 
 @interface ViewController ()
 
@@ -17,6 +18,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    // 今日头条流量监测
+    [self flowMonitoringOfJRTTNetwork];
 }
 
 - (void)viewDidLoad {
@@ -64,6 +67,30 @@
     
     //添加视图
     [self.view addSubview:scrollView];
+}
+
+/**
+ 渠道来源
+ *  "r": 0,
+ "msg": "成功",
+ "data":{
+ "source":"toutiao"
+ }
+ */
+- (void)flowMonitoringOfJRTTNetwork
+{
+    NSString
+    *adid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    NSLog(@"adid=======%@========adid", adid);
+    NSDictionary * dict = @{@"device":@"2", @"idfa":adid};
+    [WWZShuju initlizedData:jrttUrl paramsdata:dict dicBlick:^(NSDictionary *info) {
+        NSLog(@"今日头条流量监测结果：%@", info);
+        if ([info[@"r"] integerValue] == 1) {
+            [UserDefaults setObject:adid forKey:KAdid];
+            [UserDefaults setObject:info[@"data"][@"source"] forKey:KChannelSource]; // 渠道来源
+            [UserDefaults synchronize];
+        }
+    }];
 }
 
 - (void)getAdvertisementRequest

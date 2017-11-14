@@ -201,6 +201,7 @@
 		FD6464221F4FD3D300FC06D2 /* GestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6464211F4FD3D300FC06D2 /* GestureViewController.m */; };
 		FD6464251F5010AC00FC06D2 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6464241F5010AC00FC06D2 /* UICountingLabel.m */; };
 		FD7547131FAAAD850028F414 /* ssyInviteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7547121FAAAD850028F414 /* ssyInviteModel.m */; };
+		FD9948641FB983B100CB534C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9948631FB983B100CB534C /* AdSupport.framework */; };
 		FDAF18631F4A6EE700F5E0BB /* myBillsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAF18621F4A6EE700F5E0BB /* myBillsViewController.m */; };
 		FDAF186F1F4A71E000F5E0BB /* HDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAF18681F4A71E000F5E0BB /* HDViewController.m */; };
 		FDAF18701F4A71E000F5E0BB /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAF186A1F4A71E000F5E0BB /* SRViewController.m */; };
@@ -336,8 +337,8 @@
 		FD0275651F398CCA00F851E6 /* ThirdMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdMacros.h; sourceTree = "<group>"; };
 		FD0275661F398CCA00F851E6 /* URLMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLMacros.h; sourceTree = "<group>"; };
 		FD0275671F398CCA00F851E6 /* UtilsMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
-		FD0275681F398D5400F851E6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FD0275691F398D5400F851E6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FD0275681F398D5400F851E6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../Modules/Base/ViewController.h; sourceTree = "<group>"; };
+		FD0275691F398D5400F851E6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../Modules/Base/ViewController.m; sourceTree = "<group>"; };
 		FD02756D1F398F4A00F851E6 /* BaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableView.h; sourceTree = "<group>"; };
 		FD02756E1F398F4A00F851E6 /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
 		FD0275701F398F7400F851E6 /* MyPicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPicButton.h; sourceTree = "<group>"; };
@@ -653,6 +654,7 @@
 		FD6464241F5010AC00FC06D2 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		FD7547111FAAAD850028F414 /* ssyInviteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssyInviteModel.h; sourceTree = "<group>"; };
 		FD7547121FAAAD850028F414 /* ssyInviteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssyInviteModel.m; sourceTree = "<group>"; };
+		FD9948631FB983B100CB534C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		FDAF18611F4A6EE700F5E0BB /* myBillsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myBillsViewController.h; sourceTree = "<group>"; };
 		FDAF18621F4A6EE700F5E0BB /* myBillsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myBillsViewController.m; sourceTree = "<group>"; };
 		FDAF18671F4A71DF00F5E0BB /* HDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDViewController.h; sourceTree = "<group>"; };
@@ -790,6 +792,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD9948641FB983B100CB534C /* AdSupport.framework in Frameworks */,
 				58B154D315F79DCF9D5003BD /* libPods-iOS-YCJF.a in Frameworks */,
 				FDB98BD91F51BAE100E84D66 /* libTalkingDataAppCpa.a in Frameworks */,
 				FDB98BDC1F51BAEB00E84D66 /* libTalkingData.a in Frameworks */,
@@ -817,6 +820,7 @@
 		AA3B12CC03CA6C79604E1902 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD9948631FB983B100CB534C /* AdSupport.framework */,
 				F211538786D108BB22452005 /* libPods-iOS-YCJF.a */,
 			);
 			name = Frameworks;
@@ -955,6 +959,8 @@
 		FD02752E1F39874400F851E6 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				FD0275681F398D5400F851E6 /* ViewController.h */,
+				FD0275691F398D5400F851E6 /* ViewController.m */,
 				FD02753E1F3989AD00F851E6 /* BaseViewController.h */,
 				FD02753F1F3989AD00F851E6 /* BaseViewController.m */,
 				FD0275401F3989AD00F851E6 /* navigationController.h */,
@@ -1004,8 +1010,8 @@
 		FD0275301F39874400F851E6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				FD02754C1F398C4600F851E6 /* Controller */,
 				FD02754B1F398C4600F851E6 /* Base */,
+				FD02754C1F398C4600F851E6 /* Controller */,
 				FD02754F1F398C4600F851E6 /* Model */,
 				FD0275501F398C4600F851E6 /* View */,
 			);
@@ -1031,8 +1037,6 @@
 			isa = PBXGroup;
 			children = (
 				FD02762B1F3BF45600F851E6 /* View */,
-				FD0275681F398D5400F851E6 /* ViewController.h */,
-				FD0275691F398D5400F851E6 /* ViewController.m */,
 				FD0276371F3D589300F851E6 /* WebViewController.h */,
 				FD0276381F3D589300F851E6 /* WebViewController.m */,
 				FD395F5E1F4D6F0200203723 /* WelfareViewController.h */,
@@ -2778,6 +2782,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_ENTITLEMENTS = "iOS-YCJF/iOS-YCJF.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7NLGYMJ3T9;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2790,8 +2795,10 @@
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/LLPayUtils",
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/AppAnalytis",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2803,6 +2810,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_ENTITLEMENTS = "iOS-YCJF/iOS-YCJF.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7NLGYMJ3T9;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2815,8 +2823,10 @@
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/LLPayUtils",
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/AppAnalytis",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

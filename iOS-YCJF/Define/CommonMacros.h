@@ -26,6 +26,9 @@
 #define KGestureLock @"isGestureLockOpen"   // 开启为手势密码， 不开启为2
 // 用户帐号  手机号
 #define KAccount @"telNumber"
+#define KAdid @"idfa"
+#define KChannelSource @"Channel source"
+#define KDeviceToken @"deviceTokenStr"
 #define KLoginPwd @"loginPassword"
 #define KNewRegister @"newRegister"
 #define KXshbmoney @"xshbmoney"   // 新手红包金额

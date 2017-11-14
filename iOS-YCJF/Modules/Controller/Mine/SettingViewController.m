@@ -269,7 +269,19 @@
         [eUser removeObjectForKey:KReal_status];
         [eUser synchronize];
         
-        [self loadSuspendData];
+        // 解绑信鸽帐号
+        [XGPush registerDevice:[UserDefaults objectForKey:KDeviceToken] successCallback:^{
+            // 绑定信鸽帐号
+            [XGPush delAccount:^{
+                // 成功
+                NSLog(@"解绑成功");
+            } errorCallback:^{
+                // 失败
+                NSLog(@"解绑失败");
+            }];
+        } errorCallback:^{
+            NSLog(@"设置页面--解绑信鸽推送失败！");
+        }];
         
         TabBarViewController *vc = [[TabBarViewController alloc]init];
         [self.view.window setRootViewController:vc];

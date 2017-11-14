@@ -260,9 +260,19 @@
             }
             
         }else{
-            
-//            [TalkingDataAppCpa onLogin:self.accountTF.text];    // talkingdata数据分析
-//            [MobClick profileSignInWithPUID:self.accountTF.text];   // 友盟跟踪
+            // 绑定信鸽帐号
+            [XGPush registerDevice:[UserDefaults objectForKey:KDeviceToken] successCallback:^{
+                // 绑定信鸽帐号
+                [XGPush setAccount:self.accountTF.text successCallback:^{
+                    // 成功
+                    NSLog(@"绑定信鸽帐号成功");
+                } errorCallback:^{
+                    // 失败
+                    NSLog(@"绑定信鸽帐号失败");
+                }];
+            } errorCallback:^{
+                NSLog(@"注册页面--注册信鸽推送失败！");
+            }];
             
             [UserDefaults setObject:self.accountTF.text forKey:KAccount];
             [UserDefaults setObject:self.passwordTF.text forKey:self.accountTF.text];

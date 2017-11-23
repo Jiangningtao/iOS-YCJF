@@ -10,6 +10,9 @@
 #import "PasswordView.h"
 
 @interface paymentView ()
+{
+    UIButton * _foundBtn;
+}
 @property (nonatomic, strong) PasswordView *passwordView;
 @property (nonatomic, strong) UILabel *tipLabel;
 @property (nonatomic, strong) UIButton * closeBtn;
@@ -68,6 +71,7 @@
         [bn setTitleColor: [UIColor colorWithRed:57/255.0 green:149/255.0 blue:223/255.0 alpha:1/1.0] forState:UIControlStateNormal];
         [bn addTarget:self action:@selector(foundBackEvent) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:bn];
+        _foundBtn = bn;
         [bn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.passwordView.mas_right);
             make.top.equalTo(self.passwordView.mas_bottom).offset(10);
@@ -111,6 +115,14 @@
 {
     _tip = tip;
     self.tipLabel.text = tip;
+}
+
+- (void)setIsHiddenFound:(BOOL)isHiddenFound
+{
+    _isHiddenFound = isHiddenFound;
+    if (isHiddenFound) {
+        _foundBtn.hidden = YES;
+    }
 }
 
 - (void)setTextChangeBlock:(void (^)(NSString *))textChangeBlock

@@ -53,8 +53,8 @@
 }
 
 - (void)initTabBar{
-    _tabView = [[UIView alloc] initWithFrame:CGRectMake(0, screen_height-49, screen_height, 49)];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 49)];
+    _tabView = [[UIView alloc] initWithFrame:CGRectMake(0, screen_height-WTTab_Bar_Height, screen_height, WTTab_Bar_Height)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screen_width, WTTab_Bar_Height)];
     imageView.backgroundColor = tabBar_color;
     [_tabView addSubview:imageView];
     //细线
@@ -127,9 +127,9 @@
 {
     [UIView animateWithDuration:0.2 animations:^{
         if (show) {
-            _tabView.frame = CGRectMake(0, screen_height - 49 , screen_width, 49);
+            _tabView.frame = CGRectMake(0, screen_height - WTTab_Bar_Height , screen_width, WTTab_Bar_Height);
         }else{
-            _tabView.frame = CGRectMake(0, screen_height , screen_width, 49);
+            _tabView.frame = CGRectMake(0, screen_height , screen_width, WTTab_Bar_Height);
         }
     }];
 }

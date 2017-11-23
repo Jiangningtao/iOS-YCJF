@@ -41,7 +41,7 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    
+    self.navView.hidden = YES;
     [MobClick beginLogPageView:@"登录"];
     [TalkingData trackPageBegin:@"登录"];
 }

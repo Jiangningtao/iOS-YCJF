@@ -273,7 +273,7 @@
 
 -(UIView *)lanView{
     if (!_lanView) {
-        _lanView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 114)];
+        _lanView = [[UIView alloc]initWithFrame:CGRectMake(0, WTStatus_And_Navigation_Height, self.view.frame.size.width, 114)];
         _lanView.backgroundColor = lancolor;
     }
     return _lanView;
@@ -821,13 +821,10 @@
                     
                     [blockSelf.view addSubview:blockSelf.payView];
                     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                        blockSelf.payView.frame = CGRectMake(0, screen_height-420, screen_width, 420);
+                        blockSelf.payView.frame = CGRectMake(0, screen_height-CHPasswordViewH, screen_width, CHPasswordViewH);
                     } completion:^(BOOL finished) {
                         [blockSelf.payView becomeFirstResponder];
                     }];
-                    /**
-                     *  会崩，先注了
-                     */
                     blockSelf.payView.foundBlock = ^{
                         NSLog(@"忘记交易密码，找回密码");
                         [self showError:@"忘记交易密码，找回密码"];
@@ -842,37 +839,6 @@
         }
     }
 }
--(void)push{
-    
-}
-/*
-#pragma mark - 提示框
--(void)showError:(NSString *)error
-{
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"提示" message:error preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *av = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        if ([error isEqualToString:@"您还没绑定过交易密码，请先绑定交易密码"]) {
-            ModiPwdViewController * vc = [[ModiPwdViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }else if ([error isEqualToString:@"您暂未认证,请前往设置中心认证"]){
-            if ([preUrl hasPrefix:@"http://120.27.211.129"]) {
-                // 测试服
-                [self showError:@"测试服需要认证直接找后台修改状态就可以了"];
-            }else
-            {
-                // 正式服
-                CertificationViewController *vc = [[CertificationViewController alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-        }
-        
-    }];
-    [ac addAction:av];
-    [self presentViewController:ac animated:YES completion:nil];
-    
-}
-*/
 
 #pragma mark - 提示框
 -(void)showError:(NSString *)error
@@ -957,13 +923,13 @@
 -(paymentView *)payView
 {
     if (!_payView) {
-        _payView = [[paymentView alloc] initWithFrame:CGRectMake(0, screen_height-420, screen_width, 420)];
+        _payView = [[paymentView alloc] initWithFrame:CGRectMake(0, screen_height-CHPasswordViewH, screen_width, CHPasswordViewH)];
         _payView.tip = @"请输入交易密码";
         __weak typeof(self) weakself = self;
         _payView.textChangeBlock = ^(NSString *text){
             weakself.payPwd = text;
         };
-        _payView.frame = CGRectMake(0, screen_height, screen_width, 420);
+        _payView.frame = CGRectMake(0, screen_height, screen_width, CHPasswordViewH);
     }
     return _payView;
 }
@@ -994,6 +960,7 @@
     pass[@"account"] = self.textf.text;;
     pass[@"hbid"] = self.hbid;
     pass[@"jxid"] = self.jxid;
+    pass[@"mima"] = self.secretePwd;
     NSString *ljm = [self.payPwd MD5];
     NSString *ms = [NSString stringWithFormat:@"%@%@",ljm,str1];
     NSLog(@"%@", ms);

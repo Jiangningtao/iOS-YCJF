@@ -8,8 +8,8 @@
 
 #import "BiaoDetailViewController.h"
 
-//#import "xqModel.h"
 #import "ItemModel.h"
+#import "paymentView.h"
 
 #import "LoginViewController.h"
 #import "investingViewController.h"
@@ -23,7 +23,7 @@
 #import "TenderViewTableViewCell.h"
 #import "BorrowImgTableViewCell.h"
 
-#define BottomH 50
+#define BottomH (WTScreenHeight == 812.0 ? 83 : 49)
 
 @interface BiaoDetailViewController ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 {
@@ -74,6 +74,10 @@
 @property (nonatomic, strong) AccinfoModel * accModel;
 /***当前页码 ***/
 @property (nonatomic ,assign)NSInteger page;
+
+// 密码标
+@property (nonatomic, strong) paymentView * secretePwdView;
+@property (nonatomic, copy) NSString *secretePwd;
 
 @end
 
@@ -193,7 +197,7 @@
         
         NSLog(@"cout1%@  cout2%@ count %ld, %ld", self.imgHetongArr, self.imgCailiaoArr, self.imgHetongArr.count, self.imgCailiaoArr.count);
         if ([_responseObject[@"item"][@"status"] integerValue] != 1) {
-            _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height-BottomH-64-40)];
+            _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height-BottomH-WTStatus_And_Navigation_Height-40)];
             _bgView.backgroundColor = [UIColor whiteColor];
             [_tableView addSubview:_bgView];
             
@@ -361,8 +365,8 @@
     
     /** 第二页面 scrollView*/
     TwoScrollView = [[UIScrollView alloc] init];
-    TwoScrollView.frame = CGRectMake(0, screen_height+44 , screen_width, screen_height - 64);
-    TwoScrollView.contentSize = CGSizeMake(screen_width * 3, screen_height - 64);
+    TwoScrollView.frame = CGRectMake(0, screen_height+44 , screen_width, screen_height - WTStatus_And_Navigation_Height);
+    TwoScrollView.contentSize = CGSizeMake(screen_width * 3, screen_height - WTStatus_And_Navigation_Height);
     TwoScrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     TwoScrollView.pagingEnabled = YES;
     TwoScrollView.bounces = NO;
@@ -470,15 +474,13 @@
 -(void)selebtnClicked{
 
     if ([[UserDefaults objectForKey:KAccount] isEqualToString:@"15267065901"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"13516779834"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18857810390"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18365208214"] || [[UserDefaults objectForKey:KAccount] isEqualToString:@"18903856251"]) {
-        // 购买
-        investingViewController *ssc = [[investingViewController alloc]init];
-        ssc.shareAddress = _shareAddressUrl;
-        ssc.bid = self.idstr;
-        ssc.model = _xqModel;
-        ssc.borrow_account_wait = _xqModel.borrow_account_wait;
-        ssc.borrow_apr = _xqModel.borrow_apr;
-        ssc.borrow_period = _xqModel.v_borrow_period;
-        [self.navigationController pushViewController:ssc animated:YES];
+        if ([_xqModel.ispassword integerValue] == 1) {
+            // 密码标，调用输入密码弹框，进行验证，通过后进入购买页
+            [self verifyPasswordEvent];
+        }else
+        {
+            [self investEvent];
+        }
     }else
     {
         NSLog(@"%@---%@", _xqModel.isxs, self.Model.ifxs);
@@ -486,18 +488,90 @@
             [self showTipView:@"您是老用户了，无法购买此标！"];
         }else
         {
-            // 购买
-            investingViewController *ssc = [[investingViewController alloc]init];
-            ssc.shareAddress = _shareAddressUrl;
-            ssc.bid = self.idstr;
-            ssc.model = _xqModel;
-            ssc.borrow_account_wait = _xqModel.borrow_account_wait;
-            ssc.borrow_apr = _xqModel.borrow_apr;
-            ssc.borrow_period = _xqModel.v_borrow_period;
-            [self.navigationController pushViewController:ssc animated:YES];
+            if ([_xqModel.ispassword integerValue] == 1) {
+                // 密码标，调用输入密码弹框，进行验证，通过后进入购买页
+                [self verifyPasswordEvent];
+            }else
+            {
+                [self investEvent];
+            }
+            
         }
     }
     
+}
+
+- (void)verifyPasswordEvent
+{
+    // 调用密码标输入框，验证密码是否正确
+    [self.view addSubview:self.secretePwdView];
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.secretePwdView.frame = CGRectMake(0, screen_height-CHPasswordViewH, screen_width, CHPasswordViewH);
+    } completion:^(BOOL finished) {
+        [self.secretePwdView becomeFirstResponder];
+    }];
+}
+
+- (void)setSecretePwd:(NSString *)secretePwd
+{
+    _secretePwd = secretePwd;
+    if (secretePwd.length == 6) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // 提现网络请求
+            NSLog(@"%@", secretePwd);
+            [self.secretePwdView endEditing:YES];
+            [self NetWorkOfVerifySecretePassword:secretePwd];
+        });
+    }
+}
+
+- (void)NetWorkOfVerifySecretePassword:(NSString *)pwd
+{
+    NSLog(@"验证密码：%@", pwd);
+    [self showHUD:@"正在验证，请稍候" isDim:YES];
+    [WWZShuju initlizedData:mmburl paramsdata:@{@"bid":self.idstr, @"mima":pwd} dicBlick:^(NSDictionary *info) {
+        [self hideHUD];
+        if ([info[@"r"] integerValue] == 1) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [MBProgressHUD showSuccessMessage:info[@"msg"]];
+                [self.secretePwdView clear];
+                [self.secretePwdView closeBtnEvnet];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    // 跳转到购买页
+                    [self investEvent];
+                });
+            });
+        }else
+        {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [MBProgressHUD showErrorMessage:info[@"msg"]];
+                if ([info[@"msg"] containStr:@"密码"]) {
+                    [self.secretePwdView clear];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.secretePwdView becomeFirstResponder];
+                    });
+                }else
+                {
+                    [self.secretePwdView clear];
+                    [self.secretePwdView closeBtnEvnet];
+                }
+            });
+        }
+    }];
+}
+
+- (void)investEvent
+{
+    // 购买
+    investingViewController *ssc = [[investingViewController alloc]init];
+    ssc.shareAddress = _shareAddressUrl;
+    ssc.secretePwd = self.secretePwd;
+    ssc.bid = self.idstr;
+    ssc.model = _xqModel;
+    ssc.borrow_account_wait = _xqModel.borrow_account_wait;
+    ssc.borrow_apr = _xqModel.borrow_apr;
+    ssc.borrow_period = _xqModel.v_borrow_period;
+    [self.navigationController pushViewController:ssc animated:YES];
 }
 
 /**
@@ -708,12 +782,15 @@
 -(UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(screen_width, 0, screen_width, screen_height-BottomH-104) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(screen_width, 0, screen_width, screen_height-BottomH-WTStatus_And_Navigation_Height-40) style:UITableViewStylePlain];
         [_tableView registerNib:[UINib nibWithNibName:@"BorrowImgTableViewCell" bundle:nil] forCellReuseIdentifier:@"BorrowImgTableViewCell"];
         _tableView.tableFooterView = [self configFootView];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
@@ -746,9 +823,12 @@
 
 -(UITableView *)RecoderTable{
     if (!_RecoderTable) {
-        _RecoderTable = [[UITableView alloc]initWithFrame:CGRectMake(screen_width*2, 0,screen_width, screen_height-BottomH-104) style:UITableViewStyleGrouped];
+        _RecoderTable = [[UITableView alloc]initWithFrame:CGRectMake(screen_width*2, 0,screen_width, screen_height-BottomH-40-WTStatus_And_Navigation_Height) style:UITableViewStyleGrouped];
         _RecoderTable.dataSource = self;
         _RecoderTable.delegate = self;
+        _RecoderTable.estimatedRowHeight = 0;
+        _RecoderTable.estimatedSectionHeaderHeight = 0;
+        _RecoderTable.estimatedSectionFooterHeight = 0;
         [_RecoderTable registerNib:[UINib nibWithNibName:@"TenderViewTableViewCell" bundle:nil] forCellReuseIdentifier:@"TenderViewTableViewCell"];
         _RecoderTable.showsVerticalScrollIndicator = NO;
         _RecoderTable.backgroundColor = self.view.backgroundColor;
@@ -812,7 +892,7 @@
 -(UIWebView *)WebView
 {
     if (!_WebView) {
-        _WebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height-BottomH-64)];
+        _WebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height-BottomH-WTStatus_And_Navigation_Height)];
         _WebView.scrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         // 添加额外的滚动附近区域的内容
         _WebView.scrollView.contentInset = UIEdgeInsetsMake(160, 0, 40, 0);
@@ -865,17 +945,31 @@
 
 -(UIView *)BottomView{
     if (!_BottomView) {
-        _BottomView = [[UIView alloc]initWithFrame:CGRectMake(0, screen_height-BottomH-64, screen_width, BottomH)];
+        _BottomView = [[UIView alloc]initWithFrame:CGRectMake(0, screen_height-BottomH-WTStatus_And_Navigation_Height, screen_width, BottomH)];
         _BottomView.backgroundColor = [UIColor whiteColor];
-        btn = [[DoubleLabBtn alloc]initWithFrame:CGRectMake(15, 5, screen_width-30, BottomH-10)];
+        btn = [[DoubleLabBtn alloc]initWithFrame:CGRectMake(15, 5, screen_width-30, 40)];
         [btn setTitleColor:[UIColor whiteColor] forState:0];
         btn.backgroundColor = color(217, 217, 217, 1);
         btn.layer.cornerRadius = 5.0;
-        
-        
         [_BottomView addSubview:btn];
     }
     return _BottomView;
+}
+
+#pragma mark - Getter
+-(paymentView *)secretePwdView
+{
+    if (!_secretePwdView) {
+        _secretePwdView = [[paymentView alloc] initWithFrame:CGRectMake(0, screen_height-CHPasswordViewH, screen_width, CHPasswordViewH)];
+        _secretePwdView.tip = @"请输入标密码";
+        _secretePwdView.isHiddenFound = YES;
+        __weak typeof(self) weakself = self;
+        _secretePwdView.textChangeBlock = ^(NSString *text){
+            weakself.secretePwd = text;
+        };
+        _secretePwdView.frame = CGRectMake(0, screen_height, screen_width, CHPasswordViewH);
+    }
+    return _secretePwdView;
 }
 
 - (void)didReceiveMemoryWarning {

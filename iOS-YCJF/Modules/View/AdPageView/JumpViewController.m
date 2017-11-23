@@ -12,6 +12,8 @@
 #import "CountdownLabel.h"
 #import "TouchViewController.h"
 
+#define CHCDLabelY (WTScreenHeight == 812.0 ? 46 : 24)
+
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 @interface JumpViewController ()
@@ -41,7 +43,7 @@
     WS(weakSelf);
     
     
-    CountdownLabel *countdownLabel = [[CountdownLabel alloc] initWithFrame:CGRectMake(KScreenWidth - 80, 20, 72, 30)];
+    CountdownLabel *countdownLabel = [[CountdownLabel alloc] initWithFrame:CGRectMake(KScreenWidth - 80, CHCDLabelY, 72, 30)];
     countdownLabel.blockNewViewController = ^{
         [weakSelf removerSCPageView];
     };
@@ -52,14 +54,18 @@
      _pageView.pageURLString = imgUrl; //这个里面可以写url的连接  动态改变广告页面
     _pageView.blockSelect = ^{
         NSLog(@"广告页被点击。。。跳转下载的地址。或者产品的官网都可以的！！！");
-        
-        countdownLabel.isStop = YES;
-        WebViewController *demoVC = [[WebViewController alloc] init];
-        demoVC.upVC = @"AdpageVC";
         NSString * urlStr = [UserDefaults objectForKey:imgUrl];
-        demoVC.url = urlStr;
-        demoVC.WebTiltle = @"活动";
-        [weakSelf.navigationController pushViewController:demoVC animated:YES];
+        if ([urlStr isEqualToString:@"#"] || [urlStr isEqualToString:@""]) {
+            
+        }else
+        {
+            countdownLabel.isStop = YES;
+            WebViewController *demoVC = [[WebViewController alloc] init];
+            demoVC.upVC = @"AdpageVC";
+            demoVC.url = urlStr;
+            demoVC.WebTiltle = @"活动";
+            [weakSelf.navigationController pushViewController:demoVC animated:YES];
+        }
     };
     [self.view addSubview:_pageView];
     

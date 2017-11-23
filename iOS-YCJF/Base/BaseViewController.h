@@ -73,4 +73,7 @@ typedef void(^SuspendPopViewBlock)();
 // 刷新新手奖励数据
 - (void)loadSuspendData;
 
+// 打印请求链接和参数
+- (NSString *)JointUrlAddressWithUrl:(NSString *)url parameter:(NSDictionary *)params;
+
 @end

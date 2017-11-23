@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InputView.h"
+//#import "InputView.h"
 
 typedef void (^foundBlock)();
 
@@ -15,6 +15,7 @@ typedef void (^foundBlock)();
 
 @property (nonatomic, copy) void(^textChangeBlock)(NSString *text);
 @property (nonatomic, copy) NSString *tip;
+@property (nonatomic, assign) BOOL isHiddenFound;
 
 /***声明一个Block属性 ***/
 @property (nonatomic ,copy)foundBlock foundBlock;

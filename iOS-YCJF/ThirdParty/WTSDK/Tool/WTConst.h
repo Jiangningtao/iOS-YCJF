@@ -53,9 +53,9 @@
 //NavBar高度
 #define WTNavigation_Bar_Height 44
 //状态栏 ＋ 导航栏 高度
-#define WTStatus_And_Navigation_Height ((WTStatus_Bar_Height) + (WTNavigation_Bar_Height))
+#define WTStatus_And_Navigation_Height (WTScreenHeight == 812.0 ? 88 : 64)
 //底部tab高度
-#define WTTab_Bar_Height 49
+#define WTTab_Bar_Height (WTScreenHeight == 812.0 ? 83 : 49)
 
 //通知中心
 #define WTNotificationCenter [NSNotificationCenter defaultCenter]

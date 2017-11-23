@@ -65,8 +65,10 @@
 
 #define imageView_width 50
 
+#define CHTopSpace (WTScreenHeight == 812.0 ? 44 : 16)
 #define CHTitileViewH 44
-#define CHTitileViewY 66
+#define CHPasswordViewH (WTScreenHeight == 812.0 ? 500 : 450)
+#define CHTitileViewY (WTScreenHeight == 812.0 ? 88 : 66)
 
 #define iPhone6                                                                \
 ([UIScreen instancesRespondToSelector:@selector(currentMode)]                \

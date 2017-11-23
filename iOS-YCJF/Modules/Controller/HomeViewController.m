@@ -209,7 +209,7 @@
                                 // 邀请好友活动
                                 InviteFriendsViewController *xx = [[InviteFriendsViewController alloc]init];
                                 [self.navigationController pushViewController:xx animated:YES];
-                            }else
+                            }else if(![info[@"url"] isEqualToString:@"#"])
                             {
                                 WebViewController * webVC = [[WebViewController alloc] init];
                                 webVC.url = info[@"url"];
@@ -342,30 +342,7 @@
         
         NSMutableArray * twoBtnSubTitleArray = [[NSMutableArray alloc] init];
         [twoBtnSubTitleArray addObject:@"银行存管即将上线"];    // responseObject[@"home"][@"safe"]
-        [twoBtnSubTitleArray addObject:@"运营数据完全透明"];    // responseObject[@"home"][@"data"]
-        /*
-        self.twoHomeBtnView = [[HomeTwoBtnView alloc] initWithFrame:CGRectMake(0, self.nvbtn.bottom, screen_width, 90) titleArray:twoBtnTitleArray subTitleArray:twoBtnSubTitleArray];
-        WS(weakself);
-        self.twoHomeBtnView.blockOfSafeBtn = ^{
-            // 安全保障
-            NSLog(@"safe");
-            WebViewController * webVC = [[WebViewController alloc] init];
-            webVC.url = aqbzh5;
-            webVC.WebTiltle = @"安全保障";
-            [weakself.navigationController pushViewController:webVC animated:YES];
-        };
-        
-        self.twoHomeBtnView.blockOfDataBtn = ^{
-            // 数据披露
-            NSLog(@"data");
-            WebViewController * webVC = [[WebViewController alloc] init];
-            webVC.url = yybgh5;
-            webVC.WebTiltle = @"运营报告";
-            [weakself.navigationController pushViewController:webVC animated:YES];
-        };
-        
-        [bgView addSubview:self.twoHomeBtnView];
-        */
+        [twoBtnSubTitleArray addObject:@"运营数据完全透明"];    // responseObject[@"home"]
         NSLog(@"%ld, %ld, %ld, %ld, %ld, %ld", self.bannerArray.count, self.gonggaoArray.count, self.xslistArray.count, self.jxlistArray.count, self.investlistArray.count, self.newsArray.count);
         [self.tableView.mj_header endRefreshing];//结束刷新
         [self.tableView reloadData];
@@ -395,7 +372,7 @@
     self.origialFrame = bgView.frame;
     [self.view addSubview:bgView];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height-WTTab_Bar_Height) style:UITableViewStyleGrouped];
     [_tableView registerNib:[UINib nibWithNibName:@"selecellTableViewCell" bundle:nil] forCellReuseIdentifier:@"selecellTableViewCell"];
     _tableView.tableFooterView = [[CommonBottomView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 40)];
     _tableView.mj_header.automaticallyChangeAlpha = YES;//自动改变透明度
@@ -404,12 +381,21 @@
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.showsHorizontalScrollIndicator = NO;
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight = 0;
+    _tableView.estimatedSectionFooterHeight = 0;
     self.tableView.tableHeaderView = bgView;
     [self.view addSubview:self.tableView];
     
     self.titleView.image = IMAGE_NAMED(@"yc");
     self.navView.alpha = 0.f;
     [self.view addSubview:self.navView];
+    
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIApplicationBackgroundFetchIntervalNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = false;
+    }
 }
 
 #pragma mark - UITableViewDelegate

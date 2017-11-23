@@ -17,7 +17,6 @@
     UITextField *_MaxJETf;
     UISwitch *swith;
     
-    
 }
 
 
@@ -91,10 +90,8 @@
     pramas[@"version"] = @"v1.0.3";
     pramas[@"os"] = @"ios";
     
-    
     [WWZShuju initlizedData:tbxxrl paramsdata:pramas dicBlick:^(NSDictionary *info) {
         NSLog(@"--自动投标查询--%@",info);
-        //        if ([info[@"item"][@"timelimit_status"] isEqualToString:@"1"]) {
         
         if ([info[@"item"][@"timelimit_month_first"] isEqualToString:info[@"item"][@"timelimit_month_last"] ]) {
             if ([info[@"item"][@"timelimit_month_first"] isEqualToString:@"0"]||[info[@"item"][@"timelimit_month_last"] isEqualToString:@"0"]) {
@@ -554,7 +551,7 @@
 
 -(UITableView *)AutoBidTable{
     if (!_AutoBidTable) {
-        _AutoBidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight-64) style:UITableViewStyleGrouped];
+        _AutoBidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, WTStatus_And_Navigation_Height, ScreenWidth, ScreenHeight-WTStatus_And_Navigation_Height) style:UITableViewStyleGrouped];
         _AutoBidTable.dataSource = self;
         _AutoBidTable.delegate = self;
         _AutoBidTable.sectionHeaderHeight = 10;

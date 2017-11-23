@@ -88,6 +88,9 @@
 		FD0276451F3D7E2700F851E6 /* JXTZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0276431F3D7E2700F851E6 /* JXTZTableViewCell.m */; };
 		FD0276461F3D7E2700F851E6 /* JXTZTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD0276441F3D7E2700F851E6 /* JXTZTableViewCell.xib */; };
 		FD02764D1F3D843A00F851E6 /* BiaoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD02764C1F3D843A00F851E6 /* BiaoDetailViewController.m */; };
+		FD0FBABC1FC4197300B1211A /* AutoTenderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0FBABB1FC4197300B1211A /* AutoTenderModel.m */; };
+		FD0FBABF1FC41CD000B1211A /* NewAutoTenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0FBABE1FC41CD000B1211A /* NewAutoTenderViewController.m */; };
+		FD0FBAC31FC4210D00B1211A /* AutoTenderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0FBAC21FC4210D00B1211A /* AutoTenderTableView.m */; };
 		FD17846C1F69203D008D6D74 /* HomeTwoBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD17846B1F69203D008D6D74 /* HomeTwoBtnView.m */; };
 		FD17BF081FAB0FE500E157AF /* SuspendView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD17BF071FAB0FE500E157AF /* SuspendView.m */; };
 		FD17BF0B1FAB456900E157AF /* ssyNewUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD17BF0A1FAB456900E157AF /* ssyNewUserModel.m */; };
@@ -117,6 +120,11 @@
 		FD1CD9511F442E4100FB5B66 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1CD9501F442E4100FB5B66 /* LoginViewController.m */; };
 		FD1CD9551F443CE900FB5B66 /* NSString+QDTouchID.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1CD9541F443CE900FB5B66 /* NSString+QDTouchID.m */; };
 		FD20D2CD1F5A4BD9006A325A /* PUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = FD20D2CC1F5A4BD9006A325A /* PUserDefault.m */; };
+		FD2BA8151FC5105400ECA0A4 /* STPickerSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2BA8141FC5105400ECA0A4 /* STPickerSingle.m */; };
+		FD2BA8191FC5123A00ECA0A4 /* MonthPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2BA8181FC5123A00ECA0A4 /* MonthPickerView.m */; };
+		FD2BA81B1FC52A4A00ECA0A4 /* monthPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD2BA81A1FC52A4A00ECA0A4 /* monthPlist.plist */; };
+		FD2BA81F1FC54DA100ECA0A4 /* AprPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2BA81E1FC54DA100ECA0A4 /* AprPickerView.m */; };
+		FD2BA8211FC54E2100ECA0A4 /* AprPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD2BA8201FC54E2100ECA0A4 /* AprPlist.plist */; };
 		FD32D2721F4E6F1500CD94FA /* JumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD32D2711F4E6F1500CD94FA /* JumpViewController.m */; };
 		FD32D2751F4E6FA900CD94FA /* PageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD32D2741F4E6FA900CD94FA /* PageView.m */; };
 		FD32D2781F4E704B00CD94FA /* CountdownLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD32D2771F4E704B00CD94FA /* CountdownLabel.m */; };
@@ -131,7 +139,6 @@
 		FD3B34DE1FA33C400057E77B /* ShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3B34DD1FA33C400057E77B /* ShareManager.m */; };
 		FD3B34E11FA33D740057E77B /* ssyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3B34E01FA33D740057E77B /* ssyInfoModel.m */; };
 		FD48E5A11F467BB2007C7DDF /* CertificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD48E5A01F467BB2007C7DDF /* CertificationViewController.m */; };
-		FD48E5A51F467F1A007C7DDF /* STPickerSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = FD48E5A41F467F1A007C7DDF /* STPickerSingle.m */; };
 		FD48E5AB1F467F93007C7DDF /* libRsaCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD48E5A71F467F93007C7DDF /* libRsaCrypto.a */; };
 		FD48E5AC1F467F93007C7DDF /* LLPayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FD48E5A91F467F93007C7DDF /* LLPayUtil.m */; };
 		FD48E5AD1F467F93007C7DDF /* 集成加密库请读.txt in Resources */ = {isa = PBXBuildFile; fileRef = FD48E5AA1F467F93007C7DDF /* 集成加密库请读.txt */; };
@@ -201,6 +208,8 @@
 		FD6464221F4FD3D300FC06D2 /* GestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6464211F4FD3D300FC06D2 /* GestureViewController.m */; };
 		FD6464251F5010AC00FC06D2 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6464241F5010AC00FC06D2 /* UICountingLabel.m */; };
 		FD7547131FAAAD850028F414 /* ssyInviteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7547121FAAAD850028F414 /* ssyInviteModel.m */; };
+		FD96A8651FC46218009C3EE7 /* AutoTenderTFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96A8631FC46218009C3EE7 /* AutoTenderTFTableViewCell.m */; };
+		FD96A8661FC46218009C3EE7 /* AutoTenderTFTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD96A8641FC46218009C3EE7 /* AutoTenderTFTableViewCell.xib */; };
 		FD9948641FB983B100CB534C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9948631FB983B100CB534C /* AdSupport.framework */; };
 		FDAF18631F4A6EE700F5E0BB /* myBillsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAF18621F4A6EE700F5E0BB /* myBillsViewController.m */; };
 		FDAF186F1F4A71E000F5E0BB /* HDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAF18681F4A71E000F5E0BB /* HDViewController.m */; };
@@ -446,6 +455,12 @@
 		FD0276441F3D7E2700F851E6 /* JXTZTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JXTZTableViewCell.xib; sourceTree = "<group>"; };
 		FD02764B1F3D843A00F851E6 /* BiaoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiaoDetailViewController.h; sourceTree = "<group>"; };
 		FD02764C1F3D843A00F851E6 /* BiaoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiaoDetailViewController.m; sourceTree = "<group>"; };
+		FD0FBABA1FC4197300B1211A /* AutoTenderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoTenderModel.h; sourceTree = "<group>"; };
+		FD0FBABB1FC4197300B1211A /* AutoTenderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoTenderModel.m; sourceTree = "<group>"; };
+		FD0FBABD1FC41CD000B1211A /* NewAutoTenderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAutoTenderViewController.h; sourceTree = "<group>"; };
+		FD0FBABE1FC41CD000B1211A /* NewAutoTenderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAutoTenderViewController.m; sourceTree = "<group>"; };
+		FD0FBAC11FC4210D00B1211A /* AutoTenderTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoTenderTableView.h; sourceTree = "<group>"; };
+		FD0FBAC21FC4210D00B1211A /* AutoTenderTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoTenderTableView.m; sourceTree = "<group>"; };
 		FD17846A1F69203D008D6D74 /* HomeTwoBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTwoBtnView.h; sourceTree = "<group>"; };
 		FD17846B1F69203D008D6D74 /* HomeTwoBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTwoBtnView.m; sourceTree = "<group>"; };
 		FD17BF061FAB0FE500E157AF /* SuspendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuspendView.h; sourceTree = "<group>"; };
@@ -496,6 +511,14 @@
 		FD1CD9541F443CE900FB5B66 /* NSString+QDTouchID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QDTouchID.m"; sourceTree = "<group>"; };
 		FD20D2CB1F5A4BD9006A325A /* PUserDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUserDefault.h; sourceTree = "<group>"; };
 		FD20D2CC1F5A4BD9006A325A /* PUserDefault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUserDefault.m; sourceTree = "<group>"; };
+		FD2BA8131FC5105400ECA0A4 /* STPickerSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerSingle.h; sourceTree = "<group>"; };
+		FD2BA8141FC5105400ECA0A4 /* STPickerSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerSingle.m; sourceTree = "<group>"; };
+		FD2BA8171FC5123A00ECA0A4 /* MonthPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonthPickerView.h; sourceTree = "<group>"; };
+		FD2BA8181FC5123A00ECA0A4 /* MonthPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonthPickerView.m; sourceTree = "<group>"; };
+		FD2BA81A1FC52A4A00ECA0A4 /* monthPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = monthPlist.plist; sourceTree = "<group>"; };
+		FD2BA81D1FC54DA100ECA0A4 /* AprPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AprPickerView.h; sourceTree = "<group>"; };
+		FD2BA81E1FC54DA100ECA0A4 /* AprPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AprPickerView.m; sourceTree = "<group>"; };
+		FD2BA8201FC54E2100ECA0A4 /* AprPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AprPlist.plist; sourceTree = "<group>"; };
 		FD32D2701F4E6F1500CD94FA /* JumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpViewController.h; sourceTree = "<group>"; };
 		FD32D2711F4E6F1500CD94FA /* JumpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpViewController.m; sourceTree = "<group>"; };
 		FD32D2731F4E6FA900CD94FA /* PageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageView.h; sourceTree = "<group>"; };
@@ -524,8 +547,6 @@
 		FD3B34E01FA33D740057E77B /* ssyInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssyInfoModel.m; sourceTree = "<group>"; };
 		FD48E59F1F467BB2007C7DDF /* CertificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificationViewController.h; sourceTree = "<group>"; };
 		FD48E5A01F467BB2007C7DDF /* CertificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificationViewController.m; sourceTree = "<group>"; };
-		FD48E5A31F467F1A007C7DDF /* STPickerSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerSingle.h; sourceTree = "<group>"; };
-		FD48E5A41F467F1A007C7DDF /* STPickerSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerSingle.m; sourceTree = "<group>"; };
 		FD48E5A71F467F93007C7DDF /* libRsaCrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRsaCrypto.a; sourceTree = "<group>"; };
 		FD48E5A81F467F93007C7DDF /* LLPayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPayUtil.h; sourceTree = "<group>"; };
 		FD48E5A91F467F93007C7DDF /* LLPayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPayUtil.m; sourceTree = "<group>"; };
@@ -654,6 +675,9 @@
 		FD6464241F5010AC00FC06D2 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		FD7547111FAAAD850028F414 /* ssyInviteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssyInviteModel.h; sourceTree = "<group>"; };
 		FD7547121FAAAD850028F414 /* ssyInviteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssyInviteModel.m; sourceTree = "<group>"; };
+		FD96A8621FC46218009C3EE7 /* AutoTenderTFTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoTenderTFTableViewCell.h; sourceTree = "<group>"; };
+		FD96A8631FC46218009C3EE7 /* AutoTenderTFTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoTenderTFTableViewCell.m; sourceTree = "<group>"; };
+		FD96A8641FC46218009C3EE7 /* AutoTenderTFTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoTenderTFTableViewCell.xib; sourceTree = "<group>"; };
 		FD9948631FB983B100CB534C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		FDAF18611F4A6EE700F5E0BB /* myBillsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myBillsViewController.h; sourceTree = "<group>"; };
 		FDAF18621F4A6EE700F5E0BB /* myBillsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myBillsViewController.m; sourceTree = "<group>"; };
@@ -974,6 +998,7 @@
 		FD02752F1F39874400F851E6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FD48E5B31F4682A9007C7DDF /* STPickerView */,
 				FDC864001F45987500F692E9 /* Login */,
 				FD1CD9521F443CE900FB5B66 /* Touch */,
 				FD1CD9161F42B9FA00FB5B66 /* QRG_MJRefresh */,
@@ -1233,7 +1258,6 @@
 			isa = PBXGroup;
 			children = (
 				FD02763C1F3D7DD100F851E6 /* SubVC */,
-				FD02763B1F3D7DCB00F851E6 /* Model */,
 				FD02763A1F3D7DC400F851E6 /* View */,
 				FD0275FF1F3AA6DF00F851E6 /* InvestViewController.h */,
 				FD0276001F3AA6DF00F851E6 /* InvestViewController.m */,
@@ -1324,13 +1348,6 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		FD02763B1F3D7DCB00F851E6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		FD02763C1F3D7DD100F851E6 /* SubVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1348,6 +1365,22 @@
 				FD02764C1F3D843A00F851E6 /* BiaoDetailViewController.m */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		FD0FBAC01FC41CDF00B1211A /* NewAutoTender */ = {
+			isa = PBXGroup;
+			children = (
+				FD0FBABA1FC4197300B1211A /* AutoTenderModel.h */,
+				FD0FBABB1FC4197300B1211A /* AutoTenderModel.m */,
+				FD0FBAC11FC4210D00B1211A /* AutoTenderTableView.h */,
+				FD0FBAC21FC4210D00B1211A /* AutoTenderTableView.m */,
+				FD0FBABD1FC41CD000B1211A /* NewAutoTenderViewController.h */,
+				FD0FBABE1FC41CD000B1211A /* NewAutoTenderViewController.m */,
+				FD96A8621FC46218009C3EE7 /* AutoTenderTFTableViewCell.h */,
+				FD96A8631FC46218009C3EE7 /* AutoTenderTFTableViewCell.m */,
+				FD96A8641FC46218009C3EE7 /* AutoTenderTFTableViewCell.xib */,
+			);
+			name = NewAutoTender;
 			sourceTree = "<group>";
 		};
 		FD17BF051FAB0F7D00E157AF /* SuspendView */ = {
@@ -1460,6 +1493,36 @@
 			path = Touch;
 			sourceTree = "<group>";
 		};
+		FD2BA8121FC5105400ECA0A4 /* Single(单数组) */ = {
+			isa = PBXGroup;
+			children = (
+				FD2BA8131FC5105400ECA0A4 /* STPickerSingle.h */,
+				FD2BA8141FC5105400ECA0A4 /* STPickerSingle.m */,
+			);
+			name = "Single(单数组)";
+			path = "iOS-YCJF/Utils/STPickerView/Single(单数组)";
+			sourceTree = SOURCE_ROOT;
+		};
+		FD2BA8161FC511FE00ECA0A4 /* AutoMonthPicker */ = {
+			isa = PBXGroup;
+			children = (
+				FD2BA81A1FC52A4A00ECA0A4 /* monthPlist.plist */,
+				FD2BA8171FC5123A00ECA0A4 /* MonthPickerView.h */,
+				FD2BA8181FC5123A00ECA0A4 /* MonthPickerView.m */,
+			);
+			path = AutoMonthPicker;
+			sourceTree = "<group>";
+		};
+		FD2BA81C1FC54D8000ECA0A4 /* AutoAprPicker */ = {
+			isa = PBXGroup;
+			children = (
+				FD2BA8201FC54E2100ECA0A4 /* AprPlist.plist */,
+				FD2BA81D1FC54DA100ECA0A4 /* AprPickerView.h */,
+				FD2BA81E1FC54DA100ECA0A4 /* AprPickerView.m */,
+			);
+			path = AutoAprPicker;
+			sourceTree = "<group>";
+		};
 		FD32D26C1F4E683F00CD94FA /* AdPageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1487,6 +1550,7 @@
 		FD395F511F4D549300203723 /* 自动投标 */ = {
 			isa = PBXGroup;
 			children = (
+				FD0FBAC01FC41CDF00B1211A /* NewAutoTender */,
 				FD395F521F4D552D00203723 /* AutoTenderController.h */,
 				FD395F531F4D552D00203723 /* AutoTenderController.m */,
 				FD395F551F4D568900203723 /* AutoTenderFirstRowCell.h */,
@@ -1520,16 +1584,6 @@
 			name = VCs;
 			sourceTree = "<group>";
 		};
-		FD48E5A21F467F1A007C7DDF /* Single(单数组) */ = {
-			isa = PBXGroup;
-			children = (
-				FD48E5A31F467F1A007C7DDF /* STPickerSingle.h */,
-				FD48E5A41F467F1A007C7DDF /* STPickerSingle.m */,
-			);
-			name = "Single(单数组)";
-			path = "../Single(单数组)";
-			sourceTree = "<group>";
-		};
 		FD48E5A61F467F93007C7DDF /* LLPayUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1544,8 +1598,10 @@
 		FD48E5B31F4682A9007C7DDF /* STPickerView */ = {
 			isa = PBXGroup;
 			children = (
+				FD2BA81C1FC54D8000ECA0A4 /* AutoAprPicker */,
+				FD2BA8161FC511FE00ECA0A4 /* AutoMonthPicker */,
+				FD2BA8121FC5105400ECA0A4 /* Single(单数组) */,
 				FD01B1721F569D600072C9AD /* STPickerArea */,
-				FD48E5A21F467F1A007C7DDF /* Single(单数组) */,
 				FD48E5B71F4683C6007C7DDF /* STConfig */,
 				FD48E5B41F4682A9007C7DDF /* STPickerView.h */,
 				FD48E5B51F4682A9007C7DDF /* STPickerView.m */,
@@ -2144,7 +2200,6 @@
 			children = (
 				FD48E5E51F46CA06007C7DDF /* GestureView */,
 				FD48E5D11F46B717007C7DDF /* PasswordView */,
-				FD48E5B31F4682A9007C7DDF /* STPickerView */,
 				FDCB95F51F45D675008ED400 /* set1TableViewCell.h */,
 				FDCB95F61F45D675008ED400 /* set1TableViewCell.m */,
 				FDCB95F71F45D675008ED400 /* set1TableViewCell.xib */,
@@ -2313,6 +2368,7 @@
 				FD1CD94D1F44044300FB5B66 /* AutomaticTableViewCell.xib in Resources */,
 				FD01B1761F569D6B0072C9AD /* cityPlist.plist in Resources */,
 				FDAF18941F4AA70000F5E0BB /* mingxi2TableViewCell.xib in Resources */,
+				FD2BA8211FC54E2100ECA0A4 /* AprPlist.plist in Resources */,
 				FD02755E1F398C6800F851E6 /* MBHUD_Info@3x.png in Resources */,
 				FD48E67B1F46DE22007C7DDF /* jaingjuanCollectionViewCell.xib in Resources */,
 				FDCB95FE1F45D675008ED400 /* set2TableViewCell.xib in Resources */,
@@ -2330,6 +2386,7 @@
 				FDB7701F1F46E10F003A1DAF /* inTableViewCell.xib in Resources */,
 				FD0275EE1F3AA22100F851E6 /* Checkmark_success_white@2x.png in Resources */,
 				FD0275071F39817600F851E6 /* LaunchScreen.storyboard in Resources */,
+				FD2BA81B1FC52A4A00ECA0A4 /* monthPlist.plist in Resources */,
 				FD0275611F398C6800F851E6 /* MBHUD_Warn@2x.png in Resources */,
 				FD48E6051F46CDE2007C7DDF /* xiaoxiTableViewCell.xib in Resources */,
 				FD1CD9211F42CF3500FB5B66 /* TenderViewTableViewCell.xib in Resources */,
@@ -2339,6 +2396,7 @@
 				FD1CD93B1F43E2FA00FB5B66 /* rankingTableViewCell.xib in Resources */,
 				FDC36DC71FA1B38100B2C2EC /* Main.storyboard in Resources */,
 				FD48E5AD1F467F93007C7DDF /* 集成加密库请读.txt in Resources */,
+				FD96A8661FC46218009C3EE7 /* AutoTenderTFTableViewCell.xib in Resources */,
 				FDB7702C1F46E202003A1DAF /* payTableViewCell.xib in Resources */,
 				FD1CD9261F42D41500FB5B66 /* BorrowImgTableViewCell.xib in Resources */,
 				FD0275041F39817600F851E6 /* Assets.xcassets in Resources */,
@@ -2463,13 +2521,14 @@
 				FDAF18B61F4AB48900F5E0BB /* zfbczViewController.m in Sources */,
 				FD48E6451F46DCE6007C7DDF /* zhangdanTableViewCell.m in Sources */,
 				FDAF18C21F4AD5A300F5E0BB /* CancarryViewController.m in Sources */,
-				FD48E5A51F467F1A007C7DDF /* STPickerSingle.m in Sources */,
+				FD2BA8191FC5123A00ECA0A4 /* MonthPickerView.m in Sources */,
 				FD48E6471F46DCE6007C7DDF /* zhangdanViewController.m in Sources */,
 				FDAF18721F4A71E000F5E0BB /* zdxqViewController.m in Sources */,
 				FDAF18871F4AA62500F5E0BB /* fundRecordViewController.m in Sources */,
 				FD1CD9551F443CE900FB5B66 /* NSString+QDTouchID.m in Sources */,
 				FDAF186F1F4A71E000F5E0BB /* HDViewController.m in Sources */,
 				FD48E6341F46DC85007C7DDF /* mujixqViewController.m in Sources */,
+				FD2BA8151FC5105400ECA0A4 /* STPickerSingle.m in Sources */,
 				FD395F5D1F4D569F00203723 /* BidChooseDatePopview.m in Sources */,
 				FD1CD90C1F41927700FB5B66 /* TopTableViewCell.m in Sources */,
 				FD0275F11F3AA22200F851E6 /* UIImage+WT.m in Sources */,
@@ -2504,6 +2563,7 @@
 				FDC863EE1F45785200F692E9 /* noteView.m in Sources */,
 				FD0275941F39901200F851E6 /* UIDevice+deviceSystem.m in Sources */,
 				FDB8A4961FA07DF1005FB87D /* ssyTenderModel.m in Sources */,
+				FD0FBABC1FC4197300B1211A /* AutoTenderModel.m in Sources */,
 				FD0276241F3BED6800F851E6 /* InvestmenCollectionViewCell.m in Sources */,
 				FD02753A1F3987FA00F851E6 /* AppDelegate+AppService.m in Sources */,
 				FD48E6641F46DD89007C7DDF /* yaoqingjiluViewController.m in Sources */,
@@ -2559,13 +2619,16 @@
 				FDBAAE6A1F78A1D300294D27 /* yaoqinghyViewController.m in Sources */,
 				FD02762E1F3BF4C300F851E6 /* CommonBottomView.m in Sources */,
 				FD0275EA1F3AA22100F851E6 /* NSString+WT.m in Sources */,
+				FD0FBABF1FC41CD000B1211A /* NewAutoTenderViewController.m in Sources */,
 				FD1CD9141F4281AA00FB5B66 /* BiaoBottomTableViewCell.m in Sources */,
+				FD0FBAC31FC4210D00B1211A /* AutoTenderTableView.m in Sources */,
 				FD48E6441F46DCE6007C7DDF /* DSZDMolde.m in Sources */,
 				FD1CD9101F419E4A00FB5B66 /* QRG_MJRefreshAutoFooter.m in Sources */,
 				FD48E6521F46DD39007C7DDF /* SheetCell.m in Sources */,
 				FD0276361F3C5B9200F851E6 /* Jiangli.m in Sources */,
 				FD0275F31F3AA22200F851E6 /* UITextView+WT.m in Sources */,
 				FDAF18701F4A71E000F5E0BB /* SRViewController.m in Sources */,
+				FD96A8651FC46218009C3EE7 /* AutoTenderTFTableViewCell.m in Sources */,
 				FD48E6801F46DE22007C7DDF /* yishiyongViewController.m in Sources */,
 				FDC863FC1F4592A600F692E9 /* SettingViewController.m in Sources */,
 				FD48E5E11F46BD33007C7DDF /* SetPayPwdViewController.m in Sources */,
@@ -2575,6 +2638,7 @@
 				FDC863F31F45824B00F692E9 /* Passwordback1ViewController.m in Sources */,
 				FD48E66B1F46DD9F007C7DDF /* myjiangliViewController.m in Sources */,
 				FD48E67A1F46DE22007C7DDF /* jaingjuanCollectionViewCell.m in Sources */,
+				FD2BA81F1FC54DA100ECA0A4 /* AprPickerView.m in Sources */,
 				FD0275F21F3AA22200F851E6 /* UILabel+WT.m in Sources */,
 				FD48E5D01F46B638007C7DDF /* ModiLoginPwdViewController.m in Sources */,
 				FD48E61C1F46DA45007C7DDF /* YinChengNewsDetailViewController.m in Sources */,
@@ -2726,7 +2790,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2768,7 +2832,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -2795,7 +2859,7 @@
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/LLPayUtils",
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/AppAnalytis",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2823,7 +2887,7 @@
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/LLPayUtils",
 					"$(PROJECT_DIR)/iOS-YCJF/ThirdParty/AppAnalytis",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirong.yinchengjinfu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

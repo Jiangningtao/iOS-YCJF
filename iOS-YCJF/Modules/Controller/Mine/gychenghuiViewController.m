@@ -44,11 +44,17 @@
 }
 -(UITableView *)gytab{
     if (!_gytab) {
-        _gytab = [[UITableView alloc]initWithFrame:CGRectMake(0,66, self.view.width, self.view.height-130-66) style:UITableViewStyleGrouped];
+        _gytab = [[UITableView alloc]initWithFrame:CGRectMake(0,WTStatus_And_Navigation_Height, self.view.width, self.view.height-130-WTStatus_And_Navigation_Height) style:UITableViewStyleGrouped];
         self.gytab.scrollEnabled =NO;
         _gytab.dataSource= self;
         _gytab.delegate = self;
         _gytab.backgroundColor =grcolor;
+        _gytab.estimatedRowHeight = 0;
+        _gytab.estimatedSectionHeaderHeight = 0;
+        _gytab.estimatedSectionFooterHeight = 0;
+        _gytab.estimatedRowHeight = 0;
+        _gytab.estimatedSectionHeaderHeight = 0;
+        _gytab.estimatedSectionFooterHeight = 0;
     }
     return _gytab;
 }
@@ -59,7 +65,11 @@
     [self.view addSubview:self.gytab];
     
     
-    
+    if (@available(iOS 11.0, *)) {
+        self.gytab.contentInsetAdjustmentBehavior = UIApplicationBackgroundFetchIntervalNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = false;
+    }
     // Do any additional setup after loading the view.
 }
 -(void)Nav{

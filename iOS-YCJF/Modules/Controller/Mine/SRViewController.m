@@ -38,6 +38,9 @@
         self.tab.dataSource= self;
         self.tab.delegate = self;
         self.tab.backgroundColor =grcolor;
+        _tab.estimatedRowHeight = 0;
+        _tab.estimatedSectionHeaderHeight = 0;
+        _tab.estimatedSectionFooterHeight = 0;
     }
     return _tab;
 }

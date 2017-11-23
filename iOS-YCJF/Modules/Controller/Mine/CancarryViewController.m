@@ -250,7 +250,7 @@
             {
                 [self.view addSubview:self.payView];
                 [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    _payView.frame = CGRectMake(0, screen_height-420, screen_width, 420);
+                    _payView.frame = CGRectMake(0, screen_height-CHPasswordViewH, screen_width, CHPasswordViewH);
                 } completion:^(BOOL finished) {
                     [_payView becomeFirstResponder];
                 }];
@@ -272,13 +272,13 @@
 -(paymentView *)payView
 {
     if (!_payView) {
-        _payView = [[paymentView alloc] initWithFrame:CGRectMake(0, screen_height-420, screen_width, 420)];
+        _payView = [[paymentView alloc] initWithFrame:CGRectMake(0, screen_height-CHPasswordViewH, screen_width, CHPasswordViewH)];
         _payView.tip = @"请输入交易密码";
         __weak typeof(self) weakself = self;
         _payView.textChangeBlock = ^(NSString *text){
             weakself.payPwd = text;
         };
-        _payView.frame = CGRectMake(0, screen_height, screen_width, 420);
+        _payView.frame = CGRectMake(0, screen_height, screen_width, CHPasswordViewH);
     }
     return _payView;
 }

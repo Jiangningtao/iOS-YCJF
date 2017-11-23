@@ -32,5 +32,6 @@
 
 @property (nonatomic, strong) MineItemModel * mineModel;
 @property (nonatomic, strong) AccinfoModel * accModel;
+@property (nonatomic, copy) NSString *secretePwd;
 
 @end

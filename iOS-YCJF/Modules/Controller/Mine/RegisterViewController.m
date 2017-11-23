@@ -58,7 +58,7 @@
         [_view1 addSubview:lab];
         [lab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.offset(21);
-            make.top.offset(17);
+            make.top.offset(kRealValue(20));
         }];
         
         

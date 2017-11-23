@@ -38,6 +38,9 @@
  */
 @property (nonatomic ,copy)NSString<Optional> *apr_B;
 @property (nonatomic ,strong)NSString<Optional> *apr_A;
-
+/**
+ *  密码标：标详情接口app/binfo返回中item.ispassword==1是密码标 ==""是非密码标
+ */
+@property (nonatomic ,strong)NSString<Optional> *ispassword;
 
 @end

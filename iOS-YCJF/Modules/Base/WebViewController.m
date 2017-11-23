@@ -162,7 +162,7 @@
     
     configuration.userContentController = userContentController;
     configuration.preferences.javaScriptEnabled = YES;//打开js交互
-    _wkwebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, KScreenWidth, KScreenHeight-64) configuration:configuration];
+    _wkwebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, WTStatus_And_Navigation_Height, KScreenWidth, KScreenHeight-WTStatus_And_Navigation_Height) configuration:configuration];
     [self.view addSubview:_wkwebView];
     _wkwebView.backgroundColor = [UIColor clearColor];
     _wkwebView.allowsBackForwardNavigationGestures =YES;//打开网页间的 滑动返回
@@ -238,7 +238,6 @@
     NSString * urlStr = navigationAction.request.URL.absoluteString;
     NSLog(@"urlStr = %@", urlStr);
     if ([urlStr hasSuffix:@"h5/register.html"]) {
-        
         RegisterViewController * registerVC = [[RegisterViewController alloc] init];
         [self.navigationController pushViewController:registerVC animated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);

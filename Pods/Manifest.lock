@@ -39,7 +39,6 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - UMengAnalytics (4.2.4)
-  - UMengSocial (4.4)
   - YTKNetwork (2.0.3):
     - AFNetworking (~> 3.0)
   - YYKit (1.0.9):
@@ -66,7 +65,6 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SDWebImage (~> 3.8)
   - UMengAnalytics
-  - UMengSocial (~> 4.3)
   - YTKNetwork
   - YYKit
 
@@ -86,10 +84,9 @@ SPEC CHECKSUMS:
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
-  UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
   YTKNetwork: c4b0c29c9d639dc050d475de69ee626d53eac598
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: e97fa7691f3b08f337e2682bf0598dadd3f80cfc
+PODFILE CHECKSUM: ee3b6936a1d3759218f5d33c2abd8ace0b47ab1b
 
 COCOAPODS: 1.0.1

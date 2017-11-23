@@ -31,6 +31,9 @@
         _tab.backgroundColor = grcolor;
         _tab.delegate = self;
         _tab.dataSource = self;
+        _tab.estimatedRowHeight = 0;
+        _tab.estimatedSectionHeaderHeight = 0;
+        _tab.estimatedSectionFooterHeight = 0;
     }
     return _tab;
 }
@@ -40,7 +43,11 @@
     [self AFNetwork];
     [self.view addSubview:self.tab];
    
-    // Do any additional setup after loading the view.
+    if (@available(iOS 11.0, *)) {
+        self.tab.contentInsetAdjustmentBehavior = UIApplicationBackgroundFetchIntervalNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = false;
+    }
 }
 -(void)AFNetwork{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];

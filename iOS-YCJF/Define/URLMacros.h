@@ -13,7 +13,6 @@
 
 
 /*
- 
  将项目中所有的接口写在这里,方便统一管理,降低耦合
  
  这里通过宏定义来切换你当前的服务器类型,
@@ -22,12 +21,12 @@
  这样做切换方便,不用来回每个网络请求修改请求域名,降低出错事件
  */
 
-#if 1  // 测试时使用
+#if 0  // 测试时使用
 #define preUrl   @"http://120.27.211.129/index_wx.php/"
 #define guangUrl @"http://120.27.211.129/"
 #endif
 
-#if 0   // 实际上线时使用
+#if 1   // 实际上线时使用
 #define preUrl   @"https://www.yinchenglicai.com/index_wx.php/"
 #define guangUrl @"https://www.yinchenglicai.com/"
 #endif
@@ -37,8 +36,10 @@
 #define syhdurl [preUrl stringByAppendingString:@"App/IndexAlertInfo"]//首页活动弹窗
 
 #define tzurl [preUrl stringByAppendingString:@"App/blist"] //投资
+#define mmburl [preUrl stringByAppendingString:@"App/checkbidpass"] // 密码标
 #define xqurl [preUrl stringByAppendingString:@"App/binfo"] //投资详情
 #define drurl [preUrl stringByAppendingString:@"App/login"] //登入注册
+
 #define aturl [preUrl stringByAppendingString:@"Auth/accessToken"]
 #define sidurl [preUrl stringByAppendingString:@"Auth/sid"]
 #define versionurl [preUrl stringByAppendingString:@"App/version"] // 版本检测

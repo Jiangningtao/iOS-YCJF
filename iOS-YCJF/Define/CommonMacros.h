@@ -46,6 +46,13 @@
 #define KSecurytyshow @"securytyshow"
 
 /**
+ *  Get
+ */
+#define Get_at_value [UserDefaults objectForKey:@"at"]
+#define Get_uid_value [UserDefaults objectForKey:@"uid"]
+#define Get_sid_value [UserDefaults objectForKey:@"sid"]
+
+/**
  *  通知
  *
  *  @return 宏定义

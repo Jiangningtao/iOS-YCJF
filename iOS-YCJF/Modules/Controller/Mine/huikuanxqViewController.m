@@ -57,6 +57,9 @@
         self.tab.dataSource= self;
         self.tab.delegate = self;
         self.tab.backgroundColor =grcolor;
+        _tab.estimatedRowHeight = 0;
+        _tab.estimatedSectionHeaderHeight = 0;
+        _tab.estimatedSectionFooterHeight = 0;
         self.tab.tableHeaderView = self.viewa;
         self.tab.tableFooterView = self.viewb;
 //        _tab.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];

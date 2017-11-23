@@ -7,17 +7,19 @@
 //
 
 #import "BaseViewController.h"
+#if 0
 #import <UMSocialQQHandler.h>
 #import <UMSocialWechatHandler.h>
 #import <UMSocialSinaHandler.h>
 #import <UMSocialSinaSSOHandler.h>
+#endif
 #import "TabBarViewController.h"
 
 #import "SuspendView.h"
 #import "ssyNewUserModel.h"
 #import "BiaoDetailViewController.h"
 
-@interface BaseViewController ()<UMSocialUIDelegate>
+@interface BaseViewController ()//<UMSocialUIDelegate>
 {
     ssyNewUserModel * newUserModel;
 }
@@ -63,33 +65,51 @@
 
 - (void)initNavView{
     //创建主视图包含基础视图
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, screen_width, screen_height-20)];
     //创建背景视图
     _backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height)];
-    _backImageView.backgroundColor = [UIColor whiteColor];
+    _backImageView.backgroundColor = background_color;
     [self.view addSubview:_backImageView];
-//    [self.view addSubview:backView];
     
-    //自定义导航栏视图
-    _navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 64)];
-    _navView.backgroundColor = [UIColor whiteColor];
-    _sepView = [[UIView alloc] initWithFrame:CGRectMake(0, 63, screen_width, 1)];
+    _navView = [[UIView alloc] init];
+    _navView.backgroundColor = KWhiteColor;
+    [self.view addSubview:_navView];
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.offset(0);
+        make.height.offset(WTStatus_And_Navigation_Height);
+    }];
+    
+    _sepView = [[UIView alloc] init];
     _sepView.backgroundColor = sepline_color;
     [_navView addSubview:_sepView];
+    [_sepView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.offset(0);
+        make.bottom.offset(-0.5);
+        make.height.offset(0.5);
+    }];
+    
     //标题视图
     _titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
-    _titleView.frame = CGRectMake(0, 0, 40, 30);
-    _titleView.center = CGPointMake(screen_width/2, 20+22);
     _titleView.contentMode = UIViewContentModeScaleAspectFit;
     [_navView addSubview:_titleView];
+    [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(_navView.mas_centerX).offset(0);
+        make.bottom.equalTo(_navView.mas_bottom).offset(-12);
+        make.height.offset(24);
+        make.width.offset(30);
+    }];
+    
     //标题名
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((screen_width-200)/2, 24, 200, 36)];
+    _titleLabel = [[UILabel alloc] init];//WithFrame:CGRectMake((screen_width-200)/2, 24, 200, 36)];
     _titleLabel.textAlignment = 1;
-    _titleLabel.font = [UIFont systemFontOfSize:20.0f];
+    _titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:17];
     _titleLabel.textColor = color(0, 0, 0, 0.9);
     [_navView addSubview:_titleLabel];
-    [self.view addSubview:_navView];
-    self.navView.hidden = YES;
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(_navView.mas_centerX).offset(0);
+        make.bottom.equalTo(_navView.mas_bottom).offset(-12);
+        make.height.offset(24);
+        make.width.offset(200);
+    }];
     
     //输入提示框
     _tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screen_width, 30)];
@@ -100,6 +120,7 @@
     _tipLabel.clipsToBounds = YES;
     _tipLabel.textAlignment = 1;
 }
+
 
 #pragma mark -- 创建控件
 //------默认的右边按钮-------
@@ -123,6 +144,10 @@
         [_rightButton setBtnViewWithImage:imageName withImageWidth:imageWidth withTitle:@"" withTitleColor:[UIColor whiteColor] withFont:systemFont(17.0f)];
         [_rightButton addTarget:self action:@selector(navRightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_navView addSubview:_rightButton];
+        [_rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(_navView.mas_right).offset(-10);
+            make.centerY.equalTo(_titleLabel.mas_centerY).offset(0);
+        }];
     }
 }
 //------自定义的右边按钮(文字)-------
@@ -261,7 +286,7 @@
 - (void)navOtherBtnClick:(UIButton *)button {
     
 }
-
+#if 0
 #pragma 分享事件
 - (void)shareQQAndWechat:(NSString *)urlStr {
     [UMSocialWechatHandler setWXAppId:WX_Key appSecret:WX_Secret url:urlStr];
@@ -294,7 +319,7 @@
 -(void)didCloseUIViewController:(UMSViewControllerType)fromViewControllerTyp {
     
 }
-
+#endif
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
@@ -360,12 +385,30 @@
         _paramsBase = @{
                         @"app_id":@"3",
                         @"secret":@"aodsadhowiqhdwiqs",
-                        @"at":[UserDefaults objectForKey:@"at"],
+                        @"at":NULL_TO_NIL(Get_at_value)?Get_at_value:@"", // 判空，防断网
                         @"os":@"ios",
                         @"version":KVersion
                         };
     }
     return _paramsBase;
+}
+
+/**
+ *  拼接URL和参数
+ *
+ *  @param url    访问的网址
+ *  @param params 传入的参数
+ *
+ *  @return 拼接好的字符串
+ */
+- (NSString *)JointUrlAddressWithUrl:(NSString *)url parameter:(NSDictionary *)params
+{
+    NSString * paramsStr = [[NSString alloc] init];
+    for (int i = 0; i < params.allKeys.count; i++) {
+        paramsStr = [paramsStr stringByAppendingString:[NSString stringWithFormat:@"%@=%@&", params.allKeys[i], params.allValues[i]]];
+    }
+    paramsStr = [NSString stringWithFormat:@"%@?%@", url, paramsStr];
+    return paramsStr;
 }
 
 - (void)didReceiveMemoryWarning {

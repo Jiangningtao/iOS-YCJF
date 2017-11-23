@@ -69,7 +69,7 @@
 
 -(UIView *)SuccessFootView{
     if (!_SuccessFootView) {
-        _SuccessFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,ScreenWidth , ScreenHeight-64-self.SuccessHeadView.height-(2*46))];
+        _SuccessFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,ScreenWidth , ScreenHeight-WTStatus_And_Navigation_Height-self.SuccessHeadView.height-(2*46))];
         _SuccessFootView.backgroundColor = self.view.backgroundColor;
         
         UILabel *alertLab = [[UILabel alloc]initWithFrame:CGRectMake(15,10, ScreenWidth-15,20)];
@@ -129,7 +129,7 @@
 
 -(UIView *)FailFootView{
     if (!_FailFootView) {
-        _FailFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,ScreenWidth , ScreenHeight-64-self.FailHeadView.height-46)];
+        _FailFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,ScreenWidth , ScreenHeight-WTStatus_And_Navigation_Height-self.FailHeadView.height-46)];
         _FailFootView.backgroundColor = self.view.backgroundColor;
         
         UIButton *ContinuerechargeBtn = [self QuickSetBtnWithTextColor:[UIColor whiteColor] ansText:@"继续充值" andBgColor:color(67, 149, 221,1)];
@@ -166,7 +166,7 @@
 
 -(UITableView *)ResultTable{
     if (!_ResultTable) {
-        _ResultTable = [[UITableView alloc]initWithFrame:CGRectMake(0,64, ScreenWidth, ScreenHeight-64) style:UITableViewStylePlain];
+        _ResultTable = [[UITableView alloc]initWithFrame:CGRectMake(0,WTStatus_And_Navigation_Height, ScreenWidth, ScreenHeight-WTStatus_And_Navigation_Height) style:UITableViewStylePlain];
         _ResultTable.dataSource = self;
         _ResultTable.delegate = self;
         _ResultTable.rowHeight = 46;

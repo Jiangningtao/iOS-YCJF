@@ -161,6 +161,9 @@
         _tab.backgroundColor =grcolor;
         _tab.delegate = self;
         _tab.dataSource = self;
+        _tab.estimatedRowHeight = 0;
+        _tab.estimatedSectionHeaderHeight = 0;
+        _tab.estimatedSectionFooterHeight = 0;
     }
     return _tab;
 }

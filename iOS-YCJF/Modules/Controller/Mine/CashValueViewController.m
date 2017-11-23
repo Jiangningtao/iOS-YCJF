@@ -108,7 +108,7 @@
         make.centerX.offset(0);
         make.top.offset(127);
         make.width.offset(60);
-        make.height.offset(64);
+        make.height.offset(WTStatus_And_Navigation_Height);
     }];
     
     

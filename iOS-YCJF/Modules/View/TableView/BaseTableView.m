@@ -62,14 +62,17 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return self.tabViewDataSource.count;
+    if (self.style == UITableViewStyleGrouped) {
+        return self.tabViewDataSource.count;
+    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+    if (self.style == UITableViewStylePlain) {
+        return self.tabViewDataSource.count;
+    }
     return 1;
 }
 

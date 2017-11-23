@@ -46,9 +46,12 @@
 
 -(UITableView *)tab{
     if (!_tab) {
-        _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-70) style:UITableViewStyleGrouped];
+        _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, WTStatus_And_Navigation_Height, screen_width, screen_height-WTStatus_And_Navigation_Height-WTTab_Bar_Height) style:UITableViewStyleGrouped];
         _tab.delegate = self;
         _tab.dataSource = self;
+        _tab.estimatedRowHeight = 0;
+        _tab.estimatedSectionHeaderHeight = 0;
+        _tab.estimatedSectionFooterHeight = 0;
     }
     return _tab;
 }
@@ -65,6 +68,12 @@
     self.tab.mj_footer = footer;
     
     [self showSuspendView];
+    
+    if (@available(iOS 11.0, *)) {
+        self.tab.contentInsetAdjustmentBehavior = UIApplicationBackgroundFetchIntervalNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = false;
+    }
 }
 
 -(void)loadNewTopics
@@ -198,9 +207,7 @@
 //分组间距
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    
     return 55;//section头部高度
-    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

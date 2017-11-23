@@ -21,7 +21,15 @@
 -(void)setModel:(biaoModel *)model{
     _model = model;
     _pingtailab.text =[NSString stringWithFormat:@"%@",model.name] ;
-    _titlelab.text = @"";
+    [_titlelab border:UIColorHex(#FF8855) width:1 CornerRadius:_titlelab.height/2];
+    _titlelab.hidden = YES;
+    if ([model.ispassword integerValue] == 1) {
+        // 密码标
+        _titlelab.hidden = NO;
+    }else
+    {
+        _titlelab.hidden = YES;
+    }
     float floatstr = [model.borrow_account_scale floatValue]/100.0;
     _progress.progress = floatstr;
     NSString *s = [NSString string];

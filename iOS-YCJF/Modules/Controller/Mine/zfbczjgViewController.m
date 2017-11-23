@@ -101,7 +101,7 @@
 }
 -(UIView *)SuccessFootView{
     if (!_SuccessFootView) {
-        _SuccessFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,ScreenWidth , ScreenHeight-64-self.SuccessHeadView.height-(2*46))];
+        _SuccessFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,ScreenWidth , ScreenHeight-WTStatus_And_Navigation_Height-self.SuccessHeadView.height-(2*46))];
         _SuccessFootView.backgroundColor = self.view.backgroundColor;
         
         UIButton *InverstBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, CGRectGetMidY(_SuccessFootView.frame)-20, ScreenWidth-40, 45)];
@@ -162,7 +162,7 @@
 
 -(UITableView *)ResultTable{
     if (!_ResultTable) {
-        _ResultTable = [[UITableView alloc]initWithFrame:CGRectMake(0,64, ScreenWidth, ScreenHeight-64) style:UITableViewStylePlain];
+        _ResultTable = [[UITableView alloc]initWithFrame:CGRectMake(0,WTStatus_And_Navigation_Height, ScreenWidth, ScreenHeight-WTStatus_And_Navigation_Height) style:UITableViewStylePlain];
         _ResultTable.dataSource = self;
         _ResultTable.delegate = self;
         _ResultTable.rowHeight = 46;

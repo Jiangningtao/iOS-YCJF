@@ -331,11 +331,6 @@ THE SOFTWARE.
 Copyright 2011 - 2015 UMeng.com. All rights reserved.
 
 
-## UMengSocial
-
-Copyright 2011 - 2015 UMeng.com. All rights reserved.
-
-
 ## YTKNetwork
 
 Copyright (c) 2012-2016 YTKNetwork https://github.com/yuantiku

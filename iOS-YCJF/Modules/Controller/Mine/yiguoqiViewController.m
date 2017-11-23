@@ -118,7 +118,7 @@
     flowLayout.sectionInset = UIEdgeInsetsMake(0,0,0,0);
     // 滚动方向
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    _FourBtnCollect = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 16, ScreenWidth,ScreenHeight-120) collectionViewLayout:flowLayout];
+    _FourBtnCollect = [[UICollectionView alloc]initWithFrame:CGRectMake(0, CHTopSpace, ScreenWidth,ScreenHeight-120) collectionViewLayout:flowLayout];
     _FourBtnCollect.backgroundColor = grcolor;
     _FourBtnCollect.dataSource = self;
     _FourBtnCollect.delegate = self;

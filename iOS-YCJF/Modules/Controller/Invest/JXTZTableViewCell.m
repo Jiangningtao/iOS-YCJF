@@ -32,7 +32,15 @@
 -(void)setRst:(biaoModel *)rst{
     _rst = rst;
     _ptlab.text = [NSString stringWithFormat:@"%@",rst.name];
-    _titlelab.text = @"";
+    [_titlelab border:UIColorHex(#FF8855) width:1 CornerRadius:_titlelab.height/2];
+    _titlelab.hidden = YES;
+    if ([rst.ispassword integerValue] == 1) {
+        // 密码标
+        _titlelab.hidden = NO;
+    }else
+    {
+        _titlelab.hidden = YES;
+    }
     /*NSString *str =[NSString string];
     if ([rst.apr_B floatValue] == 0) {
         str = @"%";

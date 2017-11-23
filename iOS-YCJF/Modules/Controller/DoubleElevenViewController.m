@@ -59,7 +59,7 @@
 {
     [self NavBack];
     
-    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, screen_width, screen_height-64)];
+    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, WTStatus_And_Navigation_Height, screen_width, screen_height-WTStatus_And_Navigation_Height)];
     _bgScrollView.mj_header.automaticallyChangeAlpha = YES;//自动改变透明度
     _bgScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
     [self.view addSubview:_bgScrollView];
@@ -214,6 +214,9 @@
     _tableView.bounces = NO;
     _tableView.separatorColor = color(240, 240, 240, 1);
     _tableView.backgroundColor = KWhiteColor;
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight = 0;
+    _tableView.estimatedSectionFooterHeight = 0;
     [_tableView registerNib:[UINib nibWithNibName:@"DoubleElevenTableViewCell" bundle:nil] forCellReuseIdentifier:@"DoubleElevenTableViewCell"];
     [_bgScrollView addSubview:_tableView];
     

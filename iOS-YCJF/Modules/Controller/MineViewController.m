@@ -28,11 +28,18 @@
 #import "myBillsViewController.h"
 #import "CashValueViewController.h"
 #import "assetDetailViewController.h"
-#import "AutoTenderController.h"
+//#import "AutoTenderController.h"
+#import "NewAutoTenderViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate>
-
+{
+    UIView * _markView;  // 信息标记
+    UIImageView * _leftImageV;
+    
+    AccinfoModel * accInfoModel; // 账户信息模型
+    MineItemModel * mineItemModel; // 个人信息模型
+}
 /***tabview ***/
 @property (nonatomic ,strong)UITableView *tab;
 /** 第二组tableview的collect */
@@ -64,13 +71,8 @@
     
     [MobClick beginLogPageView:@"我的"];
     [TalkingData trackPageBegin:@"我的"];
-    self.navigationController.navigationBar.hidden = NO;
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    // bg.png为自己ps出来的想要的背景颜色。
-    [navigationBar setBackgroundImage:[UIImage imageWithColor:UIColorHex(3995DF)]
-                       forBarPosition:UIBarPositionAny
-                           barMetrics:UIBarMetricsDefault];
-    [navigationBar setShadowImage:[UIImage new]];
+    
+    self.navigationController.navigationBar.hidden = YES;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     [self loadSuspendData];
@@ -81,9 +83,7 @@
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"我的"];
     [TalkingData trackPageEnd:@"我的"];
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:nil];
-    self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName:[UIColor blackColor]};
+    self.navigationController.navigationBar.hidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
 }
@@ -95,33 +95,58 @@
     [self myAddrBtnEvent];
     // 添加通知的观察者，刷新数据
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNewTopics) name:KNotificationRefreshMineDatas object:nil];
-    if ([[MineInstance shareInstance].mineModel.headpture integerValue] == 0) {
-        UIBarButtonItem * item1 = [UIBarButtonItem itemWithTarget:self action:@selector(leftBarBtnEvent) image:@"circle3" highImage:@"circle3"];
-        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-        btn.radius = 11;
-        [btn addTarget:self action:@selector(leftBarBtnEvent) forControlEvents:UIControlEventTouchUpInside];
-        [btn setBackgroundImage:IMAGE_NAMED(@"defaultHead") forState:UIControlStateNormal];
-        UIBarButtonItem * item2 = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        self.navigationItem.leftBarButtonItems = @[item1, item2];
-    }
-    //[self rightBarBtnImgN:@"icon_message" act:@selector(rightBarBtnEvent)];
-    UILabel * rlab = [UILabel labelWithFrame:CGRectMake(10, 0, 10, 10) text:@"9" font:8 textColor:KWhiteColor];
-    rlab.textAlignment = NSTextAlignmentCenter;
-    rlab.radius = 5;
-    rlab.backgroundColor = KRedColor;
-    UIButton * rBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 18, 20)];
-    [rBtn setBackgroundImage:IMAGE_NAMED(@"icon_message") forState:UIControlStateNormal];
-    [rBtn setBackgroundImage:IMAGE_NAMED(@"icon_message") forState:UIControlStateSelected];
-  //  [rBtn addSubview:rlab];
-    [rBtn addTarget:self action:@selector(rightBarBtnEvent) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * ritem = [[UIBarButtonItem alloc] initWithCustomView:rBtn];
-    self.navigationItem.rightBarButtonItem = ritem;
+    
+    
     [self.view addSubview:self.tab];
     [self layout];
     
     [self loadNewTopics];
     
     [self showSuspendView];
+    
+    [self configNavView];
+    
+    if (@available(iOS 11.0, *)) {
+        self.tab.contentInsetAdjustmentBehavior = UIApplicationBackgroundFetchIntervalNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = false;
+    }
+}
+
+- (void)configNavView
+{
+    self.navView.hidden = NO;
+    self.navView.backgroundColor = UIColorHex(3994DE);
+    self.sepView.backgroundColor = UIColorHex(3994DE);
+    [self showRightBtn:CGRectMake(screen_width-45, 24, 40, 36) withImage:@"icon_message" withImageWidth:20];
+    _markView = [[UIView alloc] initWithFrame:CGRectMake(self.rightButton.width-18, 5, 10, 10)];
+    _markView.backgroundColor = KRedColor;
+    _markView.radius = 5;
+    _markView.hidden = YES;
+    [self.rightButton addSubview:_markView];
+    
+    UIView * _leftView = [[UIView alloc] initWithFrame:CGRectMake(10, WTStatus_And_Navigation_Height-36, 60, 24)];
+    [_leftView tapGesture:^(UIGestureRecognizer *ges) {
+        SettingViewController * vc = [[SettingViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    [self.navView addSubview:_leftView];
+    
+    UIImageView * _leftImgV = [[UIImageView alloc] initWithImage:IMAGE_NAMED(@"circle3")];
+    [_leftView addSubview:_leftImgV];
+    [_leftImgV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.offset(0);
+        make.left.offset(5);
+    }];
+    
+    _leftImageV = [[UIImageView alloc] initWithImage:IMAGE_NAMED(@"defaultHead")];
+    _leftImageV.radius = 11;
+    [_leftView addSubview:_leftImageV];
+    [_leftImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.offset(0);
+        make.left.equalTo(_leftImgV.mas_right).offset(8);
+        make.width.height.offset(22);
+    }];
 }
 
 #pragma mark - NetWork
@@ -156,23 +181,20 @@
         NSLog(@"--我的--%@",info);
 //        [MBProgressHUD hideHUD];
         if ([info[@"r"] integerValue] == 1) {
+            accInfoModel = [[AccinfoModel alloc] initWithDictionary:info[@"accinfo"] error:nil];
+            mineItemModel = [[MineItemModel alloc] initWithDictionary:info[@"item"] error:nil];
             // 给单例赋值
-            [MineInstance shareInstance].mineModel = [[MineItemModel alloc] initWithDictionary:info[@"item"] error:nil];
-            [MineInstance shareInstance].accModel = [[AccinfoModel alloc] initWithDictionary:info[@"accinfo"] error:nil];
-            
-            NSURL * url = [NSURL URLWithString:[MineInstance shareInstance].mineModel.avatar_url];
-            UIBarButtonItem * item1 = [UIBarButtonItem itemWithTarget:self action:@selector(leftBarBtnEvent) image:@"circle3" highImage:@"circle3"];
-            UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-            btn.radius = 11;
-            [btn addTarget:self action:@selector(leftBarBtnEvent) forControlEvents:UIControlEventTouchUpInside];
-            if ([[MineInstance shareInstance].mineModel.headpture integerValue] != 0) {
-                [btn setImageWithURL:url forState:UIControlStateNormal placeholder:IMAGE_NAMED(@"defaultHead")];
+            [MineInstance shareInstance].mineModel = mineItemModel;
+            [MineInstance shareInstance].accModel = accInfoModel;
+            if ([mineItemModel.unread_message integerValue] != 0) {
+                _markView.hidden = NO;
             }else
             {
-                [btn setImage:IMAGE_NAMED(@"defaultHead") forState:UIControlStateNormal];
+                _markView.hidden = YES;
             }
-            UIBarButtonItem * item2 = [[UIBarButtonItem alloc] initWithCustomView:btn];
-            self.navigationItem.leftBarButtonItems = @[item1, item2];
+            if ([mineItemModel.headpture integerValue] != 0) {
+                [_leftImageV setImageWithURL:[NSURL URLWithString:mineItemModel.avatar_url] placeholder:IMAGE_NAMED(@"defaultHead")];
+            }
             [UserDefaults setObject:info[@"accinfo"][@"cur_seq"] forKey:KCurseq];
             [UserDefaults setObject:info[@"item"][@"real_status"] forKey:KReal_status];
             [UserDefaults setObject:info[@"item"][@"is_defaultpaypass"] forKey:KIs_defaultpaypass];
@@ -322,7 +344,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)rightBarBtnEvent
+- (void)navRightBtnClick:(UIButton *)button
 {
     NSLog(@"icon_message");
     NEWSViewController * vc = [[NEWSViewController alloc] init];
@@ -451,7 +473,7 @@
         assetDetailViewController * vc = [[assetDetailViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 2){
-        AutoTenderController * vc = [[AutoTenderController alloc]init];
+        NewAutoTenderViewController * vc = [[NewAutoTenderViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     
@@ -598,11 +620,15 @@
 -(UITableView *)tab
 {
     if (!_tab) {
-        _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screen_width, screen_height-64-49) style:UITableViewStyleGrouped];
+        _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, WTStatus_And_Navigation_Height, screen_width, screen_height-WTStatus_And_Navigation_Height-WTTab_Bar_Height) style:UITableViewStyleGrouped];
         [_tab registerNib:[UINib nibWithNibName:@"rankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"rankingTableViewCell"];
         _tab.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tab.dataSource= self;
         _tab.delegate = self;
+        /// 自动关闭估算高度，不想估算那个，就设置那个即可
+        _tab.estimatedRowHeight = 0;
+        _tab.estimatedSectionHeaderHeight = 0;
+        _tab.estimatedSectionFooterHeight = 0;
         _tab.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
         _tab.mj_header.automaticallyChangeAlpha = YES;//自动改变透明度
     }

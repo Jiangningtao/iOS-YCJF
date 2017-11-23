@@ -335,10 +335,13 @@
 #pragma mark - Getter
 -(UITableView *)tab{
     if (!_tab) {
-        _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, screen_width, screen_height-64) style:UITableViewStyleGrouped];
+        _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, WTStatus_And_Navigation_Height, screen_width, screen_height-WTStatus_And_Navigation_Height) style:UITableViewStyleGrouped];
         _tab.dataSource= self;
         _tab.delegate = self;
         _tab.backgroundColor =grcolor;
+        _tab.estimatedRowHeight = 0;
+        _tab.estimatedSectionHeaderHeight = 0;
+        _tab.estimatedSectionFooterHeight = 0;
     }
     return _tab;
 }

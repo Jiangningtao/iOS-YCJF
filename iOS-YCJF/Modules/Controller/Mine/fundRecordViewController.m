@@ -24,9 +24,6 @@
 @end
 
 @implementation fundRecordViewController
-CGFloat const CHTssssitilesViewH =  44;
-
-CGFloat const CHTssssitilesViewY = 64;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -80,8 +77,8 @@ CGFloat const CHTssssitilesViewY = 64;
     UIView *titlesView = [[UIView alloc]init];
     titlesView.backgroundColor = [UIColor whiteColor];
     titlesView.width = self.view.width;
-    titlesView.height = CHTssssitilesViewH;
-    titlesView.y = CHTssssitilesViewY;
+    titlesView.height = CHTitileViewH;
+    titlesView.y = CHTitileViewY;
     [self.view addSubview:titlesView];
     self.titlesView = titlesView;
     

@@ -48,7 +48,7 @@
 {
     [self NavBack];
     
-    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, screen_width, screen_height-114)];
+    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, WTStatus_And_Navigation_Height, screen_width, screen_height-WTStatus_And_Navigation_Height-50)];
     _bgScrollView.showsVerticalScrollIndicator = NO;
     _bgScrollView.showsHorizontalScrollIndicator = NO;
     _bgScrollView.bounces = YES;
